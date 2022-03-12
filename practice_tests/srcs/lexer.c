@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 18:13:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:34:29 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_token *lexer_collect_string(t_lexer *lexer)
 		s = lexer_get_current_char_as_string(lexer);
 		value = realloc(value, (strlen(value) + strlen(s) + 1) * sizeof(char));
 		strcat(value,s);
+		lexer_advance(lexer);
 	}
 	lexer_advance(lexer);
 
@@ -96,7 +97,7 @@ t_token	*lexer_collect_id(t_lexer *lexer)
 	char *s;
 	char *value;
 	
-	value = calloc(1,sizeof(char));
+	value = calloc(1,  sizeof(char));
 	value[0] = '\0';
 	
 	while (isalnum(lexer->c)) // while current character is alphanumeric
@@ -106,7 +107,6 @@ t_token	*lexer_collect_id(t_lexer *lexer)
 		strcat(value,s);
 		lexer_advance(lexer);
 	}
-
 	return (init_token(TOKEN_ID, value));
 }
 
