@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 19:35:44 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:55:14 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,45 @@
 # include <readline/readline.h>
 
 
+typedef struct s_list{
+	char			**cmd; //current character we are on
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_text{
+	char			*content; //current character we are on
+	struct s_list	*next;
+}	t_text;
+
+enum	e_operator{
+
+		TOKEN_ID, //metacharachter
+		TOKEN_PIPE,
+		TOKEN_STRING,
+		TOKEN_BIGGER,
+		TOKEN_SMALLER
+};
+
+typedef struct s_operator{
+	char			*content; //current character we are on
+	enum e_operator	re_director;
+	struct s_list	*next;
+
+}	t_operator;
+
+
+typedef struct s_token{
+	enum
+	{
+		TOKEN_ID, //metacharachter
+		TOKEN_PIPE,
+		TOKEN_STRING,
+		TOKEN_BIGGER,
+		TOKEN_SMALLER
+	}	type;
+
+	char *value;
+}	t_token;
 typedef struct s_lexer
 {
 	char			c; //current character we are on
@@ -28,22 +67,6 @@ typedef struct s_lexer
 	char			*contents;
 }	t_lexer;
 
-typedef struct s_token
-{
-	enum
-	{
-		TOKEN_ID, //metacharachter
-		TOKEN_EQUALS,
-		TOKEN_SEMI,
-		TOKEN_STRING,
-		TOKEN_BIGGER,
-		TOKEN_PAR_LEFT,
-		TOKEN_PAR_RIGHT,
-		TOKEN_SMALLER
-	}	type;
-
-	char *value;
-}	t_token;
 
 t_lexer	*init_lexer(char *contents);
 

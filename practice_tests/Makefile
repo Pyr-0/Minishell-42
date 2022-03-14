@@ -6,27 +6,33 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/12 17:32:52 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/14 13:06:01 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	mini
 CC			=	gcc
-CC_FLAGS	=	-Wall -Werror -Wextra
+CC_FLAGS	=	-lreadline $(LDFLAGS) $(CPPFLAGS) -Wall -Wextra -Werror
+LDFLAGS = "-L/Users/$(USER)/.brew/opt/readline/lib"
+CPPFLAGS = "-I/Users/$(USER)/.brew/opt/readline/include"
 RM			=	rm -rf
 DIR_HEADERS =	./includes/
 DIR_SRCS	=	./srcs/
 DIR_OBJS	=	./obj/
-SRC			=	main.c lexer.c token.c
+SRC			=	./srcs/main.c ./srcs/lexer.c ./srcs/token.c
 SRCS		=	$(SRC)
 OBJS 		=	$(SRCS:%.c=$(DIR_OBJS)%.o)
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME):		LIB
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@$(CC) $(CC_FLAGS) -I $(DIR_HEADERS) $(OBJS) -o $(NAME)
+				@ $(CC) $(CC_FLAGS)  $(SRC) libft.a -o $(NAME)
 				@tput setaf 013 && printf "$(NAME) created.\n"
+
+LIB:
+	make -C ./libft
+	cp ./libft/libft.a .
 
 $(OBJS):		$(DIR_OBJS)
 
@@ -42,6 +48,7 @@ clean:
 				
 fclean:			clean
 				@$(RM) $(NAME)
+				@$(RM) ./libft/libft.a
 				@tput setaf 117 && printf "FULL CLEAN COMPLETED.\n"
 
 re:				fclean all

@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:44:33 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 14:14:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:04:31 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@ static	int	ft_isspace(char c)
 {
 	if (c == ' ' || c == '\f' || c == '\v'
 		|| c == '\n' || c == '\r' || c == '\t')
-		return (1);
-	return (0);
-}
-
-static int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }

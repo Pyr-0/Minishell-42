@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 19:34:29 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:46:14 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,15 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 {
 	while (lexer->c != '\0' && lexer->i < strlen(lexer->contents)) //while we still have characters to parse we continue ;)
 	{
-		if (lexer->c == ' ' || lexer->c == 10) // 10 = '\n'. 
-			lexer_skip_whitespace(lexer);
+ 		if (lexer->c == ' ' || lexer->c == 10) // 10 = '\n'. 
+		lexer_skip_whitespace(lexer);
 		if (isalnum(lexer->c))
 			return (lexer_collect_id(lexer));
 		if (lexer->c == '"')
 			return (lexer_collect_string(lexer));
-		if (lexer->c == '=')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_EQUALS,
+		if (lexer->c == '|')
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_PIPE,
 							lexer_get_current_char_as_string(lexer))));
-		else if (lexer->c == ';')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_SEMI,
-							lexer_get_current_char_as_string(lexer))));
-		else if (lexer->c == '(')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_PAR_LEFT,
-							lexer_get_current_char_as_string(lexer))));
-		else if (lexer->c == ')')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_PAR_RIGHT,
-								lexer_get_current_char_as_string(lexer))));
 		else if (lexer->c == '>')
 			return (lexer_advance_with_token(lexer, init_token(TOKEN_BIGGER,
 							lexer_get_current_char_as_string(lexer))));
