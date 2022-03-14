@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:45:54 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 14:15:49 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:02:30 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <limits.h>
+
 
 typedef struct s_LinkedlistNode
 {
@@ -43,7 +45,7 @@ char	*ft_strnstr(const char *big, const char *small, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 
-bool	ft_atoi(const char *str);
+bool	ft_atoi(const char *str, int *res);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
