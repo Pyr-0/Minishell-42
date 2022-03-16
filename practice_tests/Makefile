@@ -3,43 +3,43 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 11:01:55 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/16 17:33:33 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
-CC_FLAGS	=	-lreadline $(LDFLAGS) $(CPPFLAGS) -Wall -Wextra -Werror
-LDFLAGS		=	"-L/Users/$(USER)/.brew/opt/readline/lib"
-CPPFLAGS	=	"-I/Users/$(USER)/.brew/opt/readline/include"
+CC_FLAGS	=	-Wall -Wextra -Werror
+CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
+LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline 
 DIR_HEADERS =	./includes/
-DIR_SRCS	=	./srcs/
-DIR_OBJS	=	./obj/
-SRC			=	./srcs/main.c ./srcs/lexer.c ./srcs/token.c
-OBJS		=	$(SRC:%.c=$(DIR_OBJS)%.o)
+DIR_SRC		=	./src/
+DIR_OBJ		=	./obj/
+SRC			=	./src/main.c ./src/lexer.c ./src/token.c
+OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
 
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@ $(CC) $(CC_FLAGS) $(SRC) $(LIBFT) -o $(NAME)
+				@$(CC) $(CC_FLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 
 $(LIBFT):
 				@tput setaf 117 && printf "*--------checking libft...-------------*\n"
 				@make -C ./libft
 
-$(DIR_OBJS)%.o:	$(DIR_SRCS)%.c
+$(DIR_OBJ)%.o:	$(DIR_SRC)%.c
 				@mkdir -p $(dir $@)
-				$(CC) $(CC_FLAGS) -I $(DIR_HEADERS) -c $< -o $@
+				$(CC) $(CC_FLAGS) $(CPPFLAGS) -I $(DIR_HEADERS) -c $< -o $@
 
 clean:
-				@$(RM) $(DIR_OBJS)
-				make -C libft clean
+				@rm -rf $(DIR_OBJ)
+				@make -C libft clean
 				@tput setaf 01 && printf "*--------Object files removed!---------*\n"
 				
 fclean:			clean
@@ -50,7 +50,7 @@ fclean:			clean
 re:				fclean all
 
 exec:
-				@tput setaf 117 && printf "*--------executing program!------------*\n"
+				@printf "*--------executing program!------------*\n"
 				./$(NAME)
 
 both:			$(NAME) exec
