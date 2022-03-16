@@ -6,51 +6,53 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/14 13:06:01 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/16 11:01:55 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		=	mini
+NAME		=	minishell
 CC			=	gcc
 CC_FLAGS	=	-lreadline $(LDFLAGS) $(CPPFLAGS) -Wall -Wextra -Werror
-LDFLAGS = "-L/Users/$(USER)/.brew/opt/readline/lib"
-CPPFLAGS = "-I/Users/$(USER)/.brew/opt/readline/include"
-RM			=	rm -rf
+LDFLAGS		=	"-L/Users/$(USER)/.brew/opt/readline/lib"
+CPPFLAGS	=	"-I/Users/$(USER)/.brew/opt/readline/include"
 DIR_HEADERS =	./includes/
 DIR_SRCS	=	./srcs/
 DIR_OBJS	=	./obj/
 SRC			=	./srcs/main.c ./srcs/lexer.c ./srcs/token.c
-SRCS		=	$(SRC)
-OBJS 		=	$(SRCS:%.c=$(DIR_OBJS)%.o)
+OBJS		=	$(SRC:%.c=$(DIR_OBJS)%.o)
+LIBFT		=	libft/libft.a
 
 all:			$(NAME)
 
-$(NAME):		LIB
+$(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@ $(CC) $(CC_FLAGS)  $(SRC) libft.a -o $(NAME)
+				@ $(CC) $(CC_FLAGS) $(SRC) $(LIBFT) -o $(NAME)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 
-LIB:
-	make -C ./libft
-	cp ./libft/libft.a .
+$(LIBFT):
+				@tput setaf 117 && printf "*--------checking libft...-------------*\n"
+				@make -C ./libft
 
-$(OBJS):		$(DIR_OBJS)
-
-$(DIR_OBJS)%.o: $(DIR_SRCS)%.c
-#				@tput setaf 207 && printf "\nCompiling sources\n$<"
-				@$(CC) $(CC_FLAGS) -I $(DIR_HEADERS) -c $< -o $@
-$(DIR_OBJS):
-				@mkdir $@
+$(DIR_OBJS)%.o:	$(DIR_SRCS)%.c
+				@mkdir -p $(dir $@)
+				$(CC) $(CC_FLAGS) -I $(DIR_HEADERS) -c $< -o $@
 
 clean:
 				@$(RM) $(DIR_OBJS)
-				@tput setaf 117 && printf "\nobject files  deleted.\n"
+				make -C libft clean
+				@tput setaf 01 && printf "*--------Object files removed!---------*\n"
 				
 fclean:			clean
-				@$(RM) $(NAME)
-				@$(RM) ./libft/libft.a
-				@tput setaf 117 && printf "FULL CLEAN COMPLETED.\n"
+				@rm -rf $(NAME)
+				@rm -rf $(LIBFT)
+				@tput setaf 117 && printf "*--------Full clean completed!---------*\n"
 
 re:				fclean all
+
+exec:
+				@tput setaf 117 && printf "*--------executing program!------------*\n"
+				./$(NAME)
+
+both:			$(NAME) exec
 
 .PHONY:			all clean fclean re norm
