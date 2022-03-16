@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 18:20:49 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/16 19:37:08 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(DIR_OBJ)%.o:	$(DIR_SRC)%.c
 clean:
 				@rm -rf $(DIR_OBJ)
 				@make -C libft clean
-				@tput setaf 01 && printf "*--------Object files removed!---------*\n"
+				@tput setaf 1 && printf "*--------Object files removed!---------*\n"
 				
 fclean:			clean
 				@rm -rf $(NAME)
@@ -50,7 +50,7 @@ fclean:			clean
 re:				fclean all
 
 exec:
-				@printf "*--------executing program!------------*\n"
+				@tput setaf 007 && printf "*--------executing program!------------*\n"
 				./$(NAME)
 
 both:			$(NAME) exec

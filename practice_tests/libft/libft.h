@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:45:54 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/14 13:04:50 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:19:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		ft_tolower(int c);
 
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_strdup(const char *s1);
+char	*ft_realloc(char *old_mem, size_t size);
 
 /*Second*/
 void	ft_putchar_fd(char c, int fd);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 12:46:02 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 11:04:35 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/16 20:19:16 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=	ft_isalnum.c\
 				ft_strnstr.c\
 				ft_calloc.c\
 				ft_strdup.c\
+				ft_realloc.c\
 				ft_substr.c\
 				ft_strjoin.c\
 				ft_strtrim.c\

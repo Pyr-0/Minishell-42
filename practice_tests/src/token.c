@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/12 19:45:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:45:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 
 t_token *init_token(int type, char *value)
 {
-	t_token	*token = calloc(1, sizeof(t_token));
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
 	token->type = type;
 	token->value = value;
-	
 	return (token);
 }
 /*alternative so the allocation gets done separately to avoid

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/14 13:36:10 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:55:05 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 int main()
 {
-	char *test;
+	char	*test;
+	t_lexer	lexer;
 
 	while(1)
 	{
 
-		test = readline("miSHELLin test be like : ");
+		test = readline("miSHELLin$ ");
 		printf("Readline input :%s\n", test);
-		printf("System command Exec:\n");
+		printf("System command exec:\n");
 		system(test); //shows the output of commands
-		t_lexer *lexer = init_lexer(test);
+		init_lexer(&lexer, test);
 
 		t_token *token;
 		token = (void *)0;
-		while ((token = lexer_get_next_token(lexer)) != NULL)
+		while ((token = lexer_get_next_token(&lexer)) != NULL)
+		{
 			printf("TOKEN (%d, %s)\n", token->type, token->value);
+			free(token->value);
+			free(token);
+		}
+		printf("\n");
+		//system("leaks minishell");
 	}
 	return (0);
-} 
+}

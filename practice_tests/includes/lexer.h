@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/14 17:55:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:03:49 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,38 @@
 # include <ctype.h>
 # include <stdio.h>
 # include <readline/readline.h>
+# include "../libft/libft.h"
 
 
-typedef struct s_list{
-	char			**cmd; //current character we are on
-	struct s_list	*next;
-}	t_list;
+// typedef struct s_list{
+// 	char			**cmd; //current character we are on
+// 	struct s_list	*next;
+// }	t_list;
 
-typedef struct s_text{
-	char			*content; //current character we are on
-	struct s_list	*next;
-}	t_text;
+// typedef struct s_text{
+// 	char			*content; //current character we are on
+// 	struct s_list	*next;
+// }	t_text;
 
-enum	e_operator{
+// enum	e_operator{
 
-		TOKEN_ID, //metacharachter
-		TOKEN_PIPE,
-		TOKEN_STRING,
-		TOKEN_BIGGER,
-		TOKEN_SMALLER
-};
+// 		TOKEN_ID, //metacharachter
+// 		TOKEN_PIPE,
+// 		TOKEN_STRING,
+// 		TOKEN_BIGGER,
+// 		TOKEN_SMALLER
+// };
 
-typedef struct s_operator{
-	char			*content; //current character we are on
-	enum e_operator	re_director;
-	struct s_list	*next;
+// typedef struct s_operator{
+// 	char			*content; //current character we are on
+// 	enum e_operator	re_director;
+// 	struct s_list	*next;
 
-}	t_operator;
+// }	t_operator;
 
 
-typedef struct s_token{
+typedef struct s_token
+{
 	enum
 	{
 		TOKEN_ID, //metacharachter
@@ -60,15 +62,16 @@ typedef struct s_token{
 
 	char *value;
 }	t_token;
+
 typedef struct s_lexer
 {
 	char			c; //current character we are on
 	unsigned int	i;
 	char			*contents;
+	size_t			linelen;
 }	t_lexer;
 
-
-t_lexer	*init_lexer(char *contents);
+void	init_lexer(t_lexer *lexer, char *contents);
 
 void	lexer_advance(t_lexer *lexer);//moves the pointer to the next chaacter in the content
 
