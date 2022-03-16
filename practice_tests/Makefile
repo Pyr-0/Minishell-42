@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 17:33:33 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/16 18:20:49 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	minishell
 CC			=	gcc
 CC_FLAGS	=	-Wall -Wextra -Werror
 CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
-LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline 
+LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
