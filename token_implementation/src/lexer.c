@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/16 20:54:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/18 15:49:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_lexer(t_lexer *lexer, char *contents)
 }
 
 
-t_token *lexer_collect_string(t_lexer *lexer)
+t_token	*lexer_collect_string(t_lexer *lexer)
 {
 	char *s;
 	char *value;
@@ -97,29 +97,56 @@ void	lexer_skip_whitespace(t_lexer *lexer)
 	}
 }
 
-t_token	*lexer_get_next_token(t_lexer *lexer)
+t_command_block	*init_command_block(void)
 {
+	t_command_block	*command_block;
+
+	command_block = malloc(sizeof(t_command_block));
+	if (command_block == NULL)
+		return (NULL);
+	command_block->tokens = NULL;
+	command_block->next = NULL;
+	return (command_block);
+}
+
+t_command_block	*add_command_block(t_command_block *prev)
+{
+	t_command_block *new;
+
+	new = init_command_block();
+	if (new == NULL)
+		return ;
+	if (prev != NULL)
+		prev->next = new;
+	return (new);
+}
+
+t_command_block	*lexer(t_lexer *lexer)
+{
+	t_command_block	*first;
+	t_command_block	*iter;
+
+	first = init_command_block();
+	iter = first;
 	while (lexer->c != '\0' && lexer->i < lexer->linelen) //while we still have characters to parse we continue ;) // why both needed?
 	{
 		lexer_skip_whitespace(lexer);
-		if (ft_isalnum(lexer->c))
-			return (lexer_collect_id(lexer));
-		else if (lexer->c == '"')
-			return (lexer_collect_string(lexer));
-		else if (lexer->c == '|')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_PIPE,
-							lexer_get_current_char_as_string(lexer))));
-		else if (lexer->c == '>')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_BIGGER,
+		if (lexer->c == '|')
+		{
+			lexer_advance(lexer);
+			iter = add_command_block(iter);
+		}
+		else if (ft_strncmp(collect_fromstr(lexer), ">>", INT_MAX))
+		{
+			
+		}
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT,
 							lexer_get_current_char_as_string(lexer))));
 		else if (lexer->c == '<')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_SMALLER,
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT,
 								lexer_get_current_char_as_string(lexer))));
 		else
-		{
-			printf("wtf have you given me\n");
-			break ;
-		}
+			lexer_collect_id(lexer);
 	}
 	return (void *)0;
 }

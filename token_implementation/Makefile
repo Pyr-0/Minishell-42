@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 19:37:08 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/18 13:57:05 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,15 @@ fclean:			clean
 re:				fclean all
 
 exec:
+				@tput setaf 1 && printf   "           (        )       (     (              \n"
+				@tput setaf 1 && printf   "           )\ )  ( /(       )\ )  )\ )           \n"
+				@tput setaf 1 && printf   "       (  (()/(  )\()) (   (()/( (()/( (         \n"
+				@tput setaf 1 && printf   "       )\  /(_))((_)\  )\   /(_)) /(_)))\        \n"
+				@tput setaf 1 && printf   "     '((_)(_))   _((_)((_) (_))  (_))  (_)       \n"
+				@tput setaf 010 && printf " _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n"
+				@tput setaf 010 && printf "| '  \ | |\__ \ | __ || _| | |__ | |__ | || ' \  \n"
+				@tput setaf 010 && printf "|_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n"
+				@tput setaf 010 && printf "                                                 \n"
 				@tput setaf 007 && printf "*--------executing program!------------*\n"
 				./$(NAME)
 

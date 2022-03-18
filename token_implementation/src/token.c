@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/16 20:45:33 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/18 15:11:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_token *init_token(int type, char *value)
 	token->value = value;
 	return (token);
 }
+
 /*alternative so the allocation gets done separately to avoid
 	leaks and constant freeing.*/
 /* void	assign_token(t_token *token, int type, char *value)

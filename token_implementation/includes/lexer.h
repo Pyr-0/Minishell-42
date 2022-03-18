@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/16 21:30:51 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/18 15:51:49 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@
 
 
 // typedef struct s_list{
-// 	char			**cmd; //current character we are on
+// 	char			**cmd; 
 // 	struct s_list	*next;
 // }	t_list;
 
 // typedef struct s_text{
-// 	char			*content; //current character we are on
+// 	char			*content;
 // 	struct s_list	*next;
 // }	t_text;
 
 // enum	e_operator{
 
-// 		TOKEN_ID, //metacharachter
+// 		TOKEN_ID, 
 // 		TOKEN_PIPE,
 // 		TOKEN_STRING,
 // 		TOKEN_BIGGER,
@@ -42,26 +42,36 @@
 // };
 
 // typedef struct s_operator{
-// 	char			*content; //current character we are on
+// 	char			*content; 
 // 	enum e_operator	re_director;
 // 	struct s_list	*next;
-
 // }	t_operator;
 
+/* 
+my idea: lexer goes through all the characters, when token found (that is not pipe/redirection), go into token collect mode. 
+in that function, handle double and single quotes. own function for that. also function if closing quote exists in further string.
+MALLOC CHECKS!
+*/
 
 typedef struct s_token
 {
 	enum
 	{
-		TOKEN_ID, //metacharachter
-		TOKEN_PIPE,
-		TOKEN_STRING,
-		TOKEN_BIGGER,
-		TOKEN_SMALLER
+		TOKEN_ID,
+		TOKEN_INPUT_HEREDOC,
+		TOKEN_INPUT_FILE,
+		TOKEN_OUTPUT_REPLACE,
+		TOKEN_OUTPUT_APPEND
 	}	type;
 
-	char *value;
+	char *value; // will be NULL if is redirection
 }	t_token;
+
+typedef struct s_command_block
+{
+	t_token					*tokens; // what if nothing in between pipes?
+	struct s_command_block	*next;
+}	t_command_block;
 
 typedef struct s_lexer
 {
@@ -77,7 +87,7 @@ void	lexer_advance(t_lexer *lexer);//moves the pointer to the next chaacter in t
 
 void	lexer_skip_whitespace(t_lexer *lexer);
 
-t_token	*lexer_get_next_token(t_lexer *lexer);//get to next token (most logic is here)
+t_command_block	*lexer(t_lexer *lexer);//get to next token (most logic is here)
 
 t_token	*lexer_collect_string(t_lexer *lexer);//define how to parse the string
 t_token *lexer_collect_id(t_lexer *lexer);
