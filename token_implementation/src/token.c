@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/18 15:11:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/19 14:52:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lexer.h"
+#include "../includes/minishell.h"
 
-//#include "includes/token.h"
-
-t_token *init_token(int type, char *value)
+t_token	*init_token(int type, char *value)
 {
 	t_token	*token;
 
@@ -29,7 +27,7 @@ t_token *init_token(int type, char *value)
 /* void	assign_token(t_token *token, int type, char *value)
 {
 	token->type = type;
-	token->value = value;	
+	token->value = value;
 	return (token);
 }
 

@@ -3,48 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/18 15:49:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/19 15:30:50 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lexer.h"
+#include "../includes/minishell.h"
 
 void	init_lexer(t_lexer *lexer, char *contents)
 {
 	lexer->contents = contents;
 	lexer->i = 0;
 	lexer->c = contents[lexer->i];
-	lexer->linelen = ft_strlen(contents);
+	lexer->line_len = ft_strlen(contents);
 }
-
 
 t_token	*lexer_collect_string(t_lexer *lexer)
 {
-	char *s;
-	char *value;
-	
+	char	*s;
+	char	*value;
+
 	lexer_advance(lexer);
 	value = malloc(sizeof(char));
 	value[0] = '\0';
-	
+
 	while (lexer->c != '"')
 	{
 		if (lexer->c == '\0')
 		{
-			printf("closing gaensefuesschen not found :(\n");
+			printf("closing gaensefuesschen not found :'(\n");
 			break ;
 		}
 		s = lexer_get_current_char_as_string(lexer);
-		value = ft_realloc(value, (strlen(value) + strlen(s) + 1) * sizeof(char));
+		value = ft_realloc(value, (ft_strlen(value) + strlen(s) + 1) * sizeof(char));
 		ft_strlcat(value, s, INT_MAX);
 		free (s);
 		lexer_advance(lexer);
 	}
 	lexer_advance(lexer);
-	return (init_token(TOKEN_STRING, value));
+	return (init_token(TOKEN_STRING, value)); //still not implemented the string management
 }
 
 t_token	*lexer_advance_with_token(t_lexer *lexer, t_token *token)
@@ -53,23 +52,24 @@ t_token	*lexer_advance_with_token(t_lexer *lexer, t_token *token)
 	return (token);
 }
 
-char *lexer_get_current_char_as_string(t_lexer *lexer)
+char	*lexer_get_current_char_as_string(t_lexer *lexer)
 {
-	char *str = calloc(2, sizeof(char));
+	char	*str;
+
+	str = calloc(2, sizeof(char));
 	str[0] = lexer->c;
 	str[1] = '\0';
-
 	return (str);
 }
 
 t_token	*lexer_collect_id(t_lexer *lexer)
 {
-	char *s;
-	char *value;
-	
+	char	*s;
+	char	*value;
+
 	value = malloc(sizeof(char));
 	value[0] = '\0';
-	while (ft_isalnum(lexer->c)) // while current character is alphanumeric
+	while (ft_isalnum(lexer->c))
 	{
 		s = lexer_get_current_char_as_string(lexer);
 		value = ft_realloc(value, (ft_strlen(value) + ft_strlen(s) + 1) * sizeof(char));
@@ -82,7 +82,7 @@ t_token	*lexer_collect_id(t_lexer *lexer)
 
 void	lexer_advance(t_lexer *lexer)
 {
-	if (lexer->c != '\0' && lexer->i < lexer->linelen) // why both
+	if (lexer->c != '\0')
 	{
 		lexer->i += 1;
 		lexer->c = lexer->contents[lexer->i];
@@ -128,7 +128,7 @@ t_command_block	*lexer(t_lexer *lexer)
 
 	first = init_command_block();
 	iter = first;
-	while (lexer->c != '\0' && lexer->i < lexer->linelen) //while we still have characters to parse we continue ;) // why both needed?
+	while (lexer->c != '\0')
 	{
 		lexer_skip_whitespace(lexer);
 		if (lexer->c == '|')
@@ -137,16 +137,19 @@ t_command_block	*lexer(t_lexer *lexer)
 			iter = add_command_block(iter);
 		}
 		else if (ft_strncmp(collect_fromstr(lexer), ">>", INT_MAX))
-		{
-			
-		}
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT,
-							lexer_get_current_char_as_string(lexer))));
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_HEREDOC,
+					lexer_get_current_char_as_string(lexer))));
+		else if (ft_strncmp(collect_fromstr(lexer), "<<", INT_MAX))
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT_APPEND,
+					lexer_get_current_char_as_string(lexer))));
 		else if (lexer->c == '<')
-			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT,
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT_REPLACE,
+								lexer_get_current_char_as_string(lexer))));
+		else if (lexer->c == '>')
+			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_FILE,
 								lexer_get_current_char_as_string(lexer))));
 		else
-			lexer_collect_id(lexer);
+		return (lexer_collect_id(lexer));
 	}
-	return (void *)0;
+	return (NULL);
 }

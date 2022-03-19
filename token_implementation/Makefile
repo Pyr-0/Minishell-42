@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/18 13:57:05 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/19 14:44:24 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,4 +64,4 @@ exec:
 
 both:			$(NAME) exec
 
-.PHONY:			all clean fclean re norm
+.PHONY:			all clean fclean re
