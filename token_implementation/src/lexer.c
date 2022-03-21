@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/19 15:30:50 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:09:27 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token	*lexer_collect_string(t_lexer *lexer)
 		lexer_advance(lexer);
 	}
 	lexer_advance(lexer);
-	return (init_token(TOKEN_STRING, value)); //still not implemented the string management
+	return (init_token(TOKEN_ID, value)); //still not implemented the string management
 }
 
 t_token	*lexer_advance_with_token(t_lexer *lexer, t_token *token)
@@ -136,7 +136,26 @@ t_command_block	*lexer(t_lexer *lexer)
 			lexer_advance(lexer);
 			iter = add_command_block(iter);
 		}
-		else if (ft_strncmp(collect_fromstr(lexer), ">>", INT_MAX))
+		else if (lexer->c == '<')
+		{
+			if (lexer->c == '<' && peek_char(lexer) == '<')
+				return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_HEREDOC,
+									lexer_get_current_char_as_string(lexer))));
+			else
+				return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_FILE,
+								lexer_get_current_char_as_string(lexer))));
+		}
+		else if (lexer->c == '>')
+		{
+			if (lexer->c == '>' && peek_char(lexer) == '>')
+				return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT_APPEND,
+									lexer_get_current_char_as_string(lexer))));
+			else
+				return (lexer_advance_with_token(lexer, init_token(TOKEN_OUTPUT_REPLACE,
+								lexer_get_current_char_as_string(lexer))));
+		}
+		
+/* 		else if (ft_strncmp(collect_fromstr(lexer), ">>", INT_MAX))
 			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_HEREDOC,
 					lexer_get_current_char_as_string(lexer))));
 		else if (ft_strncmp(collect_fromstr(lexer), "<<", INT_MAX))
@@ -147,7 +166,7 @@ t_command_block	*lexer(t_lexer *lexer)
 								lexer_get_current_char_as_string(lexer))));
 		else if (lexer->c == '>')
 			return (lexer_advance_with_token(lexer, init_token(TOKEN_INPUT_FILE,
-								lexer_get_current_char_as_string(lexer))));
+								lexer_get_current_char_as_string(lexer)))); */
 		else
 		return (lexer_collect_id(lexer));
 	}

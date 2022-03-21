@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/19 15:10:40 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:26:07 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_token
 		TOKEN_OUTPUT_APPEND
 	}	type;
 
-	char *value; // will be NULL if is redirection
+	char	*value; // will be NULL if is redirection
+	struct	s_token	*next;
 }	t_token;
 
 typedef struct s_command_block
