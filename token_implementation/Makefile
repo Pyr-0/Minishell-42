@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/19 14:44:24 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/21 16:27:40 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
-CC_FLAGS	=	-Wall -Wextra -Werror
+CC_FLAGS	=	-Wall -Wextra -Werror -g
 CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
 LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 DIR_HEADERS =	./includes/

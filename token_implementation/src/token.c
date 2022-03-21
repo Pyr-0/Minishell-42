@@ -3,41 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/19 14:52:17 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:23:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_token	*init_token(int type, char *value)
+t_token	*init_token(int type, char *value, t_command_block *first)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(t_token));
+	if (token == NULL)
+		lexer_fail_exit(first);
 	token->type = type;
 	token->value = value;
+	token->next = NULL;
 	return (token);
 }
 
-/*alternative so the allocation gets done separately to avoid
-	leaks and constant freeing.*/
-/* void	assign_token(t_token *token, int type, char *value)
+int	add_token(int type, char *value, t_command_block *curr, t_command_block *first)
 {
-	token->type = type;
-	token->value = value;
-	return (token);
-}
+	t_token	*last;
+	int		token_len;
 
-t_token *init_token(int type, char *value)
-{
-	t_token	*token = calloc(1, sizeof(t_token));
-	if (token != NULL)
+	if (type == TOKEN_INPUT_HEREDOC)
+		token_len = 2;
+	else if (type == TOKEN_INPUT_FILE)
+		token_len = 1;
+	else if (TOKEN_OUTPUT_REPLACE)
+		token_len = 1;
+	else if (TOKEN_OUTPUT_APPEND)
+		token_len = 2;
+	else
+		token_len = 0;
+	if (curr->tokens == NULL)
 	{
-		assign_token(token, type, value);
-	}	
-	return (token);
+		curr->tokens = init_token(type, value, first);
+		return (token_len);
+	}
+	last = curr->tokens;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = init_token(type, value, first);
+	return (token_len);
 }
- */

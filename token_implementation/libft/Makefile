@@ -6,12 +6,12 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 12:46:02 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/16 20:19:16 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/21 16:54:39 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	libft.a
-COMP		=	gcc -Wall -Wextra -Werror -c
+COMP		=	gcc -Wall -Wextra -Werror -g -c
 SRC			=	ft_isalnum.c\
 				ft_atoi.c\
 				ft_isalpha.c\

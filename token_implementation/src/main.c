@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/20 21:12:57 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:01:01 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int main()
 {
 	char			*test;
+	t_lexer			lexer_struct;
 	t_command_block	*lexer_passed = NULL;
+
+	t_command_block	*i_block;
+	t_token			*i_token;
 
 	while(1)
 	{
@@ -24,18 +28,25 @@ int main()
 		printf("Readline input is:%s\n", test);
 		printf("System command exec:\n");
 		system(test);
-		init_lexer(lexer_passed, test);
+		init_lexer(&lexer_struct, test);
 
-		t_token *token;
-		token = (void *)0;
-		while ((token = lexer(lexer_passed)) != NULL)
+		lexer_passed = lexer(&lexer_struct);
+		i_block = lexer_passed;
+		while (i_block != NULL)
 		{
-			printf("TOKEN (%d, %s)\n", token->type, token->value);
-			free(token->value);
-			free(token);
+			printf("new command block:\n");
+			i_token = i_block->tokens;
+			while (i_token != NULL)
+			{
+				printf("token_type: %d, token_value: %s\n", i_token->type, i_token->value);
+				i_token = i_token->next;
+			}
+			i_block = i_block->next;
 		}
+		//free function
 		printf("\n");
 		//system("leaks minishell");
+		break ;
 	}
 	return (0);
 }
