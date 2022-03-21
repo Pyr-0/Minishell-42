@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/21 17:01:01 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:36:09 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main()
 		//free function
 		printf("\n");
 		//system("leaks minishell");
-		break ;
+	
 	}
 	return (0);
 }

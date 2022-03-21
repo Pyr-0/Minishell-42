@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/21 16:27:40 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/21 21:32:45 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
-SRC			=	./src/main.c ./src/lexer.c ./src/token.c
+SRC			=	./src/main.c ./src/lexer.c ./src/token.c ./src/lexer_utils.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
 

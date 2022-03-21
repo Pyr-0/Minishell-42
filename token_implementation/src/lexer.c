@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/21 16:39:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:30:16 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (new);
 }
 
-bool	is_seperator(char c)
-{
-	if (c == ' ' || c == '|' || c == '<' || c == '>' || c == '\0')
-		return (true);
-	return (false);
-}
 
 void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr)
 {
@@ -106,14 +100,6 @@ void	lexer_advance(t_lexer *lexer)
 	{
 		lexer->i += 1;
 		lexer->c = lexer->contents[lexer->i];
-	}
-}
-
-void	lexer_skip_whitespace(t_lexer *lexer)
-{
-	while (lexer->c == ' ')
-	{
-		lexer_advance(lexer);
 	}
 }
 
@@ -158,12 +144,6 @@ void	free_lexer(t_command_block *command_blocks)
 		command_blocks = command_blocks->next;
 		free(free_blocks);
 	}
-}
-
-void	lexer_fail_exit(t_command_block *command_blocks)
-{
-	free_lexer(command_blocks);
-	exit(EXIT_FAILURE);
 }
 
 bool	lexer_peek_string(t_lexer *lexer, char *str)
