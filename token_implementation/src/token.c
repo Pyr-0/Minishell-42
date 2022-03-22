@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 20:43:33 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:36:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	add_token(int type, char *value, t_command_block *curr, t_command_block *fir
 		token_len = 2;
 	else if (type == TOKEN_INPUT_FILE)
 		token_len = 1;
-	else if (TOKEN_OUTPUT_REPLACE)
+	else if (type == TOKEN_OUTPUT_REPLACE)
 		token_len = 1;
-	else if (TOKEN_OUTPUT_APPEND)
+	else if (type == TOKEN_OUTPUT_APPEND)
 		token_len = 2;
 	else if (type == TOKEN_PIPE)
 		token_len = 1;

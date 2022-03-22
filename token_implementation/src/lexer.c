@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 20:44:00 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:55:02 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,27 +124,6 @@ t_command_block	*add_command_block(t_command_block *prev, t_command_block *first
 	return (new);
 }
 
-void	free_lexer(t_command_block *command_blocks)
-{
-	t_command_block	*free_blocks;
-	t_token			*free_tokens;
-
-	free_blocks = command_blocks;
-	while (command_blocks != NULL)
-	{
-		while (command_blocks->tokens != NULL)
-		{
-			free_tokens = command_blocks->tokens;
-			command_blocks->tokens = command_blocks->tokens->next;
-			free(free_tokens->value);
-			free(free_tokens);
-		}
-		free_blocks = command_blocks;
-		command_blocks = command_blocks->next;
-		free(free_blocks);
-	}
-}
-
 bool	lexer_peek_string(t_lexer *lexer, char *str)
 {
 	size_t	strlen;
@@ -156,23 +135,23 @@ bool	lexer_peek_string(t_lexer *lexer, char *str)
 		return (false);
 }
 
-void	check_for_tokens(t_lexer *lexer, t_command_block *iter, t_command_block *first)
+void	check_for_tokens(t_lexer *lexer, t_command_block **iter, t_command_block *first)
 {
 	if (lexer_peek_string(lexer, "|"))
 	{
-		lexer_advance_with_token(lexer, add_token(TOKEN_PIPE, NULL, iter, first));
-		iter = add_command_block(iter, first);
+		lexer_advance_with_token(lexer, add_token(TOKEN_PIPE, NULL, *iter, first));
+		*iter = add_command_block(*iter, first);
 	}
 	else if (lexer_peek_string(lexer, "<<"))
-		lexer_advance_with_token(lexer, add_token(TOKEN_INPUT_HEREDOC, NULL, iter, first));
+		lexer_advance_with_token(lexer, add_token(TOKEN_INPUT_HEREDOC, NULL, *iter, first));
 	else if (lexer_peek_string(lexer, "<"))
-		lexer_advance_with_token(lexer, add_token(TOKEN_INPUT_FILE, NULL, iter, first));
+		lexer_advance_with_token(lexer, add_token(TOKEN_INPUT_FILE, NULL, *iter, first));
 	else if (lexer_peek_string(lexer, ">>"))
-		lexer_advance_with_token(lexer, add_token(TOKEN_OUTPUT_APPEND, NULL, iter, first));
+		lexer_advance_with_token(lexer, add_token(TOKEN_OUTPUT_APPEND, NULL, *iter, first));
 	else if (lexer_peek_string(lexer, ">"))
-		lexer_advance_with_token(lexer, add_token(TOKEN_OUTPUT_REPLACE, NULL, iter, first));
+		lexer_advance_with_token(lexer, add_token(TOKEN_OUTPUT_REPLACE, NULL, *iter, first));
 	else
-		lexer_collect_id(lexer, first, iter);
+		lexer_collect_id(lexer, first, *iter);
 }
 
 t_command_block	*lexer(t_lexer *lexer)
@@ -185,7 +164,9 @@ t_command_block	*lexer(t_lexer *lexer)
 	while (lexer->c != '\0')
 	{
 		lexer_skip_whitespace(lexer);
-		check_for_tokens(lexer, iter, first);
+		if (lexer->c == '\0')
+			break ;
+		check_for_tokens(lexer, &iter, first);
 	}
 	return (first);
 }

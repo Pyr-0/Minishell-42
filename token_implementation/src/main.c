@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/21 21:36:09 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:59:44 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int main()
 
 	while(1)
 	{
-
-		test = readline("mi[SHELL]in$");
+		test = readline("mi[SHELL]in$ ");
 		printf("Readline input is:%s\n", test);
 		printf("System command exec:\n");
 		system(test);
@@ -43,10 +42,10 @@ int main()
 			}
 			i_block = i_block->next;
 		}
-		//free function
+		free_lexer(lexer_passed);
 		printf("\n");
 		//system("leaks minishell");
-	
+		break ; // testing
 	}
 	return (0);
 }

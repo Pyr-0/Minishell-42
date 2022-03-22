@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 20:40:33 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:24:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ typedef struct s_token
 	enum
 	{
 		TOKEN_ID,
-		TOKEN_PIPE,	// 1
-		TOKEN_INPUT_HEREDOC,	// 1
-		TOKEN_INPUT_FILE,		// 2
-		TOKEN_OUTPUT_REPLACE,	// 3
-		TOKEN_OUTPUT_APPEND		// 4
+		TOKEN_PIPE,				// 1
+		TOKEN_INPUT_HEREDOC,	// 2
+		TOKEN_INPUT_FILE,		// 3
+		TOKEN_OUTPUT_REPLACE,	// 4
+		TOKEN_OUTPUT_APPEND		// 5
 	}	type;
 
 	char	*value; // will be NULL if is redirection
@@ -73,7 +73,7 @@ t_command_block	*add_command_block(t_command_block *prev, t_command_block *first
 void	free_lexer(t_command_block *command_blocks);
 void	lexer_fail_exit(t_command_block *command_blocks);
 bool	lexer_peek_string(t_lexer *lexer, char *str);
-void	check_for_tokens(t_lexer *lexer, t_command_block *iter, t_command_block *first);
+void	check_for_tokens(t_lexer *lexer, t_command_block **iter, t_command_block *first);
 t_command_block	*lexer(t_lexer *lexer);
 
 
