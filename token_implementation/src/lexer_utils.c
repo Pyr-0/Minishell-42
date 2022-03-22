@@ -6,18 +6,27 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:27:59 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 21:49:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/22 22:49:06 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 bool	is_seperator(char c)
 {
 	if (c == ' ' || c == '|' || c == '<' || c == '>' || c == '\0')
 		return (true);
 	return (false);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*new;
+
+	new = ft_strjoin(s1, s2);
+	free(s1);
+	free(s2);
+	return (new);
 }
 
 void	lexer_skip_whitespace(t_lexer *lexer)
@@ -28,29 +37,23 @@ void	lexer_skip_whitespace(t_lexer *lexer)
 	}
 }
 
-void	free_lexer(t_command_block *command_blocks)
+bool	lexer_peek_string(t_lexer *lexer, char *str)
 {
-	t_command_block	*free_blocks;
-	t_token			*free_tokens;
+	size_t	strlen;
 
-	free_blocks = command_blocks;
-	while (command_blocks != NULL)
-	{
-		while (command_blocks->tokens != NULL)
-		{
-			free_tokens = command_blocks->tokens;
-			command_blocks->tokens = command_blocks->tokens->next;
-			free(free_tokens->value);
-			free(free_tokens);
-		}
-		free_blocks = command_blocks;
-		command_blocks = command_blocks->next;
-		free(free_blocks);
-	}
+	strlen = ft_strlen(str);
+	if (ft_strncmp(&lexer->contents[lexer->i], str, strlen) == 0)
+		return (true);
+	else
+		return (false);
 }
 
-void	lexer_fail_exit(t_command_block *command_blocks)
+char	*lexer_get_current_char_as_string(t_lexer *lexer)
 {
-	free_lexer(command_blocks);
-	exit(EXIT_FAILURE);
+	char	*str;
+
+	str = calloc(2, sizeof(char));
+	str[0] = lexer->c;
+	str[1] = '\0';
+	return (str);
 }

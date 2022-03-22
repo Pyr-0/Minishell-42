@@ -6,19 +6,11 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 21:55:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/22 22:49:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	init_lexer(t_lexer *lexer, char *contents)
-{
-	lexer->contents = contents;
-	lexer->i = 0;
-	lexer->c = contents[lexer->i];
-	lexer->line_len = ft_strlen(contents);
-}
 
 //t_token	*lexer_collect_string(t_lexer *lexer)
 //{
@@ -46,38 +38,6 @@ void	init_lexer(t_lexer *lexer, char *contents)
 //	return (init_token(TOKEN_ID, value)); //still not implemented the string management
 //}
 
-void	lexer_advance_with_token(t_lexer *lexer, int token_len)
-{
-	int i;
-
-	i = 0;
-	while (i < token_len)
-	{
-		lexer_advance(lexer);
-		i++;
-	}
-}
-
-char	*lexer_get_current_char_as_string(t_lexer *lexer)
-{
-	char	*str;
-
-	str = calloc(2, sizeof(char));
-	str[0] = lexer->c;
-	str[1] = '\0';
-	return (str);
-}
-
-char	*ft_strjoin_free(char *s1, char *s2)
-{
-	char	*new;
-
-	new = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	return (new);
-}
-
 void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr)
 {
 	char	*s;
@@ -93,6 +53,18 @@ void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *c
 	add_token(TOKEN_ID, value, curr, first);
 }
 
+void	lexer_advance_with_token(t_lexer *lexer, int token_len)
+{
+	int i;
+
+	i = 0;
+	while (i < token_len)
+	{
+		lexer_advance(lexer);
+		i++;
+	}
+}
+
 void	lexer_advance(t_lexer *lexer)
 {
 	if (lexer->c != '\0')
@@ -100,39 +72,6 @@ void	lexer_advance(t_lexer *lexer)
 		lexer->i += 1;
 		lexer->c = lexer->contents[lexer->i];
 	}
-}
-
-t_command_block	*init_command_block(t_command_block *first)
-{
-	t_command_block	*command_block;
-
-	command_block = malloc(sizeof(t_command_block));
-	if (command_block == NULL)
-		lexer_fail_exit(first);
-	command_block->tokens = NULL;
-	command_block->next = NULL;
-	return (command_block);
-}
-
-t_command_block	*add_command_block(t_command_block *prev, t_command_block *first)
-{
-	t_command_block *new;
-
-	new = init_command_block(first);
-	if (prev != NULL)
-		prev->next = new;
-	return (new);
-}
-
-bool	lexer_peek_string(t_lexer *lexer, char *str)
-{
-	size_t	strlen;
-
-	strlen = ft_strlen(str);
-	if (ft_strncmp(&lexer->contents[lexer->i], str, strlen) == 0)
-		return (true);
-	else
-		return (false);
 }
 
 void	check_for_tokens(t_lexer *lexer, t_command_block **iter, t_command_block *first)

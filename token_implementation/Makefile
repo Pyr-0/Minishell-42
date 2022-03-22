@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/22 20:09:26 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/22 22:52:00 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endif
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
-SRC			=	./src/main.c ./src/lexer.c ./src/token.c ./src/lexer_utils.c
+SRC			=	./src/main.c ./src/lexer.c ./src/lexer_init_structs.c ./src/lexer_utils.c ./src/lexer_free_exit.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
 
