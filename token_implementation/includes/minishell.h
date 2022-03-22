@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 19:53:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/22 20:40:33 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_token
 	enum
 	{
 		TOKEN_ID,
+		TOKEN_PIPE,	// 1
 		TOKEN_INPUT_HEREDOC,	// 1
 		TOKEN_INPUT_FILE,		// 2
 		TOKEN_OUTPUT_REPLACE,	// 3
