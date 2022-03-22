@@ -3,18 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/21 21:32:45 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/22 20:09:26 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
 CC_FLAGS	=	-Wall -Wextra -Werror -g
-CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
-LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+# check if mac or linux, different readline flags #
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+	CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
+	LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+	LREADLINE	=
+endif
+ifeq ($(OS), Linux)
+	CPPFLAGS	=
+	LDFLAGS		=
+	LREADLINE	=	-lreadline
+endif
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
@@ -26,7 +36,7 @@ all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@$(CC) $(CC_FLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME)
+				@$(CC) $(CC_FLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 
 $(LIBFT):

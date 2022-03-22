@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/21 21:30:16 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:38:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	free(s2);
 	return (new);
 }
-
 
 void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr)
 {
