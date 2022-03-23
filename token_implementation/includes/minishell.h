@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 22:43:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/23 14:40:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ typedef struct s_lexer
 /*============LEXER=============*/
 
 void			init_lexer(t_lexer *lexer, char *contents);
-t_token			*lexer_collect_string(t_lexer *lexer);
+char			*lexer_collect_string(t_lexer *lexer);
 void			lexer_advance_with_token(t_lexer *lexer, int token_len);
 char			*lexer_get_current_char_as_string(t_lexer *lexer);
 char			*ft_strjoin_free(char *s1, char *s2);
 bool			is_seperator(char c);
+bool			lexer_quote_is_closed(t_lexer *lexer);
 void			lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr);
 void			lexer_advance(t_lexer *lexer);
 void			lexer_skip_whitespace(t_lexer *lexer);

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 21:59:44 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/23 15:27:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ int main()
 
 	t_command_block	*i_block;
 	t_token			*i_token;
-
 	while(1)
 	{
 		test = readline("mi[SHELL]in$ ");
 		printf("Readline input is:%s\n", test);
 		printf("System command exec:\n");
 		system(test);
-		init_lexer(&lexer_struct, test);
+		init_lexer(&lexer_struct, "");
 
 		lexer_passed = lexer(&lexer_struct);
 		i_block = lexer_passed;
@@ -45,7 +44,12 @@ int main()
 		free_lexer(lexer_passed);
 		printf("\n");
 		//system("leaks minishell");
+		free(test);
 		break ; // testing
 	}
 	return (0);
 }
+
+/*
+docker run -ti -v $(PWD):/test memory-test:0.1 bash -c "cd /test/; make re && valgrind --leak-check=full ./minishell"
+*/

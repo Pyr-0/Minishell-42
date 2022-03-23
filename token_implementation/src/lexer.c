@@ -6,37 +6,30 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 22:49:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/23 14:52:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//t_token	*lexer_collect_string(t_lexer *lexer)
-//{
-//	char	*s;
-//	char	*value;
-//
-//	lexer_advance(lexer);
-//	value = malloc(sizeof(char));
-//	value[0] = '\0';
-//
-//	while (lexer->c != '"')
-//	{
-//		if (lexer->c == '\0')
-//		{
-//			printf("closing gaensefuesschen not found :'(\n");
-//			break ;
-//		}
-//		s = lexer_get_current_char_as_string(lexer);
-//		value = ft_realloc(value, (ft_strlen(value) + strlen(s) + 1) * sizeof(char));
-//		ft_strlcat(value, s, INT_MAX);
-//		free (s);
-//		lexer_advance(lexer);
-//	}
-//	lexer_advance(lexer);
-//	return (init_token(TOKEN_ID, value)); //still not implemented the string management
-//}
+char	*lexer_collect_string(t_lexer *lexer)
+{
+	char	*str;
+	char	*c;
+	char	quote_type;
+
+	quote_type = lexer->c;
+	str = NULL;
+	while (true)
+	{
+		c = lexer_get_current_char_as_string(lexer);
+		str = ft_strjoin_free(str, c);
+		if (lexer->c == quote_type && ft_strlen(str) != 1)
+			break ;
+		lexer_advance(lexer);
+	}
+	return (str);
+}
 
 void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr)
 {
@@ -46,9 +39,12 @@ void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *c
 	value = NULL;
 	while (!is_seperator(lexer->c))
 	{
-		s = lexer_get_current_char_as_string(lexer);
-		value = ft_strjoin_free(value, s);
+		if ((lexer->c == '"' || lexer->c == '\'') && lexer_quote_is_closed(lexer))
+			s = lexer_collect_string(lexer);
+		else
+			s = lexer_get_current_char_as_string(lexer);
 		lexer_advance(lexer);
+		value = ft_strjoin_free(value, s);
 	}
 	add_token(TOKEN_ID, value, curr, first);
 }

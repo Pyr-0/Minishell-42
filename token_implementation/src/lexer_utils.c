@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:27:59 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/22 22:49:06 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/23 14:24:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 bool	is_seperator(char c)
 {
 	if (c == ' ' || c == '|' || c == '<' || c == '>' || c == '\0')
+		return (true);
+	return (false);
+}
+
+bool	lexer_quote_is_closed(t_lexer *lexer)
+{
+	if (ft_strchr(&lexer->contents[lexer->i + 1], lexer->c) != NULL)
 		return (true);
 	return (false);
 }
