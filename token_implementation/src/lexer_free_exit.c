@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_free_stuff.c                                  :+:      :+:    :+:   */
+/*   lexer_free_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:40:03 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/22 22:40:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/25 17:35:31 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	free_lexer(t_command_block *command_blocks)
 			free(free_tokens->value);
 			free(free_tokens);
 		}
+		free(command_blocks->block_contents);
 		free_blocks = command_blocks;
 		command_blocks = command_blocks->next;
 		free(free_blocks);

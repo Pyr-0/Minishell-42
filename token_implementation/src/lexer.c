@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/23 14:52:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/25 17:32:48 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_command_block	*lexer(t_lexer *lexer)
 	t_command_block	*first;
 	t_command_block	*iter;
 
-	first = init_command_block(NULL);
+	first = init_command_block(NULL, lexer->contents);
 	iter = first;
 	while (lexer->c != '\0')
 	{

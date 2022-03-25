@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/23 15:27:50 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/25 17:38:00 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main()
 {
-	char			*test;
 	t_lexer			lexer_struct;
 	t_command_block	*lexer_passed = NULL;
 
@@ -22,11 +21,11 @@ int main()
 	t_token			*i_token;
 	while(1)
 	{
-		test = readline("mi[SHELL]in$ ");
-		printf("Readline input is:%s\n", test);
+		lexer_struct.contents = readline("mi[SHELL]in$ ");
+		printf("Readline input is:%s\n", lexer_struct.contents);
 		printf("System command exec:\n");
-		system(test);
-		init_lexer(&lexer_struct, "");
+		system(lexer_struct.contents);
+		init_lexer(&lexer_struct);
 
 		lexer_passed = lexer(&lexer_struct);
 		i_block = lexer_passed;
@@ -41,11 +40,12 @@ int main()
 			}
 			i_block = i_block->next;
 		}
+		//if (pipe_redir_error(lexer_passed, lexer_struct.contents) == true)
+		//	continue;
 		free_lexer(lexer_passed);
 		printf("\n");
-		//system("leaks minishell");
-		free(test);
-		break ; // testing
+		system("leaks minishell");
+		// break ; // testing
 	}
 	return (0);
 }
