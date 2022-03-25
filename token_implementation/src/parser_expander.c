@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 22:00:40 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:07:06 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	expand_token(t_token *token, t_command_block *lexer, t_env *env)
 
 	(void)lexer;
 	iter = token->value;
-	while (iter != '\0')
+	//printf("%s\n", iter);
+	while (*iter != '\0')
 	{
 		//if (*iter == EXPAND_DOUBLE_QUOTE)
 //
@@ -104,7 +105,6 @@ void	expand_token(t_token *token, t_command_block *lexer, t_env *env)
 //
 		if (*iter == EXPAND_DOLLAR_SIGN)
 		{
-			printf("here!!!!!!!\n");
 			expand_dollar_sign(&iter, token, false, env);
 		}
 		else

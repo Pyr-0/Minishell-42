@@ -6,11 +6,13 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 21:49:34 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:07:37 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+//void	print_tokens()
 
 int main(int argc, char *argv[], char *envp[])
 {
@@ -50,7 +52,6 @@ int main(int argc, char *argv[], char *envp[])
 			continue;
 		parser_expander(lexer_done, env);
 		free_lexer(lexer_done);
-		printf("%s\n", getenv("USER"));
 		printf("\n");
 	//	system("leaks minishell");
 		// break ; // testing
