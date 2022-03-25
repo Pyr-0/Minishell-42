@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 17:32:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:50:30 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	check_for_tokens(t_lexer *lexer, t_command_block **iter, t_command_block *f
 {
 	if (lexer_peek_string(lexer, "|"))
 	{
-		lexer_advance_with_token(lexer, add_token(TOKEN_PIPE, NULL, *iter, first));
+		lexer_advance(lexer);
 		*iter = add_command_block(*iter, first);
 	}
 	else if (lexer_peek_string(lexer, "<<"))

@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 17:33:53 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:04:13 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	add_token(int type, char *value, t_command_block *curr, t_command_block *fir
 		token_len = 1;
 	else if (type == TOKEN_OUTPUT_APPEND)
 		token_len = 2;
-	else if (type == TOKEN_PIPE)
-		token_len = 1;
 	else
 		token_len = 0;
 	if (curr->tokens == NULL)

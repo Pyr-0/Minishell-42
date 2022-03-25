@@ -6,19 +6,25 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 17:38:00 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:49:34 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int main()
+int main(int argc, char *argv[], char *envp[])
 {
+	t_env			*env;
 	t_lexer			lexer_struct;
-	t_command_block	*lexer_passed = NULL;
+	t_command_block	*lexer_done = NULL;
 
 	t_command_block	*i_block;
 	t_token			*i_token;
+
+	if (argc != 1)
+		return (1);
+	(void)argv;
+	env = init_env(envp); //env needs to be freed everywhere!!!!! + ERROR HADNDLING $? //lexer & parser & env get current char as string alloc problem
 	while(1)
 	{
 		lexer_struct.contents = readline("mi[SHELL]in$ ");
@@ -27,8 +33,8 @@ int main()
 		system(lexer_struct.contents);
 		init_lexer(&lexer_struct);
 
-		lexer_passed = lexer(&lexer_struct);
-		i_block = lexer_passed;
+		lexer_done = lexer(&lexer_struct);
+		i_block = lexer_done;
 		while (i_block != NULL)
 		{
 			printf("new command block:\n");
@@ -40,11 +46,13 @@ int main()
 			}
 			i_block = i_block->next;
 		}
-		//if (pipe_redir_error(lexer_passed, lexer_struct.contents) == true)
-		//	continue;
-		free_lexer(lexer_passed);
+		if (pipe_redir_error(lexer_done) == true)
+			continue;
+		parser_expander(lexer_done, env);
+		free_lexer(lexer_done);
+		printf("%s\n", getenv("USER"));
 		printf("\n");
-		system("leaks minishell");
+	//	system("leaks minishell");
 		// break ; // testing
 	}
 	return (0);
