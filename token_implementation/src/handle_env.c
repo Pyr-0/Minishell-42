@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 21:13:45 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/26 03:46:05 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_varvalue(char *env_str)
 	varvalue = NULL;
 	while (*env_str != '=' && *env_str != '\0')
 		env_str++;
-	if (env_str != '\0')
+	if (*env_str != '\0')
 	{
 		env_str++;
 		while (*env_str != '\0')

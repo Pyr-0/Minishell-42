@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 02:17:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 03:46:32 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,50 @@ bool	expander_quote_is_closed(char *iter)
 
 void	expand_double_quotes(char **iter, t_token *token, t_env *env)
 {
+	char	*new_value;
+	char	*c;
+
 	new_value = NULL;
+	(*iter)++;
 	while (**iter != '"')
 	{
-		if (**iter == )
+		if (**iter == '$')
+		{
+			c = expand_dollar_sign(iter, token, env, true);
+			while (**iter != ' ' && **iter != '$')
+				(*iter)++;
+		}
+		else
+		{
+			c = expander_get_current_char_as_string(**iter);
+			(*iter)++;
+		}
+		new_value = ft_strjoin_free(new_value, c);
 	}
-	free (token, new_value, iter)
+	init_new_value(token, new_value, iter);
 }
 
 void	skip_single_quotes(char **iter)
 {
 	while (**iter != '\'')
-		*iter++;
-	*iter++;
+		(*iter)++;
+	(*iter)++;
+}
+
+void	expand_single_quotes(char **iter, t_token *token)
+{
+	char	*new_value;
+	char	*c;
+
+	new_value = NULL;
+	(*iter)++;
+	while (**iter != '\'')
+	{
+		c = expander_get_current_char_as_string(**iter);
+		new_value = ft_strjoin_free(new_value, c);
+		(*iter)++;
+	}
+	init_new_value(token, new_value, iter);
 }
 
 void	expand_token(t_token *token, t_env *env)
@@ -133,7 +164,7 @@ void	expand_token(t_token *token, t_env *env)
 	iter = token->value;
 	while (iter != NULL && *iter != '\0')
 	{
-		if (*iter == EXPAND_DOUBLE_QUOTE && expander_quote_is_closed(iter));
+		if (*iter == EXPAND_DOUBLE_QUOTE && expander_quote_is_closed(iter))
 			expand_double_quotes(&iter, token, env);
 		else if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
 			skip_single_quotes(&iter);
@@ -142,8 +173,14 @@ void	expand_token(t_token *token, t_env *env)
 		else
 			iter++;
 	}
-	printf("\e[93m%s\e[0m\n", token->value);
-	//if (tokewn) // if token is empty
+	iter = token->value;
+	while (*iter != '\0')
+	{
+		if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
+			expand_single_quotes(&iter, token);
+		else
+			iter++;
+	}
 }
 
 void	expander(t_command_block *lexer, t_env *env)
@@ -158,7 +195,7 @@ void	expander(t_command_block *lexer, t_env *env)
 		while (i_token != NULL)
 		{
 			if (i_token->type == TOKEN_ID)
-				expand_token(i_token, lexer, env);
+				expand_token(i_token, env);
 			i_token = i_token->next;
 		}
 		i_block = i_block->next;
