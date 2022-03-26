@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 17:55:12 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:41:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ t_command_block	*init_command_block(t_command_block *first, char *block_contents
 /*============EXPANDER===============*/
 
 char	*expander_get_current_char_as_string(char c);
-char	*collect_varname(char **iter, bool is_in_double_quotes);
+char	*collect_varname(char **iter);
 char	*collect_varvalue(t_env *env, char *varname);
 void	replace_dollar_sign(char *varvalue, char **iter, t_token *token);
-void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env, bool is_in_double_quotes);
+void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env);
 void	expand_token(t_token *token, t_env *env);
 void	expander(t_command_block *lexer, t_env *env);
 void	parser_expander(t_command_block *lexer, t_env *env);

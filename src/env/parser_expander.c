@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 17:59:16 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:41:37 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	expander_advance_with_char(char **iter, char **str)
 	(*iter)++;
 }
 
-char	*collect_varname(char **iter, bool is_in_double_quotes)
+char	*collect_varname(char **iter)
 {
 	char	*varname;
 
@@ -39,8 +39,6 @@ char	*collect_varname(char **iter, bool is_in_double_quotes)
 	(*iter)++;
 	while (**iter != ' ' && **iter != '\0' && **iter != '$' && **iter != '\'' && **iter != '"')
 	{
-		if (is_in_double_quotes == true && **iter == '"')
-			break ;
 		expander_advance_with_char(iter, &varname);
 	}
 	return (varname);
@@ -63,12 +61,12 @@ void	init_new_value(t_token *token, char *new_value)
 	token->value = new_value;
 }
 
-void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env, bool is_in_double_quotes)
+void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env)
 {
 	char	*varname;
 	char	*varvalue;
 
-	varname = collect_varname(iter, is_in_double_quotes);
+	varname = collect_varname(iter);
 	varvalue = collect_varvalue(env, varname);
 	free(varname);
 	*new_token_value = ft_strjoin_free(*new_token_value, ft_strdup(varvalue));
@@ -87,7 +85,7 @@ void	expand_double_quotes(char **iter, char **new_token_value, t_env *env)
 	while (**iter != '"')
 	{
 		if (**iter == '$')
-			expand_dollar_sign(iter, new_token_value, env, true);
+			expand_dollar_sign(iter, new_token_value, env);
 		else
 			expander_advance_with_char(iter, new_token_value);
 	}
@@ -119,7 +117,7 @@ void	expand_token(t_token *token, t_env *env)
 		else if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
 			expand_single_quotes(&iter, &new_token_value);
 		else if (*iter == EXPAND_DOLLAR_SIGN)
-			expand_dollar_sign(&iter, &new_token_value, env, false);
+			expand_dollar_sign(&iter, &new_token_value, env);
 		else
 			expander_advance_with_char(&iter, &new_token_value);
 	}
