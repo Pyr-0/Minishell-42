@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_free_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:40:03 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/25 17:35:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:13:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	free_lexer(t_command_block *command_blocks)
 {

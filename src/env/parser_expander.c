@@ -6,11 +6,11 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 03:46:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 15:26:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*expander_get_current_char_as_string(char c)
 {
@@ -160,8 +160,12 @@ void	expand_single_quotes(char **iter, t_token *token)
 void	expand_token(t_token *token, t_env *env)
 {
 	char	*iter;
+	//char	*new_token_value;
 
+	
+	//new_token_value = NULL;
 	iter = token->value;
+	printf("\e[36mhuh\e[0m\n");
 	while (iter != NULL && *iter != '\0')
 	{
 		if (*iter == EXPAND_DOUBLE_QUOTE && expander_quote_is_closed(iter))
@@ -174,7 +178,7 @@ void	expand_token(t_token *token, t_env *env)
 			iter++;
 	}
 	iter = token->value;
-	while (*iter != '\0')
+	while (iter != NULL && *iter != '\0')
 	{
 		if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
 			expand_single_quotes(&iter, token);
