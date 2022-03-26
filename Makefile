@@ -6,7 +6,7 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/25 21:51:47 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/03/26 14:47:28 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ endif
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
-SRC			=	./src/main.c ./src/lexer.c ./src/lexer_init_structs.c ./src/lexer_utils.c \
-				./src/lexer_free_exit.c ./src/pipe_redir_error.c ./src/handle_env.c \
+SRC			=	./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c ./src/lexer/lexer_utils.c \
+				./src/lexer/lexer_free_exit.c ./src/pipe_redir_error.c ./src/handle_env.c \
 				./src/parser_expander.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
