@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 18:41:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 19:54:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_env
 
 
 
-/*============INIT_ENV=============*/
+/*============HANDLE_ENV=============*/
 
 char	*env_get_current_char_as_string(char c);
 char	*get_varname(char *env_str);
@@ -92,7 +92,7 @@ char	*get_varvalue(char *env_str);
 t_env	*init_env_node(char *env_str, t_env *first);
 t_env	*add_env_node(char *env_str, t_env *prev, t_env *first);
 t_env	*init_env(char *envp[]);
-void	free_env(t_env *env);
+void	free_env(void);
 void	env_fail_exit(t_env *env);
 t_env	**get_env(char *envp[]);
 

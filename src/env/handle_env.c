@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 17:52:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 19:56:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,24 @@ t_env	**get_env(char *envp[])
 	return (&env);
 }
 
-void	free_env(t_env *env)
+void	free_env(void)
+{
+	t_env	*env;
+	t_env	*free_env;
+
+	env = *(get_env(NULL));
+	free_env = env;
+	while (env != NULL)
+	{
+		free(env->varvalue);
+		free(env->varname);
+		free_env = env;
+		env = env->next;
+		free(free_env);
+	}
+}
+
+void	free_init_env(t_env *env)
 {
 	t_env	*free_env;
 
@@ -120,6 +137,6 @@ void	free_env(t_env *env)
 
 void	env_fail_exit(t_env *env)
 {
-	free_env(env);
+	free_init_env(env);
 	exit(EXIT_FAILURE);
 }
