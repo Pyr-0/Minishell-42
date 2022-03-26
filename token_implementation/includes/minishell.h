@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/25 21:57:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/26 00:53:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ char	*collect_varname(char **iter, bool is_in_double_quotes);
 char	*collect_varvalue(t_env *env, char *varname);
 void	replace_dollar_sign(char *varvalue, char **iter, t_token *token);
 void	expand_dollar_sign(char **iter, t_token *token, t_env *env, bool is_in_double_quotes);
-void	expand_token(t_token *token, t_command_block *lexer, t_env *env);
+void	expand_token(t_token *token, t_env *env);
 void	expander(t_command_block *lexer, t_env *env);
 void	parser_expander(t_command_block *lexer, t_env *env);
 
