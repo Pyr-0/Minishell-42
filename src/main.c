@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 15:29:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:20:29 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,15 @@ int main(int argc, char *argv[], char *envp[])
 		init_lexer(&lexer_struct);
 		lexer_done = lexer(&lexer_struct);
 		print_tokens(lexer_done);
-		if (pipe_redir_error(lexer_done) == true)
+		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token!
 			continue;
-		parser_expander(lexer_done, env);
+		parser_expander(lexer_done, env); // need to handle empty string in executor!!
 		print_tokens(lexer_done);
 		free_lexer(lexer_done);
+		free_env(env);
 		printf("\n");
 	//	system("leaks minishell");
-		// break ; // testing
+	//	break ; // testing
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 15:13:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 17:55:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_token
 		TOKEN_INPUT_FILE,		// 3
 		TOKEN_OUTPUT_REPLACE,	// 4
 		TOKEN_OUTPUT_APPEND		// 5
-	}	type;
+	}				type;
 
-	char	*value; // will be NULL if is redirection
+	char			*value;
 	struct s_token	*next;
 }	t_token;
 
@@ -94,7 +94,7 @@ t_env	*add_env_node(char *env_str, t_env *prev, t_env *first);
 t_env	*init_env(char *envp[]);
 void	free_env(t_env *env);
 void	env_fail_exit(t_env *env);
-
+t_env	**get_env(char *envp[]);
 
 /*============LEXER=============*/
 
@@ -125,7 +125,7 @@ char	*expander_get_current_char_as_string(char c);
 char	*collect_varname(char **iter, bool is_in_double_quotes);
 char	*collect_varvalue(t_env *env, char *varname);
 void	replace_dollar_sign(char *varvalue, char **iter, t_token *token);
-char	*expand_dollar_sign(char **iter, t_token *token, t_env *env, bool is_in_double_quotes);
+void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env, bool is_in_double_quotes);
 void	expand_token(t_token *token, t_env *env);
 void	expander(t_command_block *lexer, t_env *env);
 void	parser_expander(t_command_block *lexer, t_env *env);

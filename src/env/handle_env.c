@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 15:06:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 17:52:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,15 @@ t_env	*init_env(char *envp[])
 		i++;
 	}
 	return (first);
+}
+
+t_env	**get_env(char *envp[])
+{
+	static t_env	*env;
+
+	if (envp != NULL)
+		env = init_env(envp);
+	return (&env);
 }
 
 void	free_env(t_env *env)

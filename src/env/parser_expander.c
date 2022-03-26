@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 15:26:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/26 17:59:16 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,33 @@ char	*expander_get_current_char_as_string(char c)
 	return (str);
 }
 
+void	expander_advance_with_char(char **iter, char **str)
+{
+	char	*c;
+
+	c = expander_get_current_char_as_string(**iter);
+	*str = ft_strjoin_free(*str, c);
+	(*iter)++;
+}
+
 char	*collect_varname(char **iter, bool is_in_double_quotes)
 {
 	char	*varname;
-	char	*c;
-	char	*iter2;
 
 	varname = NULL;
-	iter2 = (*iter) + 1;
-	while (*iter2 != ' ' && *iter2 != '\0' && *iter2 != '$')
+	(*iter)++;
+	while (**iter != ' ' && **iter != '\0' && **iter != '$' && **iter != '\'' && **iter != '"')
 	{
-		if (is_in_double_quotes == true && *iter2 == '"')
+		if (is_in_double_quotes == true && **iter == '"')
 			break ;
-		c = expander_get_current_char_as_string(*iter2);
-		varname = ft_strjoin_free(varname, c);
-		iter2++;
+		expander_advance_with_char(iter, &varname);
 	}
 	return (varname);
 }
 
 char	*collect_varvalue(t_env *env, char *varname)
 {
-	while (env != NULL)
+	while (env != NULL && varname != NULL)
 	{
 		if (ft_strncmp(env->varname, varname, INT_MAX) == 0)
 			return (env->varvalue);
@@ -52,43 +57,13 @@ char	*collect_varvalue(t_env *env, char *varname)
 	return (NULL);
 }
 
-void	init_new_value(t_token *token, char *new_value, char **iter)
+void	init_new_value(t_token *token, char *new_value)
 {
 	free (token->value);
 	token->value = new_value;
-	*iter = new_value;
 }
 
-void	replace_dollar_sign_full_token(char *varvalue, char **iter, t_token *token)
-{
-	char	*new_value;
-	char	*iter2;
-	char	*varvalue_alloc;
-	char	*c;
-
-	new_value = NULL;
-	iter2 = token->value;
-	varvalue_alloc = ft_strdup(varvalue);
-	while (iter2 != *iter)
-	{
-		c = expander_get_current_char_as_string(*iter2);
-		new_value = ft_strjoin_free(new_value, c);
-		iter2++;
-	}
-	iter2++;
-	new_value = ft_strjoin_free(new_value, varvalue_alloc);
-	while (*iter2 != ' ' && *iter2 != '\0' && *iter2 != '$')
-		iter2++;
-	while (*iter2 != '\0')
-	{
-		c = expander_get_current_char_as_string(*iter2);
-		new_value = ft_strjoin_free(new_value, c);
-		iter2++;
-	}
-	init_new_value(token, new_value, iter);
-}
-
-char	*expand_dollar_sign(char **iter, t_token *token, t_env *env, bool is_in_double_quotes)
+void	expand_dollar_sign(char **iter, char **new_token_value, t_env *env, bool is_in_double_quotes)
 {
 	char	*varname;
 	char	*varvalue;
@@ -96,10 +71,7 @@ char	*expand_dollar_sign(char **iter, t_token *token, t_env *env, bool is_in_dou
 	varname = collect_varname(iter, is_in_double_quotes);
 	varvalue = collect_varvalue(env, varname);
 	free(varname);
-	if (is_in_double_quotes)
-		return (ft_strdup(varvalue));
-	replace_dollar_sign_full_token(varvalue, iter, token);
-	return (NULL);
+	*new_token_value = ft_strjoin_free(*new_token_value, ft_strdup(varvalue));
 }
 
 bool	expander_quote_is_closed(char *iter)
@@ -109,82 +81,49 @@ bool	expander_quote_is_closed(char *iter)
 	return (false);
 }
 
-void	expand_double_quotes(char **iter, t_token *token, t_env *env)
+void	expand_double_quotes(char **iter, char **new_token_value, t_env *env)
 {
-	char	*new_value;
-	char	*c;
-
-	new_value = NULL;
 	(*iter)++;
 	while (**iter != '"')
 	{
 		if (**iter == '$')
-		{
-			c = expand_dollar_sign(iter, token, env, true);
-			while (**iter != ' ' && **iter != '$')
-				(*iter)++;
-		}
+			expand_dollar_sign(iter, new_token_value, env, true);
 		else
-		{
-			c = expander_get_current_char_as_string(**iter);
-			(*iter)++;
-		}
-		new_value = ft_strjoin_free(new_value, c);
+			expander_advance_with_char(iter, new_token_value);
 	}
-	init_new_value(token, new_value, iter);
-}
-
-void	skip_single_quotes(char **iter)
-{
-	while (**iter != '\'')
-		(*iter)++;
 	(*iter)++;
 }
 
-void	expand_single_quotes(char **iter, t_token *token)
+void	expand_single_quotes(char **iter, char **new_token_value)
 {
-	char	*new_value;
-	char	*c;
-
-	new_value = NULL;
 	(*iter)++;
 	while (**iter != '\'')
 	{
-		c = expander_get_current_char_as_string(**iter);
-		new_value = ft_strjoin_free(new_value, c);
-		(*iter)++;
+		expander_advance_with_char(iter, new_token_value);
 	}
-	init_new_value(token, new_value, iter);
+	(*iter)++;
 }
 
 void	expand_token(t_token *token, t_env *env)
 {
 	char	*iter;
-	//char	*new_token_value;
+	char	*new_token_value;
 
-	
-	//new_token_value = NULL;
+	new_token_value = NULL;
 	iter = token->value;
 	printf("\e[36mhuh\e[0m\n");
-	while (iter != NULL && *iter != '\0')
+	while (*iter != '\0')
 	{
 		if (*iter == EXPAND_DOUBLE_QUOTE && expander_quote_is_closed(iter))
-			expand_double_quotes(&iter, token, env);
+			expand_double_quotes(&iter, &new_token_value, env);
 		else if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
-			skip_single_quotes(&iter);
+			expand_single_quotes(&iter, &new_token_value);
 		else if (*iter == EXPAND_DOLLAR_SIGN)
-			expand_dollar_sign(&iter, token, env, false);
+			expand_dollar_sign(&iter, &new_token_value, env, false);
 		else
-			iter++;
+			expander_advance_with_char(&iter, &new_token_value);
 	}
-	iter = token->value;
-	while (iter != NULL && *iter != '\0')
-	{
-		if (*iter == EXPAND_SINGLE_QUOTE && expander_quote_is_closed(iter))
-			expand_single_quotes(&iter, token);
-		else
-			iter++;
-	}
+	init_new_value(token, new_token_value);
 }
 
 void	expander(t_command_block *lexer, t_env *env)
