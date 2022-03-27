@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_expander.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:06:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 18:41:37 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	expander(t_command_block *lexer, t_env *env)
 		i_token = i_block->tokens;
 		while (i_token != NULL)
 		{
-			if (i_token->type == TOKEN_ID)
+			if (i_token->e_type == TOKEN_ID)
 				expand_token(i_token, env);
 			i_token = i_token->next;
 		}

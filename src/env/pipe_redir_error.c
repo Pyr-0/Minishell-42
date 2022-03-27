@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_redir_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 19:08:04 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ bool	handle_error_and_free(t_command_block *lexer_block, char *error_message)
 
 bool	redir_error(t_token *token)
 {
-	if (token->type == TOKEN_ID)
+	if (token->e_type == TOKEN_ID)
 		return (false);
-	if (token->next == NULL || token->next->type != TOKEN_ID)
+	if (token->next == NULL || token->next->e_type != TOKEN_ID)
 		return (true);
 	return (false);
 }

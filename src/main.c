@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 19:53:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_tokens(t_command_block *lexer_done)
 		i_token = i_block->tokens;
 		while (i_token != NULL)
 		{
-			printf("token_type: %d, token_value: %s\n", i_token->type, i_token->value);
+			printf("token_type: %d, token_value: %s\n", i_token->e_type, i_token->value);
 			i_token = i_token->next;
 		}
 		i_block = i_block->next;
