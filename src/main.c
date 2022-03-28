@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 21:33:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 22:23:32 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ int main(int argc, char *argv[], char *envp[])
 	if (argc != 1)
 		return (1);
 	(void)argv;
+	g_exit_status = EXIT_SUCCESS;
 	get_env(envp); //env needs to be freed everywhere!!!!! + ERROR HADNDLING $? //lexer & parser & env get current char as string alloc problem // env as function
 	while (true)
 	{
+		printf("g_ext_status: %d\n\n", g_exit_status);
 		lexer_struct.contents = readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
@@ -77,13 +79,11 @@ int main(int argc, char *argv[], char *envp[])
 		print_tokens(lexer_done);
 		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token! and implement in parser
 		{
-			free_command_blocks(lexer_done);
 			continue;
 		}
-		parser_expander(lexer_done); // need to handle empty string in executor!!
+		parser_expander(lexer_done); // need to handle empty string in executor!!. also exit stattus of successsfull command needs to be 0
 		print_tokens(lexer_done);
 		free_command_blocks(lexer_done);
-		printf("\n");
 	//	system("leaks minishell");
 	//	break ; // testing
 	}

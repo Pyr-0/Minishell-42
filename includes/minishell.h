@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 21:23:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 22:25:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # include "structs.h"
 # include "lexer.h"
 # include "../libft/libft.h"
+
+# define EXIT_PIPE_REDIR_ERROR 258
+
+int	g_exit_status;
 
 /*============HANDLE_ENV=============*/
 

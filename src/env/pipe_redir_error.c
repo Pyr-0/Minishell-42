@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 21:33:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 22:24:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ bool	handle_error_and_free(t_command_block *lexer_block, char *error_message)
 {
 	free_command_blocks(lexer_block);
 	write(STDERR_FILENO, error_message, ft_strlen(error_message));
+	g_exit_status = EXIT_PIPE_REDIR_ERROR;
 	return (true);
 }
 
