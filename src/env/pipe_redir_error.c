@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_redir_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:33:39 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	handle_error_and_free(t_command_block *lexer_block, char *error_message)
 {
-	free_lexer(lexer_block);
+	free_command_blocks(lexer_block);
 	write(STDERR_FILENO, error_message, ft_strlen(error_message));
 	return (true);
 }

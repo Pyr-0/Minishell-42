@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:33:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*---------------------------------------------------------------------------*/
+/*-------------------------------FOR TESTING---------------------------------*/
 void	print_tokens(t_command_block *lexer_done)
 {
 	t_command_block	*i_block;
@@ -33,36 +34,60 @@ void	print_tokens(t_command_block *lexer_done)
 	printf("-----------------------\n");
 }
 
+void	print_env(void)
+{
+	t_env	*env;
+
+	env = *(get_env(NULL));
+	while (env != NULL)
+	{
+		printf("%s=%s\n", env->varname, env->varvalue);
+		env = env->next;
+	}
+}
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+void	exit_readline_fail(void)
+{
+	free_env();
+	exit(EXIT_FAILURE);
+}
+
 int main(int argc, char *argv[], char *envp[])
 {
-	t_env			*env;
 	t_lexer			lexer_struct;
-	t_command_block	*lexer_done = NULL;
+	t_command_block	*lexer_done;
 
 	if (argc != 1)
 		return (1);
 	(void)argv;
-	env = init_env(envp);
 	get_env(envp); //env needs to be freed everywhere!!!!! + ERROR HADNDLING $? //lexer & parser & env get current char as string alloc problem // env as function
 	while (true)
 	{
 		lexer_struct.contents = readline("mi[SHELL]in$ ");
+		if (lexer_struct.contents == NULL)
+			exit_readline_fail();
+		add_history(lexer_struct.contents);
 		printf("Readline input is: %s\n", lexer_struct.contents);
 		printf("System command exec:\n");
 		system(lexer_struct.contents);
 		init_lexer(&lexer_struct);
 		lexer_done = lexer(&lexer_struct);
 		print_tokens(lexer_done);
-		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token!
+		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token! and implement in parser
+		{
+			free_command_blocks(lexer_done);
 			continue;
-		parser_expander(lexer_done, env); // need to handle empty string in executor!!
+		}
+		parser_expander(lexer_done); // need to handle empty string in executor!!
 		print_tokens(lexer_done);
-		free_lexer(lexer_done);
-		free_env();
+		free_command_blocks(lexer_done);
 		printf("\n");
 	//	system("leaks minishell");
 	//	break ; // testing
 	}
+	free_env();//at the end
 	return (0);
 }
 

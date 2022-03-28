@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:27:59 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 15:13:56 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 21:34:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	new = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
+	if (new == NULL)
+		return (NULL);
 	return (new);
 }
 
@@ -55,11 +57,13 @@ bool	lexer_peek_string(t_lexer *lexer, char *str)
 		return (false);
 }
 
-char	*lexer_get_current_char_as_string(t_lexer *lexer)
+char	*lexer_get_current_char_as_string(t_lexer *lexer, t_command_block *first)
 {
 	char	*str;
 
 	str = calloc(2, sizeof(char));
+	if (str == NULL)
+		command_blocks_fail_exit(first);
 	str[0] = lexer->c;
 	str[1] = '\0';
 	return (str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_init_structs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/27 17:53:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:34:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*init_token(int type, char *value, t_command_block *first)
 
 	token = malloc(sizeof(t_token));
 	if (token == NULL)
-		lexer_fail_exit(first);
+		command_blocks_fail_exit(first);
 	token->e_type = type;
 	token->value = value;
 	token->next = NULL;
@@ -58,7 +58,7 @@ t_command_block	*init_command_block(t_command_block *first, char *block_contents
 
 	command_block = malloc(sizeof(t_command_block));
 	if (command_block == NULL)
-		lexer_fail_exit(first);
+		command_blocks_fail_exit(first);
 	command_block->tokens = NULL;
 	command_block->next = NULL;
 	command_block->block_contents = block_contents;

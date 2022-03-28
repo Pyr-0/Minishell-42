@@ -6,43 +6,51 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/26 19:56:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 21:17:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*env_get_current_char_as_string(char c)
+char	*env_get_current_char_as_string(char c, t_env *first)
 {
 	char	*str;
 
 	str = calloc(2, sizeof(char));
+	if (str == NULL)
+		env_fail_exit(first);
 	str[0] = c;
 	str[1] = '\0';
 	return (str);
 }
 
-char	*get_varname(char *env_str)
+char	*get_varname(char *env_str, t_env *first)
 {
 	char	*varname;
 	char	*c;
 
-	varname = NULL;
+	varname = ft_strdup("");
+	if (varname == NULL)
+		env_fail_exit(first);
 	while (*env_str != '=' && *env_str != '\0')
 	{
-		c = env_get_current_char_as_string(*env_str);
+		c = env_get_current_char_as_string(*env_str, first);
 		varname = ft_strjoin_free(varname, c);
+		if (varname == NULL)
+			env_fail_exit(first);
 		env_str++;
 	}
 	return (varname);
 }
 
-char	*get_varvalue(char *env_str)
+char	*get_varvalue(char *env_str, t_env *first)
 {
 	char	*varvalue;
 	char	*c;
 
-	varvalue = NULL;
+	varvalue = ft_strdup("");
+	if (varvalue == NULL)
+		env_fail_exit(first);
 	while (*env_str != '=' && *env_str != '\0')
 		env_str++;
 	if (*env_str != '\0')
@@ -50,8 +58,10 @@ char	*get_varvalue(char *env_str)
 		env_str++;
 		while (*env_str != '\0')
 		{
-			c = env_get_current_char_as_string(*env_str);
+			c = env_get_current_char_as_string(*env_str, first);
 			varvalue = ft_strjoin_free(varvalue, c);
+			if (varvalue == NULL)
+				env_fail_exit(first);
 			env_str++;
 		}
 	}
@@ -65,8 +75,8 @@ t_env	*init_env_node(char *env_str, t_env *first)
 	node = malloc(sizeof(t_env));
 	if (node == NULL)
 		env_fail_exit(first);
-	node->varname = get_varname(env_str);
-	node->varvalue = get_varvalue(env_str);
+	node->varname = get_varname(env_str, first);
+	node->varvalue = get_varvalue(env_str, first);
 	node->next = NULL;
 	return (node);
 }

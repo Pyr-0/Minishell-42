@@ -6,13 +6,13 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:40:03 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/26 15:13:56 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/28 21:33:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_lexer(t_command_block *command_blocks)
+void	free_command_blocks(t_command_block *command_blocks)
 {
 	t_command_block	*free_blocks;
 	t_token			*free_tokens;
@@ -34,8 +34,9 @@ void	free_lexer(t_command_block *command_blocks)
 	}
 }
 
-void	lexer_fail_exit(t_command_block *command_blocks)
+void	command_blocks_fail_exit(t_command_block *command_blocks)
 {
-	free_lexer(command_blocks);
+	free_env();
+	free_command_blocks(command_blocks);
 	exit(EXIT_FAILURE);
 }
