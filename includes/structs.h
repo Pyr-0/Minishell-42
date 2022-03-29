@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 22:50:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 14:40:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ typedef struct s_command_block
 }							t_command_block;
 
 
-{
-	enum	type;
-	char	*id;
-}
-
-typedef struct s_command_block
-{
-	char	*cmd;
-	t_arg	*arg;
-	t_redir	*input;
-	t_redir	*output; // what if nothing in between pipes?
-	struct s_command_block	*next;
-}	t_command_block;
+//{
+//	enum	type;
+//	char	*id;
+//}
+//
+//typedef struct s_command_block
+//{
+//	char	*cmd;
+//	t_arg	*arg;
+//	t_redir	*input;
+//	t_redir	*output; // what if nothing in between pipes?
+//	struct s_command_block	*next;
+//}	t_command_block;
 
 typedef enum e_expand
 {

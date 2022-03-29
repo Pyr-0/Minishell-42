@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 22:25:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 14:36:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,10 @@ bool	handle_error_and_free(t_command_block *lexer_block,
 bool	redir_error(t_token *token);
 bool	pipe_error(t_command_block *block);
 bool	pipe_redir_error(t_command_block *lexer_block);
+
+/*============TESTING STUFF===============*/
+
+void	print_tokens(t_command_block *lexer_done);
+void	print_env(void);
 
 #endif
