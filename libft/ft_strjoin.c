@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 20:54:01 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/21 16:57:05 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 15:02:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	str[j] = '\0';
 	return (str);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*new;
+
+	new = ft_strjoin(s1, s2);
+	free(s1);
+	free(s2);
+	if (new == NULL)
+		return (NULL);
+	return (new);
 }

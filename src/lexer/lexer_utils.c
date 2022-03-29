@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:27:59 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 21:34:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 15:06:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,6 @@ bool	lexer_quote_is_closed(t_lexer *lexer)
 	if (ft_strchr(&lexer->contents[lexer->i + 1], lexer->c) != NULL)
 		return (true);
 	return (false);
-}
-
-char	*ft_strjoin_free(char *s1, char *s2)
-{
-	char	*new;
-
-	new = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	if (new == NULL)
-		return (NULL);
-	return (new);
-}
-
-void	lexer_skip_whitespace(t_lexer *lexer)
-{
-	while (lexer->c == ' ')
-	{
-		lexer_advance(lexer);
-	}
 }
 
 bool	lexer_peek_string(t_lexer *lexer, char *str)

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 14:38:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 14:58:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int main(int argc, char *argv[], char *envp[])
 		printf("Readline input is: %s\n", lexer_struct.contents);
 		printf("System command exec:\n");
 		system(lexer_struct.contents);
-		init_lexer(&lexer_struct);
 		lexer_done = lexer(&lexer_struct);
 		print_tokens(lexer_done);
 		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token! and implement in parser

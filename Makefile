@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/29 14:41:14 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/29 14:59:56 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ endif
 DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
-SRC			=	./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c ./src/lexer/lexer_utils.c \
+SRC			=	./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
+				./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c \
 				./src/lexer/lexer_free_exit.c ./src/env/pipe_redir_error.c ./src/env/handle_env.c \
 				./src/env/parser_expander.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
