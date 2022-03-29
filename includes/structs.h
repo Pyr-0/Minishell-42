@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 18:26:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 19:03:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 typedef struct s_token
 {
-	enum
+	enum e_type
 	{
 		TOKEN_ID,
-		TOKEN_INPUT_HEREDOC, // 2
-		TOKEN_INPUT_FILE, // 3
-		TOKEN_OUTPUT_REPLACE, // 4
-		TOKEN_OUTPUT_APPEND // 5
-	} e_type;
+		TOKEN_INPUT_HEREDOC,
+		TOKEN_INPUT_FILE,
+		TOKEN_OUTPUT_REPLACE,
+		TOKEN_OUTPUT_APPEND
+	};
 	char			*value; // will be NULL if is redirection
 	struct s_token	*next;
 }		t_token;
@@ -35,27 +35,40 @@ typedef struct s_lexer
 	size_t			line_len;
 }				t_lexer;
 
-typedef struct s_command_block
+typedef struct s_lexer_block
 {
 	t_token					*tokens; // what if nothing in between pipes?
-	struct s_command_block	*next;
+	struct s_lexer_block	*next;
 	char					*block_contents; // this is the return of readline, so the whole line. needed in case of an error to free it.
-}							t_command_block;
+}							t_lexer_block;
 
+typedef struct s_arg
+{
+	char			*value;
+	struct s_arg	*next;
+}	t_arg;
 
-//{
-//	enum	type;
-//	char	*id;
-//}
-//
-//typedef struct s_command_block
-//{
-//	char	*cmd;
-//	t_arg	*arg;
-//	t_redir	*input;
-//	t_redir	*output; // what if nothing in between pipes?
-//	struct s_command_block	*next;
-//}	t_command_block;
+typedef struct s_redir
+{
+	enum e_type
+	{
+		REDIR_INPUT_HEREDOC,
+		REDIR_INPUT_FILE,
+		REDIR_OUTPUT_REPLACE,
+		REDIR_OUTPUT_APPEND
+	};
+	char			*id;
+	struct s_redir	*next;
+}					t_redir;
+
+typedef struct s_parser_block
+{
+	char					*cmd;
+	t_arg					*arg;
+	t_redir					*input;
+	t_redir					*output;
+	struct s_parser_block	*next;
+}	t_parser_block;
 
 typedef enum e_expand
 {

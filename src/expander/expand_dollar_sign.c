@@ -6,13 +6,13 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:14:43 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:17:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*collect_varname(char **iter, t_command_block *first)
+char	*collect_varname(char **iter, t_lexer_block *first)
 {
 	char	*varname;
 
@@ -27,7 +27,7 @@ char	*collect_varname(char **iter, t_command_block *first)
 	return (varname);
 }
 
-char	*collect_varvalue(char *varname, t_command_block *first)
+char	*collect_varvalue(char *varname, t_lexer_block *first)
 {
 	char	*varvalue;
 	t_env	*env;
@@ -39,18 +39,18 @@ char	*collect_varvalue(char *varname, t_command_block *first)
 		{
 			varvalue = ft_strdup(env->varvalue);
 			if (varvalue == NULL)
-				command_blocks_fail_exit(first);
+				lexer_blocks_fail_exit(first);
 			return (varvalue);
 		}
 		env = env->next;
 	}
 	varvalue = ft_strdup("");
 	if (varvalue == NULL)
-		command_blocks_fail_exit(first);
+		lexer_blocks_fail_exit(first);
 	return (varvalue);
 }
 
-void	expand_dollar_sign(char **iter, char **new_token_value, t_command_block *first)
+void	expand_dollar_sign(char **iter, char **new_token_value, t_lexer_block *first)
 {
 	char	*varname;
 	char	*varvalue;
@@ -60,5 +60,5 @@ void	expand_dollar_sign(char **iter, char **new_token_value, t_command_block *fi
 	free(varname);
 	*new_token_value = ft_strjoin_free(*new_token_value, varvalue);
 	if (new_token_value == NULL)
-		command_blocks_fail_exit(first);
+		lexer_blocks_fail_exit(first);
 }

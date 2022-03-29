@@ -6,20 +6,20 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:10:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:27:01 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	expand_token(t_token *token, t_command_block *first)
+void	expand_token(t_token *token, t_lexer_block *first)
 {
 	char	*iter;
 	char	*new_token_value;
 
 	new_token_value = ft_strdup("");
 	if (new_token_value == NULL)
-		command_blocks_fail_exit(first);
+		lexer_blocks_fail_exit(first);
 	iter = token->value;
 	while (*iter != '\0')
 	{
@@ -35,9 +35,9 @@ void	expand_token(t_token *token, t_command_block *first)
 	expander_init_new_value(token, new_token_value);
 }
 
-void	expander(t_command_block *lexer)
+void	expander(t_lexer_block *lexer)
 {
-	t_command_block	*i_block;
+	t_lexer_block	*i_block;
 	t_token			*i_token;
 
 	i_block = lexer;

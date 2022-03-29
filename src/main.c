@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 16:24:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_readline_fail(void)
 int main(int argc, char *argv[], char *envp[])
 {
 	t_lexer			lexer_struct;
-	t_command_block	*lexer_done;
+	t_lexer_block	*lexer_done;
 
 	if (argc != 1)
 	{
@@ -48,9 +48,9 @@ int main(int argc, char *argv[], char *envp[])
 		{
 			continue;
 		}
-		parser_expander(lexer_done); // need to handle empty string in executor!!. also exit stattus of successsfull command needs to be 0
+		expander(lexer_done); // need to handle empty string in executor!!. also exit stattus of successsfull command needs to be 0
 		print_tokens(lexer_done); //
-		free_command_blocks(lexer_done);
+		free_lexer_blocks(lexer_done);
 	//	system("leaks minishell"); //
 	//	break ; //
 	}

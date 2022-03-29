@@ -6,13 +6,13 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:54:08 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 15:07:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*lexer_collect_string(t_lexer *lexer, t_command_block *first)
+char	*lexer_collect_string(t_lexer *lexer, t_lexer_block *first)
 {
 	char	*str;
 	char	*c;
@@ -21,13 +21,13 @@ char	*lexer_collect_string(t_lexer *lexer, t_command_block *first)
 	quote_type = lexer->c;
 	str = ft_strdup("");
 	if (str == NULL)
-		command_blocks_fail_exit(first);
+		lexer_blocks_fail_exit(first);
 	while (true)
 	{
 		c = lexer_get_current_char_as_string(lexer, first);
 		str = ft_strjoin_free(str, c);
 		if (str == NULL)
-			command_blocks_fail_exit(first);
+			lexer_blocks_fail_exit(first);
 		if (lexer->c == quote_type && ft_strlen(str) != 1)
 			break ;
 		lexer_advance(lexer);
@@ -35,14 +35,14 @@ char	*lexer_collect_string(t_lexer *lexer, t_command_block *first)
 	return (str);
 }
 
-void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *curr)
+void	lexer_collect_id(t_lexer *lexer, t_lexer_block *first, t_lexer_block *curr)
 {
 	char	*s;
 	char	*value;
 
 	value = ft_strdup("");
 	if (value == NULL)
-		command_blocks_fail_exit(first);
+		lexer_blocks_fail_exit(first);
 	while (!is_seperator(lexer->c))
 	{
 		if ((lexer->c == '"' || lexer->c == '\'') && lexer_quote_is_closed(lexer))
@@ -52,7 +52,7 @@ void	lexer_collect_id(t_lexer *lexer, t_command_block *first, t_command_block *c
 		lexer_advance(lexer);
 		value = ft_strjoin_free(value, s);
 		if (value == NULL)
-			command_blocks_fail_exit(first);
+			lexer_blocks_fail_exit(first);
 	}
 	add_token(TOKEN_ID, value, curr, first);
 }

@@ -6,15 +6,15 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 16:48:08 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool	handle_error_and_free(t_command_block *lexer_block, char *error_message)
+bool	handle_error_and_free(t_lexer_block *lexer_block, char *error_message)
 {
-	free_command_blocks(lexer_block);
+	free_lexer_blocks(lexer_block);
 	write(STDERR_FILENO, error_message, ft_strlen(error_message));
 	g_exit_status = EXIT_PIPE_REDIR_ERROR;
 	return (true);
@@ -29,7 +29,7 @@ bool	redir_error(t_token *token)
 	return (false);
 }
 
-bool	pipe_error(t_command_block *block)
+bool	pipe_error(t_lexer_block *block)
 {
 	if (block->next == NULL)
 		return (false);
@@ -38,9 +38,9 @@ bool	pipe_error(t_command_block *block)
 	return (false);
 }
 
-bool	pipe_redir_error(t_command_block *lexer_block)
+bool	pipe_redir_error(t_lexer_block *lexer_block)
 {
-	t_command_block	*i_block;
+	t_lexer_block	*i_block;
 	t_token			*i_token;
 
 	i_block = lexer_block;

@@ -6,15 +6,15 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 14:51:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print_tokens(t_command_block *lexer)
+void	print_tokens(t_lexer_block *lexer)
 {
-	t_command_block	*i_block;
+	t_lexer_block	*i_block;
 	t_token			*i_token;
 
 	i_block = lexer;

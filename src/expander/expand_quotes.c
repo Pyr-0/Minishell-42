@@ -6,13 +6,13 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:17:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:18:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	expand_double_quotes(char **iter, char **new_token_value, t_command_block *first)
+void	expand_double_quotes(char **iter, char **new_token_value, t_lexer_block *first)
 {
 	(*iter)++;
 	while (**iter != '"')
@@ -25,7 +25,7 @@ void	expand_double_quotes(char **iter, char **new_token_value, t_command_block *
 	(*iter)++;
 }
 
-void	expand_single_quotes(char **iter, char **new_token_value, t_command_block *first)
+void	expand_single_quotes(char **iter, char **new_token_value, t_lexer_block *first)
 {
 	(*iter)++;
 	while (**iter != '\'')
