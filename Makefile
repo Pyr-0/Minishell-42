@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/29 15:31:20 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/29 18:25:39 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,12 @@ DIR_HEADERS =	./includes/
 DIR_SRC		=	./src/
 DIR_OBJ		=	./obj/
 SRC			=	./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
-				./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c \
-				./src/lexer/lexer_free_exit.c ./src/env/get_env.c ./src/env/init_env.c ./src/env/env_utils.c \
-				./src/env/env_free_exit.c ./src/parser_expander.c ./src/pipe_redir_error.c
+				./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c ./src/lexer/lexer_free_exit.c \
+				./src/env/get_env.c ./src/env/init_env.c ./src/env/env_utils.c ./src/env/env_free_exit.c \
+				./src/parser_expander/parser_expander.c ./src/parser_expander/expander.c \
+				./src/parser_expander/expand_dollar_sign.c ./src/parser_expander/expand_quotes.c \
+				./src/parser_expander/expander_utils.c\
+				./src/pipe_redir_error.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
 
@@ -42,7 +45,7 @@ $(NAME):		$(LIBFT) $(OBJ)
 				@$(CC) $(CC_FLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 
-$(LIBFT):
+$(LIBFT):		libft/*.c
 				@tput setaf 117 && printf "*--------checking libft...-------------*\n"
 				@make -C ./libft
 

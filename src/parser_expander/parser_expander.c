@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   parser_expander.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 16:11:40 by shaas            ###   ########.fr       */
+/*   Created: 2022/03/29 18:11:09 by shaas             #+#    #+#             */
+/*   Updated: 2022/03/29 18:11:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*this function initializes the env structure, when you pass it the env pointer from the main.
-in any other case, you should pass it NULL and it will just return the env structure.*/
-t_env	**get_env(char *envp[])
+void	parser_expander(t_command_block *lexer)
 {
-	static t_env	*env;
-
-	if (envp != NULL)
-		env = init_env(envp);
-	return (&env);
+	expander(lexer);
 }

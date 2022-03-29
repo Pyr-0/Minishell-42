@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 15:31:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:09:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# include "structs.h"
-# include "lexer.h"
-# include "env.h"
 # include "../libft/libft.h"
+# include "structs.h"
+# include "env.h"
+# include "lexer.h"
+# include "parser_expander.h"
 
 # define EXIT_PIPE_REDIR_ERROR 258
 
 int	g_exit_status;
-
-/*============EXPANDER===============*/
-
-char	*expander_get_current_char_as_string(char c, t_command_block *first);
-char	*collect_varname(char **iter, t_command_block *first);
-char	*collect_varvalue(char *varname, t_command_block *first);
-void	expand_dollar_sign(char **iter, char **new_token_value, t_command_block *first);
-void	expand_token(t_token *token, t_command_block *first);
-void	expander(t_command_block *lexer);
-void	parser_expander(t_command_block *lexer);
 
 /*============PIPE_REDIR_ERRORS===============*/
 

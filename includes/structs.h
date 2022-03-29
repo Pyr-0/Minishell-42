@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 14:40:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:26:35 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_command_block
 {
 	t_token					*tokens; // what if nothing in between pipes?
 	struct s_command_block	*next;
-	char					*block_contents;
+	char					*block_contents; // this is the return of readline, so the whole line. needed in case of an error to free it.
 }							t_command_block;
 
 

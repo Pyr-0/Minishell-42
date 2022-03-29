@@ -6,11 +6,11 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 22:24:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 16:48:08 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 bool	handle_error_and_free(t_command_block *lexer_block, char *error_message)
 {
