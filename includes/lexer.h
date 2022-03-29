@@ -6,15 +6,12 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 14:37:18 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 15:12:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 15:28:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
-
-# include "structs.h"
-# include <stdbool.h>
 
 /*============LEXER=============*/
 

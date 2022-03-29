@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_env.c                                       :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/28 22:44:25 by shaas            ###   ########.fr       */
+/*   Created: 2022/03/29 15:22:12 by shaas             #+#    #+#             */
+/*   Updated: 2022/03/29 15:24:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*env_get_current_char_as_string(char c, t_env *first)
-{
-	char	*str;
-
-	str = calloc(2, sizeof(char));
-	if (str == NULL)
-		env_fail_exit(first);
-	str[0] = c;
-	str[1] = '\0';
-	return (str);
-}
 
 char	*get_varname(char *env_str, t_env *first)
 {
@@ -102,51 +90,4 @@ t_env	*init_env(char *envp[])
 		i++;
 	}
 	return (first);
-}
-
-t_env	**get_env(char *envp[])
-{
-	static t_env	*env;
-
-	if (envp != NULL)
-		env = init_env(envp);
-	return (&env);
-}
-
-void	free_env(void)
-{
-	t_env	*env;
-	t_env	*free_env;
-
-	env = *(get_env(NULL));
-	free_env = env;
-	while (env != NULL)
-	{
-		free(env->varvalue);
-		free(env->varname);
-		free_env = env;
-		env = env->next;
-		free(free_env);
-	}
-}
-
-void	free_init_env(t_env *env)
-{
-	t_env	*free_env;
-
-	free_env = env;
-	while (env != NULL)
-	{
-		free(env->varvalue);
-		free(env->varname);
-		free_env = env;
-		env = env->next;
-		free(free_env);
-	}
-}
-
-void	env_fail_exit(t_env *env)
-{
-	free_init_env(env);
-	exit(EXIT_FAILURE);
 }

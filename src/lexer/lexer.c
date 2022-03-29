@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:16:05 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 15:12:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/29 15:28:05 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_command_block	*lexer(t_lexer *lexer)
 		lexer_skip_whitespace(lexer);
 		if (lexer->c == '\0')
 			break ;
-		check_for_tokens(lexer, &iter, first);
+		lexer_check_for_tokens(lexer, &iter, first);
 	}
 	return (first);
 }
