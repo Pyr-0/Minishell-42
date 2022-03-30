@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 22:25:02 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:48:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	cmd_echo(t_program *program)
 		if (program->args[i + 1])
 			ft_putchar_fd(' ', STDOUT_FILENO);
 		i++;
-		g_exit_status = 0;
 	}
 	if (flag != 1)
-		ft_putchar_fd('\n', );
+		ft_putchar_fd('\n', STDOUT_FILENO);
+	g_exit_status = 0;
 }
