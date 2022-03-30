@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/30 17:49:11 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:55:14 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ typedef struct s_parser_block{
 }	t_parser_block;
 
 
-//===============EXPANDER=================//
+//===============COMMANDS=================//
 
-typedef struct s_program{
+typedef struct s_command{
 	char					**args;
 	int						fd;
 	struct s_parser_block	*next;
-}	t_program;
+}	t_command;
 
 //===============EXPANDER=================//
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 12:46:02 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/29 15:56:42 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/30 17:56:45 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OBJ			=	$(SRC:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(COMP) $< -o $@
+	@$(COMP) $< -o $@
 
 $(NAME): $(OBJ)
 	@printf $(LIGHTBLUE)"*--------libtft compiled!--------------*\n"$(RESET)
