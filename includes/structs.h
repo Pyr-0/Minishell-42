@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/30 17:55:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:27:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_token{
 		TOKEN_INPUT_FILE,
 		TOKEN_OUTPUT_REPLACE,
 		TOKEN_OUTPUT_APPEND
-	}e_type;
+	} e_type;
 	char			*value; // will be NULL if is redirection
 	struct s_token	*next;
 }		t_token;
@@ -42,6 +42,7 @@ typedef struct s_lexer_block{
 }							t_lexer_block;
 
 //===============PARSER=================//
+
 typedef struct s_arg{
 	char			*value;
 	struct s_arg	*next;
@@ -54,7 +55,7 @@ typedef struct s_redir{
 		REDIR_INPUT_FILE,
 		REDIR_OUTPUT_REPLACE,
 		REDIR_OUTPUT_APPEND
-	} e_type;
+	} e_redir_type;
 	char			*id;
 	struct s_redir	*next;
 }					t_redir;
@@ -67,6 +68,15 @@ typedef struct s_parser_block{
 	struct s_parser_block	*next;
 }	t_parser_block;
 
+//===============EXECUTOR=================//
+
+typedef struct s_exec_block{
+	char				*cmd;
+	t_arg				*arg;
+	int					in_fd;
+	t_redir				out_fd;
+	struct s_exec_block	*next;
+}	t_exec_block;
 
 //===============COMMANDS=================//
 
