@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/30 22:01:51 by shaas            ###   ########.fr        #
+#    Updated: 2022/03/31 22:26:58 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(LIBFT):		libft/*.c
 
 $(DIR_OBJ)%.o:	$(DIR_SRC)%.c
 				@mkdir -p $(dir $@)
-				@$(CC) $(CC_FLAGS) $(CPPFLAGS) -I $(DIR_HEADERS) -c $< -o $@
+				$(CC) $(CC_FLAGS) $(CPPFLAGS) -I $(DIR_HEADERS) -c $< -o $@
 
 clean:
 				@rm -rf $(DIR_OBJ)

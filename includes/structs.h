@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/31 18:34:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/31 23:28:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define STRUCTS_H
 
 //===============LEXER=================//
+
+typedef struct s_lexer{
+	unsigned int	i;
+	char			c;
+	char			*contents;
+	size_t			line_len;
+}				t_lexer;
 
 typedef struct s_token{
 	enum
@@ -27,13 +34,6 @@ typedef struct s_token{
 	char			*value; // will be NULL if is redirection
 	struct s_token	*next;
 }		t_token;
-
-typedef struct s_lexer{
-	unsigned int	i;
-	char			c;
-	char			*contents;
-	size_t			line_len;
-}				t_lexer;
 
 typedef struct s_lexer_block{
 	t_token					*tokens; // what if nothing in between pipes?

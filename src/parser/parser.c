@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:46:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/30 22:50:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 00:21:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //to do: all pointer
 
+/*
 t_parser_block	*parser(t_lexer_block *lexer_blocks)
 {
 	(void)lexer_blocks;
@@ -51,20 +52,64 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	parsi->next->output = NULL;
 	parsi->next->next = NULL;
 	return (parsi);
+}*/
+
+t_parser_block	*init_parser_block(t_lexer_block *lexer_blocks, t_parser_block *first)
+{
+	t_parser_block *new;
+	
+	new = malloc(sizeof(t_parser_block));
+	if (new == NULL)
+		parser_fail_exit(lexer_blocks, first);
+	new->cmd = NULL;
+	new->arg = NULL;
+	new->input = NULL;
+	new->output = NULL;
+	new->next = NULL;
+	
+	return (new);
 }
 
-// t_parser_block	*init_parser_block(t_lexer_block *lexer_blocks, t_parser_block *first)
-// {
-// 	t_parser_block	*parser_block;
+t_parser_block	*add_parser_block(t_parser_block *first, t_parser_block *prev,
+							t_lexer_block *lexer_blocks)
+{
+	t_parser_block *new;
 
-// 	parser_block = malloc(sizeof(t_parser_block));
-// 	if (parser_block == NULL)
-// 		parser_fail_exit(lexer_blocks, first);
-// 	parser_block-> = NULL;
-// 	parser_block->next = NULL;
-// 	parser_block->block_contents = block_contents;
-// 	return (parser_block);
-// }
+	new = init_parser_block(lexer_blocks, first);
+	if (prev != NULL)
+		prev->next = new;
+	return (new);
+}
 
+int	get_lexer_block_num(t_lexer_block *lexer_blocks)
+{
+	int	num;
 
+	num = 0;
+	while (lexer_blocks != NULL)
+	{
+		num++;
+		lexer_blocks = lexer_blocks->next;
+	}
+	return (num);
+}
 
+t_parser_block	*parser(t_lexer_block *lexer_blocks)
+{
+	int	lexer_block_count;
+	int	i;
+	t_parser_block	*temp_block;
+	t_parser_block	*first;
+
+	i = 0;
+	first = NULL;
+	lexer_block_count = get_lexer_block_num(lexer_blocks);
+	while(i < lexer_block_count)
+	{
+		temp_block = add_parser_block(first, temp_block, lexer_blocks);
+		if (first == NULL)
+			first = temp_block;
+		i++;
+	}
+	return (first);
+}
