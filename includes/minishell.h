@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/30 21:12:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/31 18:40:04 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "lexer.h"
 # include "expander.h"
 # include "parser.h"
+# include "redir_creator.h"
 
 # define EXIT_PIPE_REDIR_ERROR 258
 

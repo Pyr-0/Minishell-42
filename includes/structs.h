@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/30 22:27:15 by shaas            ###   ########.fr       */
+/*   Updated: 2022/03/31 18:34:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_exec_block{
 	char				*cmd;
 	t_arg				*arg;
 	int					in_fd;
-	t_redir				out_fd;
+	int					out_fd;
 	struct s_exec_block	*next;
 }	t_exec_block;
 
