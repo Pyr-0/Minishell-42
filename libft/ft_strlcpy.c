@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:44:16 by mrojas-e          #+#    #+#             */
-/*   Updated: 2021/09/08 20:33:58 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/01 23:40:15 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	counter;
 	size_t	src_len;
 
-	if (dst == 0 ||src == 0)
+	if (dst == 0 || src == 0)
 		return (0);
 	src_len = ft_strlen(src);
 	counter = 0;
@@ -30,4 +30,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		dst[counter] = 0;
 	return (src_len);
 }
-

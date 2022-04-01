@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 12:45:54 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 15:03:01 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 23:41:16 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@
 # include <stdbool.h>
 # include <limits.h>
 
-
 typedef struct s_LinkedlistNode
 {
-	void			*content;
+	void					*content;
 	struct s_LinkedlistNode	*next;
 }t_list;
-
-
 
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memset(void *b, int c, size_t len);

@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 13:29:19 by mrojas-e          #+#    #+#             */
-/*   Updated: 2021/09/08 22:52:55 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/01 23:38:31 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *str;
+	char	*str;
 	size_t	slen;
 
 	if (s == NULL)
@@ -22,7 +22,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	slen = ft_strlen(s);
 	if (start + len >= slen)
 	{
-		if(start > slen)
+		if (start > slen)
 			len = 0;
 		else
 			len = slen - start;

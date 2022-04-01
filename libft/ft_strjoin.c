@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 20:54:01 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 15:58:22 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 23:39:34 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-/*frees both strings after the creation of the new one. this means that 
-both of them need to be allocated beforehand!
-they also still get freed when there happens a malloc error, need to be aware of that!*/
+/* frees both strings after the creation of the new one. this means
+that both of them need to be allocated beforehand! they also still
+get freed when there happens a malloc error, need to be aware of that!*/
 char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new;
