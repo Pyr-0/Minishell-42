@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:46:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 21:08:35 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/01 22:53:50 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,6 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	return (parsi);
 }*/
 
-t_parser_block	*init_parser_block(t_lexer_block *lexer_blocks, t_parser_block *first)
-{
-	t_parser_block *new;
-	
-	new = malloc(sizeof(t_parser_block));
-	if (new == NULL)
-		parser_fail_exit(lexer_blocks, first);
-	new->cmd = NULL;
-	new->arg = NULL;
-	new->input = NULL;
-	new->output = NULL;
-	new->next = NULL;
-	
-	return (new);
-}
-
-t_parser_block	*add_parser_block(t_parser_block *first, t_parser_block *prev,
-							t_lexer_block *lexer_blocks)
-{
-	t_parser_block *new;
-
-	new = init_parser_block(lexer_blocks, first);
-	if (prev != NULL)
-		prev->next = new;
-	return (new);
-}
 
 int	get_lexer_block_num(t_lexer_block *lexer_blocks)
 {

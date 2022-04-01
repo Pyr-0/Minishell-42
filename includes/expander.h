@@ -6,12 +6,12 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:07:18 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 21:55:44 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/01 22:50:47 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_EXPANDER_H
-# define PARSER_EXPANDER_H
+#ifndef EXPANDER_H
+# define EXPANDER_H
 
 /*============EXPANDER===============*/
 
