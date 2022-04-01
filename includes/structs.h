@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/31 23:28:50 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 21:09:47 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_lexer_block{
 	char					*block_contents; // this is the return of readline, so the whole line. needed in case of an error to free it.
 }							t_lexer_block;
 
-//===============PARSER=================//
+//>===============PARSER=================<//
 
 typedef struct s_arg{
 	char			*value;

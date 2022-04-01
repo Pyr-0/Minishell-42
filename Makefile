@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/31 22:26:58 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/01 19:39:16 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC			=	./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_i
 				./src/pipe_redir_error.c \
 				./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
 				./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
-				./src/parser/parser.c ./src/parser/parser_free_exit.c
+				./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=	libft/libft.a
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar_sign.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:14:43 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 21:55:59 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,20 @@ char	*collect_varname(char **iter, t_lexer_block *first)
 	return (varname);
 }
 
-char	*collect_varvalue(char *varname, t_lexer_block *first)
+char	*collect_varvalue(char *varname)
 {
-	char	*varvalue;
 	t_env	*env;
 
+	if (varname[0] == '\0')
+		return (ft_strdup("$"));
 	env = *get_env(NULL);
 	while (env != NULL && varname != NULL)
 	{
 		if (ft_strncmp(env->varname, varname, INT_MAX) == 0)
-		{
-			varvalue = ft_strdup(env->varvalue);
-			if (varvalue == NULL)
-				lexer_blocks_fail_exit(first);
-			return (varvalue);
-		}
+			return (ft_strdup(env->varvalue));
 		env = env->next;
 	}
-	varvalue = ft_strdup("");
-	if (varvalue == NULL)
-		lexer_blocks_fail_exit(first);
-	return (varvalue);
+	return (ft_strdup(""));
 }
 
 void	expand_dollar_sign(char **iter, char **new_token_value, t_lexer_block *first)
@@ -56,7 +49,9 @@ void	expand_dollar_sign(char **iter, char **new_token_value, t_lexer_block *firs
 	char	*varvalue;
 
 	varname = collect_varname(iter, first);
-	varvalue = collect_varvalue(varname, first);
+	varvalue = collect_varvalue(varname);
+	if (varvalue == NULL)
+		lexer_blocks_fail_exit(first);
 	free(varname);
 	*new_token_value = ft_strjoin_free(*new_token_value, varvalue);
 	if (new_token_value == NULL)

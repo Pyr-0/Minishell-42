@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:46:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 00:21:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/01 21:08:35 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,20 @@ t_parser_block	*add_parser_block(t_parser_block *first, t_parser_block *prev,
 
 int	get_lexer_block_num(t_lexer_block *lexer_blocks)
 {
-	int	num;
+	int				num;
+	t_lexer_block	*iter;
 
 	num = 0;
-	while (lexer_blocks != NULL)
+	iter = lexer_blocks;
+	while (iter != NULL)
 	{
 		num++;
-		lexer_blocks = lexer_blocks->next;
+		iter = iter->next;
 	}
 	return (num);
 }
 
-t_parser_block	*parser(t_lexer_block *lexer_blocks)
+t_parser_block	*create_parser_blocks(t_lexer_block *lexer_blocks)
 {
 	int	lexer_block_count;
 	int	i;
@@ -103,6 +105,7 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 
 	i = 0;
 	first = NULL;
+	temp_block = first;
 	lexer_block_count = get_lexer_block_num(lexer_blocks);
 	while(i < lexer_block_count)
 	{
@@ -112,4 +115,48 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 		i++;
 	}
 	return (first);
+}
+
+t_parser_block	*parser(t_lexer_block *lexer_blocks)
+{
+	t_parser_block	*parser_blocks;
+	t_parser_block	*i_parser;
+	t_lexer_block	*i_lexer;
+
+	parser_blocks = create_parser_blocks(lexer_blocks);
+	i_lexer = lexer_blocks;
+	i_parser = parser_blocks;
+	while(i_lexer != NULL && i_parser != NULL)
+	{
+		if (translate_lexer_to_parser_block(i_lexer, i_parser,
+					lexer_blocks, parser_blocks) == false)
+			return NULL;
+		i_lexer = i_lexer->next;
+		i_parser = i_parser->next;
+	}
+	free_lexer_blocks(lexer_blocks);
+	return (parser_blocks);
+}
+
+bool	translate_lexer_to_parser_block(t_lexer_block *i_lexer,t_parser_block *i_parser,
+								t_lexer_block *lexer_blocks, t_parser_block *parser_blocks)
+{
+	t_token	*i_token;
+
+	i_token = i_lexer->tokens;
+	while (i_token != NULL)
+	{
+		if (i_parser->cmd == NULL && i_token->e_type == TOKEN_ID)
+			add_cmd(i_parser, i_token, parser_blocks, lexer_blocks);
+		else if (i_parser->cmd != NULL && i_token->e_type == TOKEN_ID)
+			add_arg(parser_blocks, i_token->value, lexer_blocks, i_parser);
+		else if (i_token->e_type > TOKEN_ID)
+		{
+			add_redir(parser_blocks, i_token->e_type, lexer_blocks, i_parser);
+			add_redir_id(i_parser, i_token, parser_blocks, lexer_blocks);
+			i_token = i_token->next;
+		}
+		i_token = i_token->next;
+	}
+	return (true);
 }
