@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:14:43 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 21:55:59 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 14:49:45 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ char	*collect_varname(char **iter, t_lexer_block *first)
 	if (varname == NULL)
 		return (NULL);
 	(*iter)++;
-	while (**iter != ' ' && **iter != '\0' && **iter != '$' && **iter != '\'' && **iter != '"')
-	{
+	while (**iter != ' ' && **iter != '\0' && **iter
+		!= '$' && **iter != '\'' && **iter != '"')
 		expander_advance_with_char(iter, &varname, first);
-	}
 	return (varname);
 }
 
@@ -43,7 +42,8 @@ char	*collect_varvalue(char *varname)
 	return (ft_strdup(""));
 }
 
-void	expand_dollar_sign(char **iter, char **new_token_value, t_lexer_block *first)
+void	expand_dollar_sign(char **iter, char **new_token_value,
+						t_lexer_block *first)
 {
 	char	*varname;
 	char	*varvalue;

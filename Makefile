@@ -6,13 +6,13 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/01 22:52:20 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/02 18:16:41 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	minishell
-CC			=	gcc
-CC_FLAGS	=	-Wall -Wextra -Werror -g
+NAME		=		minishell
+CC			=		gcc
+CC_FLAGS	=		-Wall -Wextra -Werror -g
 # check if mac or linux, different readline flags #
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
@@ -25,19 +25,19 @@ ifeq ($(OS), Linux)
 	LDFLAGS		=
 	LREADLINE	=	-lreadline
 endif
-DIR_HEADERS =	./includes/
-DIR_SRC		=	./src/
-DIR_OBJ		=	./obj/
-SRC			=	./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
-				./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c ./src/lexer/lexer_free_exit.c \
-				./src/env/get_env.c ./src/env/init_env.c ./src/env/env_utils.c ./src/env/env_free_exit.c \
-				./src/pipe_redir_error.c \
-				./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
-				./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
-				./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c\
-				./src/parser/parser_add.c 
-OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
-LIBFT		=	libft/libft.a
+DIR_HEADERS =		./includes/
+DIR_SRC		=		./src/
+DIR_OBJ		=		./obj/
+SRC			=		./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
+					./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c ./src/lexer/lexer_free_exit.c \
+					./src/env/get_env.c ./src/env/init_env.c ./src/env/env_utils.c ./src/env/env_free_exit.c \
+					./src/pipe_redir_error.c \
+					./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
+					./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
+					./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c\
+					./src/parser/parser_add.c ./src/builtins/echo.c 
+OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
+LIBFT		=		libft/libft.a
 
 all:			$(NAME)
 
@@ -72,11 +72,12 @@ exec:
 				@tput setaf 1 && printf   "       (  (()/(  )\()) (   (()/( (()/( (         \n"
 				@tput setaf 1 && printf   "       )\  /(_))((_)\  )\   /(_)) /(_)))\        \n"
 				@tput setaf 1 && printf   "     '((_)(_))   _((_)((_) (_))  (_))  (_)       \n"
-				@tput setaf 010 && printf " _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n"
-				@tput setaf 010 && printf "| '  \ | |\__ \ | __ || _| | |__ | |__ | || ' \  \n"
-				@tput setaf 010 && printf "|_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n"
-				@tput setaf 010 && printf "                                                 \n"
-				@tput setaf 007 && printf "*--------executing program!------------*\n"
+				@tput setaf 05 && printf " _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n"
+				@tput setaf 05 && printf "| '  \ | |\__ \ | __ || _| | |__ | |__ | || ' \  \n"
+				@tput setaf 05 && printf "|_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n"
+				@tput setaf 05 && printf "                                                 \n"
+				@tput setaf 005 && printf "    *--------executing program!------------*\n"
+				@printf "\e[0m"
 				./$(NAME)
 
 both:			$(NAME) exec

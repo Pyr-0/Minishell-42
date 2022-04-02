@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/31 19:57:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 15:17:49 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_exec_block	*redir_creator(t_parser_block *parser_blocks)
+/* t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 {
 	t_parser_block	*first_parser;
 	t_exec_block	*exec_blocks;
 	t_exec_block	*first_exec;
 
 	first_parser = parser_blocks;
-	exec_blocks = init_exec_blocks(parser_blocks, first_parser);
+	exec_blocks = init_exec_blocks(parser_blocks);
 	first_exec = exec_blocks;
 	while (parser_blocks != NULL)
 	{
@@ -28,9 +28,10 @@ t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 		if (parser_blocks->next != NULL)
 			redir_creator_create_pipe(exec_blocks, )
 	}
-}
+} */
 
-t_exec_block	*init_exec_block(t_parser_block *parser_blocks, t_exec_block *first)
+t_exec_block	*init_exec_block(t_parser_block *parser_blocks,
+	t_exec_block *first)
 {
 	t_exec_block	*exec_block;
 
@@ -45,9 +46,10 @@ t_exec_block	*init_exec_block(t_parser_block *parser_blocks, t_exec_block *first
 	return (exec_block);
 }
 
-t_exec_block	*add_exec_block(t_exec_block *prev, t_exec_block *first, t_parser_block *parser_blocks)
+t_exec_block	*add_exec_block(t_exec_block *prev, t_exec_block *first,
+		t_parser_block *parser_blocks)
 {
-	t_exec_block *new;
+	t_exec_block	*new;
 
 	new = init_exec_block(parser_blocks, first);
 	if (prev != NULL)
@@ -55,7 +57,8 @@ t_exec_block	*add_exec_block(t_exec_block *prev, t_exec_block *first, t_parser_b
 	return (new);
 }
 
-void	copy_args_per_node(t_exec_block *i_exec, t_parser_block *i_parser, t_exec_block *first_exec, t_parser_block *first_parser)
+void	copy_args_per_node(t_exec_block *i_exec, t_parser_block *i_parser,
+		t_exec_block *first_exec, t_parser_block *first_parser)
 {
 	t_arg	*i_arg_parser;
 	t_arg	*i_arg_exec;
@@ -64,11 +67,11 @@ void	copy_args_per_node(t_exec_block *i_exec, t_parser_block *i_parser, t_exec_b
 	i_arg_exec = i_exec->arg;
 	while (i_arg_parser != NULL)
 	{
-		
 	}
 }
 
-void	copy_args_from_parser_to_exec(t_exec_block *first_exec, t_parser_block *first_parser)
+void	copy_args_from_parser_to_exec(t_exec_block *first_exec,
+	t_parser_block *first_parser)
 {
 	t_parser_block	*i_parser;
 	t_exec_block	*i_exec;
@@ -78,10 +81,9 @@ void	copy_args_from_parser_to_exec(t_exec_block *first_exec, t_parser_block *fir
 	while (i_parser != NULL && i_exec != NULL)
 	{
 		i_exec->cmd = ft_strdup(i_parser->cmd);
-		if (i_exec->cmd = NULL)
+		if (i_exec->cmd == NULL)
 			redir_creator_fail_exit(first_parser, first_exec);
 		copy_args_per_node(i_exec, i_parser, first_exec, first_parser);
-		
 	}
 }
 

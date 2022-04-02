@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_advance_and_collect.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:54:08 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 14:56:27 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char	*lexer_collect_string(t_lexer *lexer, t_lexer_block *first)
 	return (str);
 }
 
-void	lexer_collect_id(t_lexer *lexer, t_lexer_block *first, t_lexer_block *curr)
+void	lexer_collect_id(t_lexer *lexer, t_lexer_block *first,
+			t_lexer_block *curr)
 {
 	char	*s;
 	char	*value;
@@ -45,7 +46,8 @@ void	lexer_collect_id(t_lexer *lexer, t_lexer_block *first, t_lexer_block *curr)
 		lexer_blocks_fail_exit(first);
 	while (!is_seperator(lexer->c))
 	{
-		if ((lexer->c == '"' || lexer->c == '\'') && lexer_quote_is_closed(lexer))
+		if ((lexer->c == '"' || lexer->c == '\'')
+			&& lexer_quote_is_closed(lexer))
 			s = lexer_collect_string(lexer, first);
 		else
 			s = lexer_get_current_char_as_string(lexer, first);
@@ -59,7 +61,7 @@ void	lexer_collect_id(t_lexer *lexer, t_lexer_block *first, t_lexer_block *curr)
 
 void	lexer_advance_with_token(t_lexer *lexer, int token_len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < token_len)

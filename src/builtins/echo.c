@@ -6,30 +6,30 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/30 17:55:07 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:27:09 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cmd_echo(t_command *command)
+void	cmd_echo(t_parser_block *echo)
 {
 	int	flag;
-	int	i;
 
 	flag = 0;
-	i = 1;
-	while (command->args[i] != NULL && ft_strncmp(command->args[i], "-n", 3) == 0)
+	while (echo->arg != NULL && ft_strncmp(echo->arg->value,
+			"-n", 3) == 0)
 	{
-		i++;
+		echo->arg = echo->arg->next;
 		flag = 1;
 	}
-	while (command->args[i])
+	printf("ECHO COMMAND\n");
+	while (echo->arg)
 	{
-		ft_putstr_fd(command->args[i], STDOUT_FILENO);
-		if (command->args[i + 1])
+		ft_putstr_fd(echo->arg->value, STDOUT_FILENO);
+		if (echo->arg->next)
 			ft_putchar_fd(' ', STDOUT_FILENO);
-		i++;
+		echo->arg = echo->arg->next;
 	}
 	if (flag != 1)
 		ft_putchar_fd('\n', STDOUT_FILENO);

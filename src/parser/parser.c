@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:46:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 22:53:50 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 15:02:06 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	return (parsi);
 }*/
 
-
 int	get_lexer_block_num(t_lexer_block *lexer_blocks)
 {
 	int				num;
@@ -72,8 +71,8 @@ int	get_lexer_block_num(t_lexer_block *lexer_blocks)
 
 t_parser_block	*create_parser_blocks(t_lexer_block *lexer_blocks)
 {
-	int	lexer_block_count;
-	int	i;
+	int				lexer_block_count;
+	int				i;
 	t_parser_block	*temp_block;
 	t_parser_block	*first;
 
@@ -81,7 +80,7 @@ t_parser_block	*create_parser_blocks(t_lexer_block *lexer_blocks)
 	first = NULL;
 	temp_block = first;
 	lexer_block_count = get_lexer_block_num(lexer_blocks);
-	while(i < lexer_block_count)
+	while (i < lexer_block_count)
 	{
 		temp_block = add_parser_block(first, temp_block, lexer_blocks);
 		if (first == NULL)
@@ -100,11 +99,11 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	parser_blocks = create_parser_blocks(lexer_blocks);
 	i_lexer = lexer_blocks;
 	i_parser = parser_blocks;
-	while(i_lexer != NULL && i_parser != NULL)
+	while (i_lexer != NULL && i_parser != NULL)
 	{
 		if (translate_lexer_to_parser_block(i_lexer, i_parser,
-					lexer_blocks, parser_blocks) == false)
-			return NULL;
+				lexer_blocks, parser_blocks) == false)
+			return (NULL);
 		i_lexer = i_lexer->next;
 		i_parser = i_parser->next;
 	}
@@ -112,8 +111,9 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	return (parser_blocks);
 }
 
-bool	translate_lexer_to_parser_block(t_lexer_block *i_lexer,t_parser_block *i_parser,
-								t_lexer_block *lexer_blocks, t_parser_block *parser_blocks)
+bool	translate_lexer_to_parser_block(t_lexer_block *i_lexer,
+					t_parser_block *i_parser, t_lexer_block *lexer_blocks,
+					t_parser_block *parser_blocks)
 {
 	t_token	*i_token;
 

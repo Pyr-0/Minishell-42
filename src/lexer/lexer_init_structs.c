@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_init_structs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:24:56 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 14:56:46 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_lexer_block	*init_lexer_block(t_lexer_block *first, char *block_contents)
 
 t_lexer_block	*add_lexer_block(t_lexer_block *prev, t_lexer_block *first)
 {
-	t_lexer_block *new;
+	t_lexer_block	*new;
 
 	new = init_lexer_block(first, NULL);
 	if (prev != NULL)

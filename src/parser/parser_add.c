@@ -6,19 +6,17 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:03:17 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 22:54:03 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 14:57:31 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 void	add_arg(t_parser_block *first, char *value,
 				t_lexer_block *lexer_blocks, t_parser_block *curr)
 {
 	t_arg	*new;
 	t_arg	*iter;
-
 
 	new = init_arg(lexer_blocks, first);
 	new->value = ft_strdup(value);
@@ -70,7 +68,7 @@ void	add_cmd(t_parser_block *i_parser, t_token *i_token,
 void	add_redir_id(t_parser_block *i_parser, t_token *i_token,
 			t_parser_block *parser_blocks, t_lexer_block *lexer_blocks)
 {
-	t_redir *redir;
+	t_redir	*redir;
 
 	if (i_token->e_type <= TOKEN_INPUT_FILE)
 		redir = i_parser->input;
@@ -86,7 +84,7 @@ void	add_redir_id(t_parser_block *i_parser, t_token *i_token,
 t_parser_block	*add_parser_block(t_parser_block *first, t_parser_block *prev,
 							t_lexer_block *lexer_blocks)
 {
-	t_parser_block *new;
+	t_parser_block	*new;
 
 	new = init_parser_block(lexer_blocks, first);
 	if (prev != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:13:28 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 14:51:42 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char	*expander_get_current_char_as_string(char c, t_lexer_block *first)
 	return (str);
 }
 
-void	expander_advance_with_char(char **iter, char **str, t_lexer_block *first)
+void	expander_advance_with_char(char **iter, char **str,
+				t_lexer_block *first)
 {
 	char	*c;
 

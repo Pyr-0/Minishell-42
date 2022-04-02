@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_redir_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/03/29 18:49:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 15:19:14 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ bool	pipe_redir_error(t_lexer_block *lexer_block)
 		while (i_token != NULL)
 		{
 			if (redir_error(i_token) == true)
-					return (handle_error_and_free(lexer_block, "Every redirection needs an argument my dear 😌\n"));
+				return (handle_error_and_free(lexer_block,
+						"Every redirection needs an argument my dear 😌\n"));
 			i_token = i_token->next;
 		}
 		if (pipe_error(i_block) == true)
-			return (handle_error_and_free(lexer_block, "You can't just pipe nothing 🤨\n"));
+			return (handle_error_and_free(lexer_block,
+						"You can't just pipe nothing 🤨\n"));
 		i_block = i_block->next;
 	}
 	return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_free_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:15:09 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/29 15:17:43 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 14:42:09 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*this one is for whenever there's an error somewhere in the program and the 
 already initialized env struct needs to be freed*/
+
 void	free_env(void)
 {
 	t_env	*env;
@@ -31,7 +32,9 @@ void	free_env(void)
 	}
 }
 
-/*this one is for when there happens an error during the creation of the env struct*/
+/* this one is for when there happens an error during the
+	creation of the env struct */
+
 void	free_init_env(t_env *env)
 {
 	t_env	*free_env;

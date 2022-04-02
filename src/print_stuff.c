@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_stuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/30 22:04:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 15:21:00 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	print_lexer_blocks(t_lexer_block *lexer)
 		i_token = i_block->tokens;
 		while (i_token != NULL)
 		{
-			printf("token_type: %d, token_value: %s\n", i_token->e_type, i_token->value);
+			printf("token_type: %d, token_value: %s\n",
+				i_token->e_type, i_token->value);
 			i_token = i_token->next;
 		}
 		printf("\n");
@@ -55,14 +56,16 @@ void	print_parser_blocks(t_parser_block *parser_blocks)
 		printf("inputs:\n");
 		while (i_redir != NULL)
 		{
-			printf("	input_type: %u, input_id: %s\n", i_redir->e_redir_type, i_redir->id);
+			printf("	input_type: %u, input_id: %s\n",
+				i_redir->e_redir_type, i_redir->id);
 			i_redir = i_redir->next;
 		}
 		i_redir = parser_blocks->output;
 		printf("outputs:\n");
 		while (i_redir != NULL)
 		{
-			printf("	output_type: %u, output_id: %s\n", i_redir->e_redir_type, i_redir->id);
+			printf("	output_type: %u, output_id: %s\n",
+				i_redir->e_redir_type, i_redir->id);
 			i_redir = i_redir->next;
 		}
 		printf("\n");

@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/01 21:09:47 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 13:59:57 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,24 @@ typedef struct s_token{
 		TOKEN_OUTPUT_REPLACE,
 		TOKEN_OUTPUT_APPEND
 	} e_type;
-	char			*value; // will be NULL if is redirection
+	char			*value;
 	struct s_token	*next;
 }		t_token;
 
+// *block contents - this is the return of readline,
+// so the whole line. needed in case of an error to free it.
+
 typedef struct s_lexer_block{
-	t_token					*tokens; // what if nothing in between pipes?
+	t_token					*tokens;
 	struct s_lexer_block	*next;
-	char					*block_contents; // this is the return of readline, so the whole line. needed in case of an error to free it.
+	char					*block_contents;
 }							t_lexer_block;
 
 //>===============PARSER=================<//
 
 typedef struct s_arg{
-	char			*value;
-	struct s_arg	*next;
+	char					*value;
+	struct s_arg			*next;
 }	t_arg;
 
 typedef struct s_redir{
@@ -56,8 +59,8 @@ typedef struct s_redir{
 		REDIR_OUTPUT_REPLACE,
 		REDIR_OUTPUT_APPEND
 	} e_redir_type;
-	char			*id;
-	struct s_redir	*next;
+	char					*id;
+	struct s_redir			*next;
 }					t_redir;
 
 typedef struct s_parser_block{
@@ -71,11 +74,11 @@ typedef struct s_parser_block{
 //===============EXECUTOR=================//
 
 typedef struct s_exec_block{
-	char				*cmd;
-	t_arg				*arg;
-	int					in_fd;
-	int					out_fd;
-	struct s_exec_block	*next;
+	char					*cmd;
+	t_arg					*arg;
+	int						in_fd;
+	int						out_fd;
+	struct s_exec_block		*next;
 }	t_exec_block;
 
 //===============COMMANDS=================//
@@ -89,9 +92,9 @@ typedef struct s_command{
 //===============EXPANDER=================//
 
 typedef enum e_expand{
-	EXPAND_DOUBLE_QUOTE = '"',
-	EXPAND_SINGLE_QUOTE = '\'',
-	EXPAND_DOLLAR_SIGN = '$'
+	EXPAND_DOUBLE_QUOTE =	'"',
+	EXPAND_SINGLE_QUOTE =	'\'',
+	EXPAND_DOLLAR_SIGN =	'$'
 }				t_expand;
 
 //===============ENVIRONMENT=================//

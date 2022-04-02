@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator_free_exit.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/03/31 20:01:42 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/02 15:11:47 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exec_free_args(t_arg *args)
 	t_arg	*free_args;
 
 	free_args = args;
-	while(args != NULL)
+	while (args != NULL)
 	{
 		free(args->value);
 		args = args->next;
@@ -45,7 +45,8 @@ void	free_close_exec_blocks(t_exec_block *exec_blocks)
 	}
 }
 
-void	redir_creator_fail_exit(t_parser_block *parser_blocks, t_exec_block *exec_blocks)
+void	redir_creator_fail_exit(t_parser_block *parser_blocks,
+		t_exec_block *exec_blocks)
 {
 	free_parser_blocks(parser_blocks);
 	free_close_exec_blocks(exec_blocks);
