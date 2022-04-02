@@ -6,7 +6,7 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/02 18:16:41 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/02 21:39:53 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC			=		./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_
 					./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
 					./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
 					./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c\
-					./src/parser/parser_add.c ./src/builtins/echo.c 
+					./src/parser/parser_add.c ./src/builtins/echo.c ./src/parser/parser_utils.c
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a
 

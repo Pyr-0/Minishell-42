@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 20:00:13 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:06:12 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int argc, char *argv[], char *envp[])
 		parser_done = parser(lexer_done);
 		if (parser_done == NULL)
 			continue;
-		cmd_echo(parser_done);
 		print_parser_blocks(parser_done); //
+		cmd_echo(parser_done);
 		free_parser_blocks(parser_done);
 	//	system("leaks minishell"); //
 	//	break ; //

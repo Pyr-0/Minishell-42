@@ -6,15 +6,17 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 15:19:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:51:05 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool	handle_error_and_free(t_lexer_block *lexer_block, char *error_message)
+bool	handle_error_and_free(t_lexer_block *lexer_block,
+	t_parser_block *parser_blocks, char *error_message)
 {
 	free_lexer_blocks(lexer_block);
+	free_parser_blocks(parser_blocks);
 	write(STDERR_FILENO, error_message, ft_strlen(error_message));
 	g_exit_status = EXIT_PIPE_REDIR_ERROR;
 	return (true);
@@ -50,12 +52,12 @@ bool	pipe_redir_error(t_lexer_block *lexer_block)
 		while (i_token != NULL)
 		{
 			if (redir_error(i_token) == true)
-				return (handle_error_and_free(lexer_block,
+				return (handle_error_and_free(lexer_block, NULL,
 						"Every redirection needs an argument my dear 😌\n"));
 			i_token = i_token->next;
 		}
 		if (pipe_error(i_block) == true)
-			return (handle_error_and_free(lexer_block,
+			return (handle_error_and_free(lexer_block, NULL,
 						"You can't just pipe nothing 🤨\n"));
 		i_block = i_block->next;
 	}

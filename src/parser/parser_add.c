@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:03:17 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 14:57:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:41:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_arg(t_parser_block *first, char *value,
 	}
 }
 
-void	add_redir(t_parser_block *first, int redir_type,
+t_redir	*add_redir(t_parser_block *first, int redir_type,
 				t_lexer_block *lexer_blocks, t_parser_block *curr)
 {
 	t_redir	*new;
@@ -55,6 +55,7 @@ void	add_redir(t_parser_block *first, int redir_type,
 			iter = iter->next;
 		iter->next = new;
 	}
+	return (new);
 }
 
 void	add_cmd(t_parser_block *i_parser, t_token *i_token,
@@ -65,19 +66,11 @@ void	add_cmd(t_parser_block *i_parser, t_token *i_token,
 		parser_fail_exit(lexer_blocks, parser_blocks);
 }
 
-void	add_redir_id(t_parser_block *i_parser, t_token *i_token,
+void	add_redir_id(t_redir *new, t_token *i_token,
 			t_parser_block *parser_blocks, t_lexer_block *lexer_blocks)
 {
-	t_redir	*redir;
-
-	if (i_token->e_type <= TOKEN_INPUT_FILE)
-		redir = i_parser->input;
-	else
-		redir = i_parser->output;
-	while (redir->next != NULL)
-		redir = redir->next;
-	redir->id = ft_strdup(i_token->next->value);
-	if (redir->id == NULL)
+	new->id = ft_strdup(i_token->value);
+	if (new->id == NULL)
 		parser_fail_exit(lexer_blocks, parser_blocks);
 }
 
