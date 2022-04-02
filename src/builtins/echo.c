@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 19:54:44 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:56:48 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cmd_echo(t_parser_block *echo)
 		echo->arg = echo->arg->next;
 		flag = 1;
 	}
-	printf("\n\e[108mECHO COMMAND\e[0m\n");
+	printf("\n\e[45mECHO COMMAND\e[0m\n");
 	while (echo->arg)
 	{
 		ft_putstr_fd(echo->arg->value, STDOUT_FILENO);
