@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 19:56:48 by mrojas-e         ###   ########.fr       */
+/*   Created: 2022/04/03 13:09:22 by mrojas-e          #+#    #+#             */
+/*   Updated: 2022/04/03 19:43:58 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cmd_echo(t_parser_block *echo)
+void	cmd_cd(t_parser_block *cmd)
 {
-	int	flag;
-
-	flag = 0;
-	while (echo->arg != NULL && ft_strncmp(echo->arg->value,
-			"-n", 3) == 0)
+	int	res;
+	char s[255];
+	printf("%s\n", getcwd(s, 100));
+	res = 0;
+	if (cmd->arg)
 	{
-		echo->arg = echo->arg->next;
-		flag = 1;
+		res = chdir(cmd->arg->value);
+		g_exit_status = 0;
 	}
-	printf("\n\e[45mECHO COMMAND\e[0m\n");
-	while (echo->arg)
+	if (res == -1)
 	{
-		ft_putstr_fd(echo->arg->value, STDOUT_FILENO);
-		if (echo->arg->next)
-			ft_putchar_fd(' ', STDOUT_FILENO);
-		echo->arg = echo->arg->next;
+		g_exit_status = 2;
+		perror("minishell: cd");
 	}
-	if (flag != 1)
-		ft_putchar_fd('\n', STDOUT_FILENO);
-	g_exit_status = 0;
+	printf("%s\n", getcwd(s, 100));
 }
