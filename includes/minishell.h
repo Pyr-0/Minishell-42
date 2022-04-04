@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/03 22:39:37 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/04 20:26:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ void	print_lexer_blocks(t_lexer_block *lexer_done);
 void	print_parser_blocks(t_parser_block *parser_blocks);
 void	print_exec_blocks(t_exec_block *exec_blocks);
 void	print_env(void);
+
+/*============BUILTINS===============*/
+void	cmd_pwd(void);
+void	cmd_echo(t_parser_block *echo);
+void	cmd_cd(t_parser_block *cd);
+void test(t_parser_block *test);
 
 #endif

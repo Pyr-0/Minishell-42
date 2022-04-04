@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:29:39 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 18:15:33 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/03 14:57:45 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ char	*get_varname(char *env_str, t_env *first);
 void	env_fail_exit(t_env *env);
 void	free_env(void);
 
-void	cmd_echo(t_parser_block *echo);
 
 #endif
