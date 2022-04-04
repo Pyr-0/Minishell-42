@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 21:46:35 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/03 22:39:37 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@
 
 # define EXIT_PIPE_REDIR_ERROR	258
 # define EXIT_STD_ERROR			1
+# define PIPE_READ				0
+# define PIPE_WRITE				1
 
 int	g_exit_status;
+
+void	fuck_sigpipe(int sig);
 
 /*============PIPE_REDIR_ERRORS===============*/
 
@@ -49,6 +53,7 @@ bool	pipe_redir_error(t_lexer_block *lexer_block);
 
 void	print_lexer_blocks(t_lexer_block *lexer_done);
 void	print_parser_blocks(t_parser_block *parser_blocks);
+void	print_exec_blocks(t_exec_block *exec_blocks);
 void	print_env(void);
 
 #endif

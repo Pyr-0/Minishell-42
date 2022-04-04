@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 20:06:12 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/03 22:46:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_lexer			lexer_struct;
 	t_lexer_block	*lexer_done;
 	t_parser_block	*parser_done;
+	t_exec_block	*exec_done;
 
 	if (argc != 1)
 	{
@@ -31,6 +32,7 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	(void)argv;
 	g_exit_status = EXIT_SUCCESS;
+	signal(SIGPIPE, fuck_sigpipe);
 	get_env(envp);
 	//print_env();
 	while (true)
@@ -53,8 +55,11 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue;
 		print_parser_blocks(parser_done); //
-		cmd_echo(parser_done);
-		free_parser_blocks(parser_done);
+		exec_done = redir_creator(parser_done);
+		if (exec_done == NULL)
+			continue;
+		print_exec_blocks(exec_done); //
+		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
 	//	break ; //
 	}
