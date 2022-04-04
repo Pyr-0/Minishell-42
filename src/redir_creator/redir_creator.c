@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/03 22:53:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/04 20:29:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 	if (i_exec->next != NULL)
 		create_pipe(i_exec, exec_blocks, parser_blocks);
 	i_redir = parser_blocks->input;
-	while ()
+	//while ()
 	i_redir = parser_blocks->output;
 	
 	return (false);

@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/04 20:27:38 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/04 20:30:05 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ SRC			=		./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_
 					./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
 					./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
 					./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c\
-					./src/parser/parser_add.c ./src/builtins/echo.c ./src/parser/parser_utils.c \
+					./src/parser/parser_add.c ./src/parser/parser_utils.c \
 					./src/redir_creator/redir_creator.c ./src/redir_creator/redir_creator_free_exit.c \
-					./src/redir_creator/redir_creator_utils.c ./src/redir_creator/redir_creator_init_exec_blocks.c
+					./src/redir_creator/redir_creator_utils.c ./src/redir_creator/redir_creator_init_exec_blocks.c \
 					./src/builtins/cmd_pwd.c ./src/builtins/cmd_echo.c ./src/builtins/cmd_cd.c
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a
