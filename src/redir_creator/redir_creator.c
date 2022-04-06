@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/06 15:49:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 16:46:29 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,27 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 					t_parser_block *i_parser, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
-	(void)i_parser;
-	//t_redir	*i_redir;
+	t_redir	*i_redir;
 	
 	if (i_exec->next != NULL)
 		create_pipe(i_exec, exec_blocks, parser_blocks);
-	//i_redir = parser_blocks->input;
-	////while ()
-	//i_redir = parser_blocks->output;
-	
+	i_redir = parser_blocks->output;
+	while (i_redir != NULL)
+	{
+		if (open_output_file(i_redir, exec_blocks, parser_blocks) == true)
+			return (true);
+		i_redir = i_redir->next;
+	}
+	i_redir = parser_blocks->input;
+	while (i_redir != NULL)
+	{
+		if (i_redir->e_redir_type != REDIR_INPUT_HEREDOC)
+		{
+			if (open_input_file(i_redir, exec_blocks, parser_blocks) == true)
+				return (true);
+		}
+		i_redir = i_redir->next;
+	}
 	return (false);
 }
 
