@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:09:21 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/03 20:28:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 15:41:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_exec_block	*init_exec_block(t_parser_block *parser_blocks,
 	new->arg = NULL;
 	new->in_fd = STDIN_FILENO;
 	new->out_fd = STDOUT_FILENO;
+	new->pp_in = -1;
+	new->pp_out = -1;
 	new->next = NULL;
 	return (new);
 }

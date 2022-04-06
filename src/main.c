@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/04 20:26:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 15:49:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue;
 		print_parser_blocks(parser_done); //
-		//test(parser_done);
-		cmd_cd(parser_done);
+		//test(parser_done); //
+		//cmd_cd(parser_done);
 		exec_done = redir_creator(parser_done);
 		if (exec_done == NULL)
 			continue;

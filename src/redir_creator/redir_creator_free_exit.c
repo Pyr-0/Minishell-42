@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/03 20:21:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 15:47:37 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void	free_close_exec_blocks(t_exec_block *exec_blocks)
 			close(exec_blocks->in_fd);
 		if (exec_blocks->out_fd > STDERR_FILENO)
 			close(exec_blocks->out_fd);
+		if (exec_blocks->pp_in > STDERR_FILENO)
+			close(exec_blocks->pp_in);
+		if (exec_blocks->pp_out > STDERR_FILENO)
+			close(exec_blocks->pp_out);
 		exec_blocks = exec_blocks->next;
 		free(free_blocks);
 		free_blocks = exec_blocks;

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/04 20:29:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 15:49:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 
 	if (pipe(pp) == -1)
 			redir_creator_fail_exit2(parser_blocks, exec_blocks);
-	i_exec->out_fd = pp[PIPE_WRITE];
-	i_exec->next->in_fd = pp[PIPE_READ];
+	i_exec->pp_out = pp[PIPE_WRITE];
+	i_exec->next->pp_in = pp[PIPE_READ];
 }
 
 bool	handle_redirs_of_one_block(t_exec_block *i_exec,
@@ -28,13 +28,13 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 					t_parser_block *parser_blocks)
 {
 	(void)i_parser;
-	t_redir	*i_redir;
+	//t_redir	*i_redir;
 	
 	if (i_exec->next != NULL)
 		create_pipe(i_exec, exec_blocks, parser_blocks);
-	i_redir = parser_blocks->input;
-	//while ()
-	i_redir = parser_blocks->output;
+	//i_redir = parser_blocks->input;
+	////while ()
+	//i_redir = parser_blocks->output;
 	
 	return (false);
 }

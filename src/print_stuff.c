@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/03 19:22:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/06 15:48:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	print_exec_blocks(t_exec_block *exec_blocks)
 		}
 		printf("input_fd: %d\n", i_block->in_fd);
 		printf("output_fd: %d\n", i_block->out_fd);
+		printf("pipe_in: %d\n", i_block->pp_in);
+		printf("pp_out: %d\n", i_block->pp_out);
 		printf("\n");
 		i_block = i_block->next;
 	}
