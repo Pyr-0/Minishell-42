@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_redir_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:21:17 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 20:51:05 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/14 01:38:37 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	pipe_redir_error(t_lexer_block *lexer_block)
 		}
 		if (pipe_error(i_block) == true)
 			return (handle_error_and_free(lexer_block, NULL,
-						"You can't just pipe nothing 🤨\n"));
+					"You can't just pipe nothing 🤨\n"));
 		i_block = i_block->next;
 	}
 	return (false);

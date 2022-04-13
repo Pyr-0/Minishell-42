@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:46:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 21:43:30 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/14 01:40:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ bool	translate_lexer_to_parser_block(t_lexer_block *i_lexer,
 			add_arg(parser_blocks, i_token->value, lexer_blocks, i_parser);
 		else if (i_token->e_type > TOKEN_ID)
 		{
-			i_token = translate_redir(i_token, i_parser, lexer_blocks, parser_blocks);
+			i_token = translate_redir(i_token, i_parser,
+					lexer_blocks, parser_blocks);
 			if (i_token == NULL)
 				return (true);
 		}
