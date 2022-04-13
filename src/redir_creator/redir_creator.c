@@ -6,18 +6,11 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 00:59:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:27:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	replace_fd(int *old_fd, int new_fd)
-{
-	if (*old_fd > STDERR_FILENO)
-		close (*old_fd);
-	*old_fd = new_fd;
-}
 
 void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
@@ -80,13 +73,6 @@ bool	open_input_file(t_redir *input, t_exec_block *curr)
 		return (redir_creator_handle_error(input->id, "the file doesn't wanna open sorry"));
 	replace_fd(&curr->in_fd, fd);
 	return (false);
-}
-
-bool	redir_handler_fail(t_exec_block *i_exec)
-{
-	free(i_exec->cmd);
-	i_exec->cmd = NULL;
-	return (true);
 }
 
 bool	handle_redirs_of_one_block(t_exec_block *i_exec,
