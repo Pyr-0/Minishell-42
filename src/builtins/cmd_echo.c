@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/13 20:08:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:24:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	cmd_echo(t_exec_block *echo)
 {
-	int	flag;
+	int		flag;
+	t_arg	*i_arg;
 
 	flag = 0;
-	while (echo->arg != NULL && ft_strncmp(echo->arg->value,
+	i_arg = echo->arg;
+	while (i_arg != NULL && ft_strncmp(i_arg->value,
 			"-n", 3) == 0)
 	{
-		echo->arg = echo->arg->next;
+		i_arg = i_arg->next;
 		flag = 1;
 	}
 	printf("\n\e[45mECHO COMMAND\e[0m\n");//
-	while (echo->arg)
+	while (i_arg)
 	{
-		ft_putstr_fd(echo->arg->value, echo->out_fd);
-		if (echo->arg->next)
+		ft_putstr_fd(i_arg->value, echo->out_fd);
+		if (i_arg->next)
 			ft_putchar_fd(' ', echo->out_fd);
-		echo->arg = echo->arg->next;
+		i_arg = i_arg->next;
 	}
 	if (flag != 1)
 		ft_putchar_fd('\n', echo->out_fd);
