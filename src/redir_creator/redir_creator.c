@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/06 16:46:29 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/13 19:46:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 	i_exec->next->pp_in = pp[PIPE_READ];
 }
 
+bool	open_output_file(t_redir *output, t_exec_block *curr, t_exec_block *exec_blocks, t_parser_block *parser_blocks)
+{
+	int	fd;
+
+	if (access(output->id, F_OK) != 0)
+	{
+		if (output->e_redir_type == REDIR_OUTPUT_APPEND)
+			fd = open(output->id, O_CREAT | O_WRONLY | O_APPEND, 0644);
+		else if (output->e_redir_type == REDIR_OUTPUT_REPLACE)
+			fd = open(output->id, O_CREAT | O_WRONLY, 0644);
+	}
+	else if (access(output->id, W_OK) != 0)
+		return (redir_creator_handle_error(output->id, "Darlin', you don't have permissions to write to this file", parser_blocks, exec_blocks));
+	else
+	{
+		if (output->e_redir_type == REDIR_OUTPUT_APPEND)
+			fd = open(output->id, O_WRONLY | O_APPEND);
+		else if (output->e_redir_type == REDIR_OUTPUT_REPLACE)
+			fd = open(output->id, O_WRONLY);
+	}
+	if (fd == -1)
+		return (redir_creator_handle_error(output->id, "the file doesn't wanna open sorry", parser_blocks, exec_blocks));
+	if (curr->out_fd > STDERR_FILENO)
+		close (curr->out_fd);
+	curr->out_fd = fd;
+	return (false);
+}
+
 bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 					t_parser_block *i_parser, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
@@ -34,20 +62,20 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 	i_redir = parser_blocks->output;
 	while (i_redir != NULL)
 	{
-		if (open_output_file(i_redir, exec_blocks, parser_blocks) == true)
+		if (open_output_file(i_redir, i_exec, exec_blocks, parser_blocks) == true)
 			return (true);
 		i_redir = i_redir->next;
 	}
-	i_redir = parser_blocks->input;
-	while (i_redir != NULL)
-	{
-		if (i_redir->e_redir_type != REDIR_INPUT_HEREDOC)
-		{
-			if (open_input_file(i_redir, exec_blocks, parser_blocks) == true)
-				return (true);
-		}
-		i_redir = i_redir->next;
-	}
+//	i_redir = parser_blocks->input;
+//	while (i_redir != NULL)
+//	{
+//		if (i_redir->e_redir_type != REDIR_INPUT_HEREDOC)
+//		{
+//			if (open_input_file(i_redir, exec_blocks, parser_blocks) == true)
+//				return (true);
+//		}
+//		i_redir = i_redir->next;
+//	}
 	return (false);
 }
 
