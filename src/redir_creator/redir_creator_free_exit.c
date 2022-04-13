@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/13 19:48:46 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 00:15:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,9 @@ void	redir_creator_fail_exit2(t_parser_block *parser_blocks,
 	exit(EXIT_FAILURE);
 }
 
-bool	redir_creator_handle_error(char *msg, char *file, t_parser_block *parser_blocks,
-		t_exec_block *exec_blocks)
+bool	redir_creator_handle_error(char *file, char *msg)
 {
 	printf("%s: %s\n", file, msg);
-	free_parser_blocks_only_redir(parser_blocks);
-	free_close_exec_blocks(exec_blocks);
 	g_exit_status = EXIT_STD_ERROR;
 	return (true);
 }

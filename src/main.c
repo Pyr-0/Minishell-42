@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/13 19:01:22 by satori           ###   ########.fr       */
+/*   Updated: 2022/04/14 01:05:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_lexer			lexer_struct;
 	t_lexer_block	*lexer_done;
 	t_parser_block	*parser_done;
-	//t_exec_block	*exec_done;
+	t_exec_block	*exec_done;
 
 	if (argc != 1)
 	{
@@ -56,12 +56,11 @@ int	main(int argc, char *argv[], char *envp[])
 			continue;
 		print_parser_blocks(parser_done); //
 		//test(parser_done); //
-		cmd_cd(parser_done);
-		//exec_done = redir_creator(parser_done);
-		//if (exec_done == NULL)
-		//	continue;
-		//print_exec_blocks(exec_done); //
-		//free_close_exec_blocks(exec_done);
+		//cmd_cd(parser_done);
+		exec_done = redir_creator(parser_done);
+		print_exec_blocks(exec_done); //
+		cmd_echo(exec_done);
+		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
 	//	break ; //
 	}

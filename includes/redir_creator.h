@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:38:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/13 19:17:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 00:15:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int				get_parser_block_num(t_parser_block *parser_blocks);
 void			copy_cmd_and_args_to_exec(t_exec_block *first_exec,
 	t_parser_block *first_parser);
 void			free_parser_blocks_only_redir(t_parser_block *parser_blocks);
+bool			redir_creator_handle_error(char *file, char *msg);
 
 #endif
