@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: satori <satori@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/04 20:30:05 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/13 18:53:23 by satori           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC			=		./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_
 					./src/parser/parser_add.c ./src/parser/parser_utils.c \
 					./src/redir_creator/redir_creator.c ./src/redir_creator/redir_creator_free_exit.c \
 					./src/redir_creator/redir_creator_utils.c ./src/redir_creator/redir_creator_init_exec_blocks.c \
-					./src/builtins/cmd_pwd.c ./src/builtins/cmd_echo.c ./src/builtins/cmd_cd.c
+					./src/builtins/cmd_pwd.c ./src/builtins/cmd_echo.c ./src/builtins/cmd_cd.c \
+					./src/builtins/builtins_utils.c
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a
 

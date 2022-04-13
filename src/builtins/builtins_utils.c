@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_pwd.c                                          :+:      :+:    :+:   */
+/*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 13:51:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/11 19:44:26 by satori           ###   ########.fr       */
+/*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
+/*   Updated: 2022/04/13 19:04:18 by satori           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cmd_pwd(void)
+char	*fetch_env_var_value(char *varname)
 {
-	char	*cwd;
+	t_env *env;
+	t_env *iter;
 
-	cwd = getcwd(NULL, 0);
-	if (cwd == NULL)
+	env = *get_env(NULL);
+	iter = env;
+
+	while (iter != NULL)
 	{
-		perror("Error: pwd");
-		g_exit_status = 2;
+		if (ft_strncmp(iter->varname, varname, INT_MAX) == 0)
+			return (iter->varvalue);
+		iter = iter->next;
 	}
-	else
-	{
-		ft_putstr_fd(cwd, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
-		g_exit_status = 0;
-	}
-	free(cwd);
+	return (NULL);
+}
+
+bool	handle_error(char *msg, int exit_status)
+{
+	printf("%s", msg);
+	g_exit_status = exit_status;
+	return (true);
 }
