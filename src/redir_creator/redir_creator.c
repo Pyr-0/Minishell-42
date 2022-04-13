@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/06 16:46:29 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/13 17:52:46 by satori           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
+/* void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
 	int	pp[2];
@@ -72,3 +72,4 @@ t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 	free_parser_blocks_only_redir(parser_blocks);
 	return (exec_blocks);
 }
+ */
