@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/29 20:56:43 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 01:48:22 by shaas            ###   ########.fr       */
+/*   Created: 2022/04/14 01:48:05 by shaas             #+#    #+#             */
+/*   Updated: 2022/04/14 01:55:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int		i;
-	char	cc;
+	size_t	i;
 
 	i = 0;
-	cc = c;
-	while (s[i] != '\0' && s[i] != cc)
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (s1[i] != s2[i] || s1[i] == 0 || s2[i] == 0)
+			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
 		i++;
-	if (s[i] == cc)
-		return ((char *)(s + i));
-	return (NULL);
+	}
+	return (0);
 }

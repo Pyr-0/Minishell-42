@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 12:46:02 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/03/31 22:24:40 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/14 01:51:10 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC			=	ft_isalnum.c\
 				ft_memcpy.c\
 				ft_memcmp.c\
 				ft_strlcpy.c\
+				ft_strcmp.c\
 				ft_strncmp.c\
 				ft_toupper.c\
 				ft_strlcat.c\
