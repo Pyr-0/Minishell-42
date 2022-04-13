@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 01:27:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:35:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 	int	pp_in_dup;
 
 	if (pipe(pp) == -1)
-			redir_creator_fail_exit2(parser_blocks, exec_blocks);
+		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	i_exec->pp_out = pp[PIPE_WRITE];
 	i_exec->next->pp_in = pp[PIPE_READ];
 	pp_out_dup = dup(pp[PIPE_WRITE]);
@@ -45,7 +45,8 @@ bool	open_output_file(t_redir *output, t_exec_block *curr)
 			fd = open(output->id, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	}
 	else if (access(output->id, W_OK) != 0)
-		return (redir_creator_handle_error(output->id, "Darlin', you don't have permissions to write to this file"));
+		return (redir_creator_handle_error(output->id,
+				"Darlin', you don't have permissions to write to this file"));
 	else
 	{
 		if (output->e_redir_type == REDIR_OUTPUT_APPEND)
@@ -54,7 +55,8 @@ bool	open_output_file(t_redir *output, t_exec_block *curr)
 			fd = open(output->id, O_WRONLY | O_TRUNC);
 	}
 	if (fd == -1)
-		return (redir_creator_handle_error(output->id, "the file doesn't wanna open sorry"));
+		return (redir_creator_handle_error(output->id,
+				"the file doesn't wanna open sorry"));
 	replace_fd(&curr->out_fd, fd);
 	return (false);
 }
@@ -64,13 +66,16 @@ bool	open_input_file(t_redir *input, t_exec_block *curr)
 	int	fd;
 
 	if (access(input->id, F_OK) != 0)
-		return (redir_creator_handle_error(input->id, "Gurl that file doesn't exist"));
+		return (redir_creator_handle_error(input->id,
+				"Gurl that file doesn't exist"));
 	else if (access(input->id, R_OK) != 0)
-		return (redir_creator_handle_error(input->id, "Darlin', you don't have permissions to read from this file"));
+		return (redir_creator_handle_error(input->id,
+				"Darlin', you don't have permissions to read from this file"));
 	else
 		fd = open(input->id, O_RDONLY);
 	if (fd == -1)
-		return (redir_creator_handle_error(input->id, "the file doesn't wanna open sorry"));
+		return (redir_creator_handle_error(input->id,
+				"the file doesn't wanna open sorry"));
 	replace_fd(&curr->in_fd, fd);
 	return (false);
 }
@@ -116,7 +121,7 @@ t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 	while (i_exec != NULL && i_parser != NULL)
 	{
 		handle_redirs_of_one_block(i_exec, i_parser,
-				exec_blocks, parser_blocks);
+			exec_blocks, parser_blocks);
 		i_exec = i_exec->next;
 		i_parser = i_parser->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:06:29 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 01:27:31 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:35:47 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ bool	redir_handler_fail(t_exec_block *i_exec)
 {
 	free(i_exec->cmd);
 	i_exec->cmd = NULL;
+	return (true);
+}
+
+bool	redir_creator_handle_error(char *file, char *msg)
+{
+	printf("%s: %s\n", file, msg);
+	g_exit_status = EXIT_STD_ERROR;
 	return (true);
 }
 
