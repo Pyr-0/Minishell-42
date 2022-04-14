@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
-/*   Updated: 2022/04/14 01:45:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:56:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*fetch_env_var_value(char *varname)
 	iter = env;
 	while (iter != NULL)
 	{
-		if (ft_strncmp(iter->varname, varname, INT_MAX) == 0)
+		if (ft_strcmp(iter->varname, varname) == 0)
 			return (iter->varvalue);
 		iter = iter->next;
 	}

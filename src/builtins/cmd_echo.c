@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 01:44:52 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 02:00:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	cmd_echo(t_exec_block *echo)
 
 	flag = 0;
 	i_arg = echo->arg;
-	while (i_arg != NULL && ft_strncmp(i_arg->value,
-			"-n", 3) == 0)
+	while (i_arg != NULL && ft_strcmp(i_arg->value, "-n") == 0)
 	{
 		i_arg = i_arg->next;
 		flag = 1;

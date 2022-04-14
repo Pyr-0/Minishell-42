@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/13 20:06:47 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 01:58:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	print_env(void);
 
 void	cmd_pwd(void);
 void	cmd_echo(t_exec_block *echo);
-bool	cmd_cd(t_parser_block *cmd);
+bool	cmd_cd(t_exec_block *cd);
 bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
 
