@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 01:57:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 19:26:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[], char *envp[])
 		printf("System command exec:\n"); //
 		//system(lexer_struct.contents); //
 		lexer_done = lexer(&lexer_struct);
-		//print_lexer_blocks(lexer_done); //
+		print_lexer_blocks(lexer_done); //
 		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token! and implement in parser
 			continue;
 		expander(lexer_done); // need to handle empty string in executor!!. also exit status of successfull command needs to be 0
@@ -59,7 +59,7 @@ int	main(int argc, char *argv[], char *envp[])
 		//cmd_cd(parser_done);
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
-		cmd_cd(exec_done);
+		//cmd_cd(exec_done);
 		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
 	//	break ; //
@@ -70,5 +70,6 @@ int	main(int argc, char *argv[], char *envp[])
 
 /*
 docker run -ti -v $(PWD):/test memory-test bash -c "cd /test/; make re && valgrind --leak-check=full --show-leak-kinds=all ./minishell"
-("\e[43mhere?\e[0m\n");
+lsof -c minishell
+printf("\e[43mhere?\e[0m\n");
 */

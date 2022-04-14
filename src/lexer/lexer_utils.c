@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:27:59 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 02:00:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/14 18:36:57 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	lexer_quote_is_closed(t_lexer *lexer)
 
 bool	lexer_peek_string(t_lexer *lexer, char *str)
 {
-	if (ft_strcmp(&lexer->contents[lexer->i], str) == 0)
+	if (ft_strncmp(&lexer->contents[lexer->i], str, ft_strlen(str)) == 0)
 		return (true);
 	else
 		return (false);
