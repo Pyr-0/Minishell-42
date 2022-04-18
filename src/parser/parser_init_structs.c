@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_init_structs.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:49:25 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/02 15:03:16 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:47:02 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ t_parser_block	*init_parser_block(t_lexer_block *lexer_blocks,
 		parser_fail_exit(lexer_blocks, first);
 	new->cmd = NULL;
 	new->arg = NULL;
-	new->input = NULL;
-	new->output = NULL;
+	new->redir = NULL;
 	new->next = NULL;
 	return (new);
 }

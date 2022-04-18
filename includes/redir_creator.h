@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:38:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 01:31:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 11:55:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void			free_parser_blocks_only_redir(t_parser_block *parser_blocks);
 bool			redir_creator_handle_error(char *file, char *msg);
 void			replace_fd(int *old_fd, int new_fd);
 bool			redir_handler_fail(t_exec_block *i_exec);
+void			read_heredoc_fail_exit(int *heredoc_pp, t_parser_block *parser_blocks,
+		t_exec_block *exec_blocks);
 
 #endif

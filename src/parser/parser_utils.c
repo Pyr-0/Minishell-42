@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:31:35 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 01:39:31 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 01:55:02 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_token	*translate_redir(t_token *i_token, t_parser_block *i_parser,
 {
 	t_redir	*new;
 
-	new = add_redir(parser_blocks, i_token->e_type, lexer_blocks, i_parser);
+	new = add_redir(i_parser, i_token->e_type, lexer_blocks, parser_blocks);
 	i_token = i_token->next;
 	while (i_token != NULL && i_token->e_type == TOKEN_ID
 		&& i_token->value[0] == '\0')

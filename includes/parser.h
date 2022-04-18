@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:08:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 21:36:07 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:54:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void			add_redir_id(t_redir *new, t_token *i_token,
 					t_parser_block *parser_blocks, t_lexer_block *lexer_blocks);
 void			add_arg(t_parser_block *first, char *value,
 					t_lexer_block *lexer_blocks, t_parser_block *curr);
-t_redir			*add_redir(t_parser_block *first, int redir_type,
-					t_lexer_block *lexer_blocks, t_parser_block *curr);
+t_redir	*add_redir(t_parser_block *curr, int redir_type,
+				t_lexer_block *lexer_blocks, t_parser_block *first);
 t_parser_block	*add_parser_block(t_parser_block *first, t_parser_block *prev,
 					t_lexer_block	*lexer_blocks);
 t_parser_block	*create_parser_blocks(t_lexer_block *lexer_blocks);

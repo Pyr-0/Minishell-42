@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 19:26:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 12:49:29 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[], char *envp[])
 	while (true)
 	{
 		printf("g_exit_status: %d\n\n", g_exit_status); //
-		lexer_struct.contents = readline("mi[SHELL]in$ "); // ft_strdup("hello echo me"); // readline("mi[SHELL]in$ ");
+		lexer_struct.contents = readline("mi[SHELL]in$ "); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
 		add_history(lexer_struct.contents);
@@ -62,14 +62,15 @@ int	main(int argc, char *argv[], char *envp[])
 		//cmd_cd(exec_done);
 		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
+	//	free_env();//at the end
 	//	break ; //
 	}
-	free_env();//at the end
 	return (0);
 }
 
 /*
 docker run -ti -v $(PWD):/test memory-test bash -c "cd /test/; make re && valgrind --leak-check=full --show-leak-kinds=all ./minishell"
 lsof -c minishell
+valgrind --leak-check=full --show-leak-kinds=all ./minishell 
 printf("\e[43mhere?\e[0m\n");
 */

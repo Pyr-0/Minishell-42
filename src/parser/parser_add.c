@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:03:17 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 20:41:52 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:57:11 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,19 @@ void	add_arg(t_parser_block *first, char *value,
 	}
 }
 
-t_redir	*add_redir(t_parser_block *first, int redir_type,
-				t_lexer_block *lexer_blocks, t_parser_block *curr)
+t_redir	*add_redir(t_parser_block *curr, int redir_type,
+				t_lexer_block *lexer_blocks, t_parser_block *first)
 {
 	t_redir	*new;
 	t_redir	*iter;
-	t_redir	**redir;
 
-	if (redir_type <= TOKEN_INPUT_FILE)
-		redir = &(curr->input);
-	else
-		redir = &(curr->output);
 	new = init_redir(lexer_blocks, first);
 	new->e_redir_type = redir_type - 1;
-	if (*redir == NULL)
-		*redir = new;
+	if (curr->redir == NULL)
+		curr->redir = new;
 	else
 	{
-		iter = *redir;
+		iter = curr->redir;
 		while (iter->next != NULL)
 			iter = iter->next;
 		iter->next = new;
