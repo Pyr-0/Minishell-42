@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 02:00:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 22:15:28 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cmd_echo(t_exec_block *echo)
+bool	cmd_echo(t_exec_block *echo)
 {
 	int		flag;
 	t_arg	*i_arg;
@@ -35,4 +35,5 @@ void	cmd_echo(t_exec_block *echo)
 	if (flag != 1)
 		ft_putchar_fd('\n', echo->out_fd);
 	g_exit_status = 0;
+	return (false);
 }
