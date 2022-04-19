@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   cmd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/18 18:33:17 by mrojas-e         ###   ########.fr       */
+/*   Created: 2022/04/18 12:59:28 by mrojas-e          #+#    #+#             */
+/*   Updated: 2022/04/19 20:19:35 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*this function initializes the env structure, when you pass it
-	the env pointer from the main. in any other case, you should
-	pass it NULL and it will just return the env structure.*/
+bool	cmd_env(t_exec_block *cmd_env)
+{	
+	t_env	*env;
 
-t_env	**get_env(char *envp[])
-{
-	static t_env	*env;
-
-	if (envp != NULL)
-		env = init_env(envp);
-	return (&env);
+	if (cmd_env->arg != NULL)
+		return (handle_error(
+			"Mi[shell]in: env: toooo much too handle\n",
+			EXIT_STD_ERROR));
+	env = *(get_env(NULL));
+	printf("\n\e[45mprint env start\e[0m\n");
+	while (env != NULL)
+	{
+		printf("%s=%s\n", env->varname, env->varvalue);
+		env = env->next;
+	}
+	printf("\e[45mprint env end\e[0m\n\n");
 }
-

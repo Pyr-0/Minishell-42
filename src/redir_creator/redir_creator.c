@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 01:35:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 12:47:21 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
+/* void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
 	int	pp[2];
@@ -31,9 +31,9 @@ void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 	if (pp_in_dup == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	replace_fd(&i_exec->next->in_fd, pp_in_dup);
-}
+} */
 
-bool	open_output_file(t_redir *output, t_exec_block *curr)
+/* bool	open_output_file(t_redir *output, t_exec_block *curr)
 {
 	int	fd;
 
@@ -60,8 +60,8 @@ bool	open_output_file(t_redir *output, t_exec_block *curr)
 	replace_fd(&curr->out_fd, fd);
 	return (false);
 }
-
-bool	open_input_file(t_redir *input, t_exec_block *curr)
+ */
+/* bool	open_input_file(t_redir *input, t_exec_block *curr)
 {
 	int	fd;
 
@@ -78,9 +78,9 @@ bool	open_input_file(t_redir *input, t_exec_block *curr)
 				"the file doesn't wanna open sorry"));
 	replace_fd(&curr->in_fd, fd);
 	return (false);
-}
+} */
 
-bool	handle_redirs_of_one_block(t_exec_block *i_exec,
+/* bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 					t_parser_block *i_parser, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
@@ -107,8 +107,8 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 	}
 	return (false);
 }
-
-t_exec_block	*redir_creator(t_parser_block *parser_blocks)
+ */
+/* t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 {
 	t_exec_block	*exec_blocks;
 	t_exec_block	*i_exec;
@@ -128,3 +128,4 @@ t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 	free_parser_blocks_only_redir(parser_blocks);
 	return (exec_blocks);
 }
+ */
