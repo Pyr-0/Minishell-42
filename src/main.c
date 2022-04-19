@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 19:19:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 19:41:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ int	main(int argc, char *argv[], char *envp[])
 		//cmd_cd(parser_done);
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
+		char *buf = malloc(1);
+		while (true)
+		{
+			read(exec_done->in_fd, buf, 1);
+			write(STDOUT_FILENO, buf, 1);
+		}
+		free(buf);
 		//cmd_cd(exec_done);
 		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
