@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 22:13:23 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 22:16:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_env(void);
 
 /*============BUILTINS===============*/
 
-void	cmd_pwd(void);
+bool	cmd_pwd(t_exec_block *cmd_pwd);
 void	cmd_echo(t_exec_block *echo);
 bool	cmd_cd(t_exec_block *cd);
 bool	cmd_env(t_exec_block *cmd_env);
