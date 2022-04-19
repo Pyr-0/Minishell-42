@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 20:09:16 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/19 21:08:25 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,11 @@ void	print_parser_blocks(t_parser_block *parser_blocks)
 			printf("	arg_value: %s\n", i_arg->value);
 			i_arg = i_arg->next;
 		}
-		i_redir = i_block->input;
-		printf("inputs:\n");
+		i_redir = i_block->redir;
+		printf("redirections:\n");
 		while (i_redir != NULL)
 		{
-			printf("	input_type: %u, input_id: %s\n",
-				i_redir->e_redir_type, i_redir->id);
-			i_redir = i_redir->next;
-		}
-		i_redir = i_block->output;
-		printf("outputs:\n");
-		while (i_redir != NULL)
-		{
-			printf("	output_type: %u, output_id: %s\n",
+			printf("	redir_type: %u, redir_id: %s\n",
 				i_redir->e_redir_type, i_redir->id);
 			i_redir = i_redir->next;
 		}
@@ -98,6 +90,7 @@ void	print_exec_blocks(t_exec_block *exec_blocks)
 		printf("output_fd: %d\n", i_block->out_fd);
 		printf("pp_in: %d\n", i_block->pp_in);
 		printf("pp_out: %d\n", i_block->pp_out);
+		printf("heredoc_pp_in: %d\n", i_block->heredoc_pp_in);
 		printf("\n");
 		i_block = i_block->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/14 01:35:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 18:35:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	free_parser_blocks_only_redir(t_parser_block *parser_blocks)
 	while (parser_blocks != NULL)
 	{
 		free_blocks = parser_blocks;
-		parser_free_redir(parser_blocks->input);
-		parser_free_redir(parser_blocks->output);
+		parser_free_redir(parser_blocks->redir);
 		parser_blocks = parser_blocks->next;
 		free(free_blocks);
 	}
@@ -57,6 +56,8 @@ void	free_close_exec_blocks(t_exec_block *exec_blocks)
 			close(exec_blocks->pp_in);
 		if (exec_blocks->pp_out > STDERR_FILENO)
 			close(exec_blocks->pp_out);
+		if (exec_blocks->heredoc_pp_in > STDERR_FILENO)
+			close(exec_blocks->heredoc_pp_in);
 		exec_blocks = exec_blocks->next;
 		free(free_blocks);
 		free_blocks = exec_blocks;

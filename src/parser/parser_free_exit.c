@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_free_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:22:09 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 14:57:57 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/18 02:00:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	free_parser_blocks(t_parser_block *parser_blocks)
 	while (parser_blocks != NULL)
 	{
 		free_blocks = parser_blocks;
-		parser_free_redir(parser_blocks->input);
-		parser_free_redir(parser_blocks->output);
+		parser_free_redir(parser_blocks->redir);
 		parser_free_args(parser_blocks->arg);
 		free(parser_blocks->cmd);
 		parser_blocks = parser_blocks->next;

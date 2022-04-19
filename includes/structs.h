@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/06 15:39:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 03:00:51 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ typedef struct s_redir{
 typedef struct s_parser_block{
 	char					*cmd;
 	t_arg					*arg;
-	t_redir					*input;
-	t_redir					*output;
+	t_redir					*redir;
 	struct s_parser_block	*next;
 }	t_parser_block;
 
@@ -80,6 +79,7 @@ typedef struct s_exec_block{
 	int						out_fd;
 	int						pp_in;
 	int						pp_out;
+	int						heredoc_pp_in;
 	struct s_exec_block		*next;
 }	t_exec_block;
 

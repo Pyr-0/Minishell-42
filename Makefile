@@ -3,10 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+<<<<<<< HEAD
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
 #    Updated: 2022/04/18 14:48:54 by mrojas-e         ###   ########.fr        #
+=======
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
+#    Updated: 2022/04/19 19:11:31 by shaas            ###   ########.fr        #
+>>>>>>> 826a741f62d0f4d863209d03c72129783005a60d
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +35,27 @@ endif
 DIR_HEADERS =		./includes/
 DIR_SRC		=		./src/
 DIR_OBJ		=		./obj/
-SRC			=		./src/print_stuff.c ./src/main.c ./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
-					./src/lexer/lexer_advance_and_collect.c ./src/lexer/lexer_utils.c ./src/lexer/lexer_free_exit.c \
-					./src/env/get_env.c ./src/env/init_env.c ./src/env/env_utils.c ./src/env/env_free_exit.c \
+SRC			=		./src/print_stuff.c ./src/main.c \
 					./src/pipe_redir_error.c ./src/sighandlers.c \
+					./src/env/get_env.c ./src/env/init_env.c \
+					./src/env/env_utils.c ./src/env/env_free_exit.c \
+					./src/lexer/lexer.c ./src/lexer/lexer_init_structs.c \
+					./src/lexer/lexer_advance_and_collect.c \
+					./src/lexer/lexer_utils.c ./src/lexer/lexer_free_exit.c \
 					./src/expander/expander.c ./src/expander/expand_dollar_sign.c \
 					./src/expander/expand_quotes.c ./src/expander/expander_utils.c \
-					./src/parser/parser.c ./src/parser/parser_free_exit.c ./src/parser/parser_init_structs.c\
+					./src/parser/parser.c ./src/parser/parser_free_exit.c \
+					./src/parser/parser_init_structs.c \
 					./src/parser/parser_add.c ./src/parser/parser_utils.c \
-					./src/redir_creator/redir_creator.c ./src/redir_creator/redir_creator_free_exit.c \
-					./src/redir_creator/redir_creator_utils.c ./src/redir_creator/redir_creator_init_exec_blocks.c \
-					./src/builtins/cmd_pwd.c ./src/builtins/cmd_env.c ./src/builtins/cmd_echo.c ./src/builtins/cmd_cd.c \
-					./src/builtins/builtins_utils.c
+					./src/redir_creator/redir_creator.c \
+					./src/redir_creator/redir_creator_free_exit.c \
+					./src/redir_creator/redir_creator_utils.c \
+					./src/redir_creator/redir_creator_init_exec_blocks.c \
+					./src/redir_creator/handle_heredocs.c \
+					./src/redir_creator/handle_redir_files.c \
+					./src/builtins/cmd_pwd.c ./src/builtins/cmd_echo.c \
+					./src/builtins/cmd_cd.c ./src/builtins/builtins_utils.c\
+					./src/builtins/cmd_env.c
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a
 
