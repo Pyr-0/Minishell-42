@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 21:09:07 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/19 21:21:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/* void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
+void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
 	int	pp[2];
@@ -33,7 +33,7 @@
 	replace_fd(&i_exec->out_fd, pp_out_dup);
 }
 
-/* bool	handle_redirs_of_one_block(t_exec_block *i_exec,
+bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 					t_parser_block *i_parser, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
@@ -49,8 +49,8 @@
 		replace_fd(&i_exec->in_fd, heredoc_fd);
 	return (is_fail);
 }
- */
-/* t_exec_block	*redir_creator(t_parser_block *parser_blocks)
+
+t_exec_block	*redir_creator(t_parser_block *parser_blocks)
 {
 	t_exec_block	*exec_blocks;
 	t_exec_block	*i_exec;
@@ -70,4 +70,3 @@
 	free_parser_blocks_only_redir(parser_blocks);
 	return (exec_blocks);
 }
- */
