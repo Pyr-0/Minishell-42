@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:48:05 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 21:58:15 by shaas            ###   ########.fr       */
+/*   Created: 2022/04/19 22:10:36 by shaas             #+#    #+#             */
+/*   Updated: 2022/04/19 22:12:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
+/* >============EXECUTOR===============< */
 
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (-1);
-	while (s1[i] != '\0' || s2[i] != '\0')
-	{
-		if (s1[i] != s2[i] || s1[i] == 0 || s2[i] == 0)
-			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
-		i++;
-	}
-	return (0);
-}
+void	executor(t_exec_block *exec_blocks);
+bool	is_inbuilt(t_exec_block *i_exec);
+void	handle_inbuilt(t_exec_block *i_exec);
+
+#endif

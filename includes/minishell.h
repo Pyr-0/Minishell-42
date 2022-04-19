@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 21:07:50 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:13:23 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "expander.h"
 # include "parser.h"
 # include "redir_creator.h"
+# include "executor.h"
 
 # define EXIT_PIPE_REDIR_ERROR	258
 # define EXIT_STD_ERROR			1

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:48:05 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 21:58:15 by shaas            ###   ########.fr       */
+/*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
+/*   Updated: 2022/04/19 21:51:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	executor(t_exec_block *exec_blocks)
 {
-	size_t	i;
+	t_exec_block	*i_exec;
 
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (-1);
-	while (s1[i] != '\0' || s2[i] != '\0')
+	i_exec = exec_blocks;
+	while (i_exec != NULL)
 	{
-		if (s1[i] != s2[i] || s1[i] == 0 || s2[i] == 0)
-			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
-		i++;
+		if (is_inbuilt(i_exec) == true)
+			handle_inbuilt(i_exec);	
+		i_exec = i_exec->next;
 	}
-	return (0);
+	free_close_exec_blocks(exec_blocks);
 }
