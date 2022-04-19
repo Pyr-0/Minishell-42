@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/18 12:48:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/18 13:36:23 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	create_pipe(t_exec_block *i_exec, t_exec_block *exec_blocks,
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	i_exec->pp_out = pp[PIPE_WRITE];
 	i_exec->next->pp_in = pp[PIPE_READ];
-	pp_out_dup = dup(pp[PIPE_WRITE]);
-	if (pp_out_dup == -1)
-		redir_creator_fail_exit2(parser_blocks, exec_blocks);
-	replace_fd(&i_exec->out_fd, pp_out_dup);
 	pp_in_dup = dup(pp[PIPE_READ]);
 	if (pp_in_dup == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	replace_fd(&i_exec->next->in_fd, pp_in_dup);
+	pp_out_dup = dup(pp[PIPE_WRITE]);
+	if (pp_out_dup == -1)
+		redir_creator_fail_exit2(parser_blocks, exec_blocks);
+	replace_fd(&i_exec->out_fd, pp_out_dup);
 }
 
 bool	open_output_file(t_redir *output, t_exec_block *curr)
