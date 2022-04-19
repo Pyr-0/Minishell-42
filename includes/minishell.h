@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 22:09:34 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:15:38 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	print_env(void);
 
 /*============BUILTINS===============*/
 
+bool	cmd_echo(t_exec_block *echo);
 bool	cmd_pwd(t_exec_block *cmd_pwd);
-void	cmd_echo(t_exec_block *echo);
 bool	cmd_cd(t_exec_block *cd);
 bool	cmd_env(t_exec_block *cmd_env);
 bool	handle_error(char *msg, int exit_status);
