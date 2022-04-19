@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/18 11:56:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 18:35:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,4 @@ void	redir_creator_fail_exit2(t_parser_block *parser_blocks,
 	free_close_exec_blocks(exec_blocks);
 	free_env();
 	exit(EXIT_FAILURE);
-}
-
-void	read_heredoc_fail_exit(int *heredoc_pp, t_parser_block *parser_blocks,
-		t_exec_block *exec_blocks)
-{
-	close(heredoc_pp[PIPE_READ]);
-	close(heredoc_pp[PIPE_WRITE]);
-	free(heredoc_pp);
-	redir_creator_fail_exit2(parser_blocks, exec_blocks);
 }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/14 01:58:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/19 18:27:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	fuck_sigpipe(int sig);
 /*============PIPE_REDIR_ERRORS===============*/
 
 bool	handle_error_and_free(t_lexer_block *lexer_block,
-		t_parser_block *parser_blocks, char *error_message);
+			t_parser_block *parser_blocks, char *error_message);
 bool	redir_error(t_token *token);
 bool	pipe_error(t_lexer_block *block);
 bool	pipe_redir_error(t_lexer_block *lexer_block);

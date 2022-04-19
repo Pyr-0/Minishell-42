@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:29:39 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/13 18:14:16 by satori           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:27:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ char	*get_varname(char *env_str, t_env *first);
 void	env_fail_exit(t_env *env);
 void	free_env(void);
 char	*fetch_env_var_value(char *varname);
-
 
 #endif
