@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/20 18:57:54 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/20 19:42:19 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC			=		./src/print_stuff.c ./src/main.c \
 					./src/executor/executor.c ./src/executor/handle_inbuilt.c \
 					./src/builtins/cmd_pwd.c ./src/builtins/cmd_echo.c \
 					./src/builtins/cmd_cd.c ./src/builtins/builtins_utils.c\
-					./src/builtins/cmd_env.c
+					./src/builtins/cmd_env.c ./src/builtins/cmd_export.c 
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a
 
