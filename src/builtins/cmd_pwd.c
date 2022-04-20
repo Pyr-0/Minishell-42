@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 13:51:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 22:11:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:47:44 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ bool	cmd_pwd(t_exec_block *cmd_pwd)
 	}
 	else
 	{
-		ft_putstr_fd(cwd, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		ft_putstr_fd(cwd, cmd_pwd->out_fd);
+		ft_putstr_fd("\n", cmd_pwd->out_fd);
 		g_exit_status = 0;
 	}
 	free(cwd);

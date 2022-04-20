@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 21:26:28 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:56:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	main(int argc, char *argv[], char *envp[])
 		add_history(lexer_struct.contents);
 		printf("Readline input is: %s\n", lexer_struct.contents); //
 		printf("System command exec:\n"); //
-		//system(lexer_struct.contents); //
+		system(lexer_struct.contents); //
 		lexer_done = lexer(&lexer_struct);
 		print_lexer_blocks(lexer_done); //
-		if (pipe_redir_error(lexer_done) == true) //need to remake to handle empty token! and implement in parser
+		if (pipe_redir_error(lexer_done) == true)
 			continue;
 		expander(lexer_done); // need to handle empty string in executor!!. also exit status of successfull command needs to be 0
 		print_lexer_blocks(lexer_done); //
@@ -55,10 +55,9 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue;
 		print_parser_blocks(parser_done); //
-		//test(parser_done); //
-		//cmd_cd(parser_done);
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
+		executor(exec_done);
 	/* 	char *buf = malloc(1);
 		while (true)
 		{
@@ -66,8 +65,6 @@ int	main(int argc, char *argv[], char *envp[])
 			write(STDOUT_FILENO, buf, 1);
 		} 
 		free(buf);*/
-		cmd_env(exec_done);
-		free_close_exec_blocks(exec_done);
 	//	system("leaks minishell"); //
 	//	free_env();//at the end
 	//	break ; //

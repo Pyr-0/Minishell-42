@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:51:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 22:09:05 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/20 18:34:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	handle_inbuilt(t_exec_block *i_exec)
 	if (ft_strcmp(i_exec->cmd, "env") == 0)
 		cmd_env(i_exec);
 	if (ft_strcmp(i_exec->cmd, "pwd") == 0)
-		cmd_pwd();
+		cmd_pwd(i_exec);
 	if (ft_strcmp(i_exec->cmd, "export") == 0)
 		return ;
 	if (ft_strcmp(i_exec->cmd, "unset") == 0)

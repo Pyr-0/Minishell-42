@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:59:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 21:28:20 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:49:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ bool	cmd_env(t_exec_block *cmd_env)
 	printf("\n\e[45mprint env start\e[0m\n");
 	while (env != NULL)
 	{
-		printf("%s=%s\n", env->varname, env->varvalue);
+		ft_putstr_fd(env->varname, cmd_env->out_fd);
+		ft_putstr_fd("=", cmd_env->out_fd);
+		ft_putendl_fd(env->varvalue, cmd_env->out_fd);
 		env = env->next;
 	}
 	printf("\e[45mprint env end\e[0m\n\n");
