@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 22:17:16 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/20 15:55:31 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool	cmd_echo(t_exec_block *echo);
 bool	cmd_pwd(t_exec_block *cmd_pwd);
 bool	cmd_cd(t_exec_block *cd);
 bool	cmd_env(t_exec_block *cmd_env);
+bool	cmd_export(t_env *cmd_export);
 bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
 

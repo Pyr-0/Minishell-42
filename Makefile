@@ -6,7 +6,7 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/19 21:24:21 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/20 15:52:09 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ exec:
 				@tput setaf 05 && printf " _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n"
 				@tput setaf 05 && printf "| '  \ | |\__ \ | __ || _| | |__ | |__ | || ' \  \n"
 				@tput setaf 05 && printf "|_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n"
-				@tput setaf 05 && printf "                                                 \n"
+				@tput setaf 05 && printf "                            by shaas & mrojas-e  \n"
 				@tput setaf 005 && printf "    *--------executing program!------------*\n"
 				@printf "\e[0m"
 				./$(NAME)
