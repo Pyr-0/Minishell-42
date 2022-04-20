@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
-/*   Updated: 2022/04/14 01:56:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/20 19:03:43 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*fetch_env_var_value(char *varname)
 
 bool	handle_error(char *msg, int exit_status)
 {
-	printf("%s", msg);
+	ft_putstr_fd(msg, STDERR_FILENO);
 	g_exit_status = exit_status;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/20 18:56:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/20 19:00:47 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char *argv[], char *envp[])
 		add_history(lexer_struct.contents);
 		printf("Readline input is: %s\n", lexer_struct.contents); //
 		printf("System command exec:\n"); //
-		system(lexer_struct.contents); //
+		//system(lexer_struct.contents); //
 		lexer_done = lexer(&lexer_struct);
 		print_lexer_blocks(lexer_done); //
 		if (pipe_redir_error(lexer_done) == true)
