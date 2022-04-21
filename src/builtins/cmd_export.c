@@ -6,14 +6,13 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:02:58 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/21 21:26:53 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:40:08 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
-static bool print_export(t_exec_block *cmd_export)
+static bool	print_export(t_exec_block *cmd_export)
 {
 	t_env	*export;
 
@@ -39,7 +38,7 @@ void	replace_variable(char *varvalue, char *varname)
 {
 	t_env	**env;
 	t_env	*iter;
-	
+
 	if (varvalue == NULL)
 	{
 		free (varname);
@@ -90,9 +89,9 @@ bool	cmd_export(t_exec_block *cmd_export)
 	if (cmd_export->arg == NULL)
 		return (print_export(cmd_export));
 	iter = cmd_export->arg;
-	while(iter != NULL)
+	while (iter != NULL)
 	{
-		if(iter->value[0] == '=')
+		if (iter->value[0] == '=')
 		{
 			handle_error("\e[31mMi[shell]in: export: Watcha' tryna' \
 export here darlin' 👀!\e[0m\n", 0);
