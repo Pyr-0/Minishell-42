@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
-/*   Updated: 2022/04/21 19:21:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/21 22:10:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,4 @@ bool	handle_error(char *msg, int exit_status)
 	g_exit_status = exit_status;
 	return (true);
 }
+

@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:22:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/20 22:30:26 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:06:11 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	*get_varvalue(char *env_str, t_env *first)
 	char	*varvalue;
 	char	*c;
 
-	
+	if (ft_strchr(env_str, '=') == NULL)
+		return (NULL);
 	varvalue = ft_strdup("");
 	if (varvalue == NULL)
 		env_fail_exit(first);
