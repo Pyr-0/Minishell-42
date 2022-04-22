@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:12:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/18 18:33:17 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:23:57 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ t_env	**get_env(char *envp[])
 		env = init_env(envp);
 	return (&env);
 }
-

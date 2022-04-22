@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
-/*   Updated: 2022/04/21 21:35:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:23:09 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ bool	handle_error(char *msg, int exit_status)
 	g_exit_status = exit_status;
 	return (true);
 }
-

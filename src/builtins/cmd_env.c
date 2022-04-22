@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:59:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/20 19:29:57 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:07:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ bool	cmd_env(t_exec_block *cmd_env)
 {	
 	t_env	*env;
 
-	if (cmd_env->arg !=  NULL)
+	if (cmd_env->arg != NULL)
 		return (handle_error(
-			"Mi[shell]in: env: toooo much too handle\n",
-			EXIT_STD_ERROR));//
+				"\e[31mMi[shell]in: cd: toooo much too handle 😥\e[0m\n",
+				EXIT_STD_ERROR));//
 	env = *(get_env(NULL));
-	printf("\n\e[45mprint env start\e[0m\n");
+	printf("\n\e[45mprint env start\e[0m\n");//
 	while (env != NULL)
 	{
 		if (env->varvalue != NULL)

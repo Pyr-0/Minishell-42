@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 21:31:35 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/18 01:55:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/22 13:13:38 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_token	*translate_redir(t_token *i_token, t_parser_block *i_parser,
 	if (i_token == NULL || i_token->e_type != TOKEN_ID)
 	{
 		handle_error_and_free(lexer_blocks, parser_blocks,
-			"Ain't you an ambiguous one eh? 😏\n" );
+			"\e[31mAin't you an ambiguous one eh? 😏\e[0m\n" );
 		g_exit_status = EXIT_STD_ERROR;
 		return (NULL);
 	}

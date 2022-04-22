@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/21 20:18:23 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:27:21 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,5 @@ bool	cmd_env(t_exec_block *cmd_env);
 bool	cmd_export(t_exec_block *cmd_export);
 bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
-
-void test(t_parser_block *test);
 
 #endif
