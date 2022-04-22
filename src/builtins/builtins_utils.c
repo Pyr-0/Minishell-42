@@ -3,34 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:47:19 by satori            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/22 13:23:09 by mrojas-e         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/21 22:10:54 by shaas            ###   ########.fr       */
+>>>>>>> 4f6bffb7ef9206d1aebfaef31d7ece5e99f2396f
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*fetch_env_var_value(char *varname)
-{
-	t_env	*env;
-	t_env	*iter;
-
-	env = *get_env(NULL);
-	iter = env;
-	while (iter != NULL)
-	{
-		if (ft_strcmp(iter->varname, varname) == 0)
-		{
-			if (iter->varvalue == NULL)
-				return (iter->varname);
-			return (iter->varvalue);
-		}
-		iter = iter->next;
-	}
-	return (NULL);
-}
 
 bool	handle_error(char *msg, int exit_status)
 {
