@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:23:58 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/21 19:21:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/22 17:25:47 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ char	*fetch_env_var_value(char *varname)
 	while (iter != NULL)
 	{
 		if (ft_strcmp(iter->varname, varname) == 0)
+		{
+			if (iter->varvalue == NULL)
+				return (iter->varname);
 			return (iter->varvalue);
+		}
 		iter = iter->next;
 	}
 	return (NULL);
