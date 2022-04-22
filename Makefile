@@ -6,13 +6,13 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/22 16:45:16 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/22 17:34:43 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		minishell
 CC			=		gcc
-CC_FLAGS	=		-Wall -Wextra -Werror -g
+CC_FLAGS	=		-Wall -Wextra -Werror -g 
 # check if mac or linux, different readline flags #
 OS := $(shell uname)
 ifeq ($(OS), Darwin)

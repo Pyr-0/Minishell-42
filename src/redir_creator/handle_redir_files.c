@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:31:04 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/22 13:20:53 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:40:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ bool	open_input_file(t_redir *input, t_exec_block *curr)
 
 	if (access(input->id, F_OK) != 0)
 		return (redir_creator_handle_error(input->id,
-				"\e[31mDarlin', that file doesn't exist 🙅‍♀️\e[0m"));
+				"\e[31mDarlin', that file doesn't exist ❌ \e[0m"));
 	else if (access(input->id, R_OK) != 0)
 		return (redir_creator_handle_error(input->id, "\e[31mDarlin', \
-you don't have permissions to write to this file 👀\e[0m"));
+you don't have permissions to read from this file 👀\e[0m"));
 	else
 		fd = open(input->id, O_RDONLY);
 	if (fd == -1)
