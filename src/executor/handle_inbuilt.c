@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:51:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/22 17:19:57 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/23 16:51:42 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	handle_inbuilt(t_exec_block *i_exec)
 	if (ft_strcmp(i_exec->cmd, "unset") == 0)
 		cmd_unset(i_exec);
 	if (ft_strcmp(i_exec->cmd, "exit") == 0)
-		return ;
+		cmd_exit(i_exec);
 }
