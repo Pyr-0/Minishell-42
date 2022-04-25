@@ -6,7 +6,7 @@
 #    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/22 17:34:43 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/23 17:17:49 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC			=		./src/print_stuff.c \
 					./src/builtins/cmd_env.c \
 					./src/builtins/cmd_export.c \
 					./src/builtins/cmd_unset.c \
+					./src/builtins/cmd_exit.c \
 
 OBJ			=		$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 LIBFT		=		libft/libft.a

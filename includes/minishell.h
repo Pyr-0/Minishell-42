@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/22 17:18:06 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/23 17:18:35 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
 void	unset_variable(t_arg *varname);
 bool	cmd_unset(t_exec_block *cmd_unset);
+int		cmd_exit(t_exec_block *cmd_exit);
+
 
 
 #endif
