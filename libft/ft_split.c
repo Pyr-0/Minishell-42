@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 19:16:46 by mrojas-e          #+#    #+#             */
-/*   Updated: 2021/08/03 20:19:37 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:56:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ char	*ft_helper(const char *s1, int *start, char c)
 	temp = *start;
 	*start = end;
 	return (ft_substr(s1, temp, end - temp));
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	if (split == NULL)
+		return ;
+	while (split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	free (split);
 }
 
 char	**ft_split(const char *s1, char c)

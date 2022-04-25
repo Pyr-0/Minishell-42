@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/23 17:18:35 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:20:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 # include "redir_creator.h"
 # include "executor.h"
 
-# define EXIT_PIPE_REDIR_ERROR	258
 # define EXIT_STD_ERROR			1
+# define EXIT_CMD_NOT_FOUND		127
+# define EXIT_PIPE_REDIR_ERROR	258
 # define PIPE_READ				0
 # define PIPE_WRITE				1
 

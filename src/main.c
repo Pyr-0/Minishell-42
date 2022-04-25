@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/20 22:08:37 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:24:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc != 1)
 	{
-		printf("what is your problem? i don't take any arguments from you 🙄\n");
+		printf("\e[31mwhat is your problem? i don't take any arguments from you 🙄\e[0m\n");
 		return (1);
 	}
 	(void)argv;
@@ -35,6 +35,7 @@ int	main(int argc, char *argv[], char *envp[])
 	signal(SIGPIPE, fuck_sigpipe);
 	get_env(envp);
 	//print_env();
+	int i = 0;//
 	while (true)
 	{
 		printf("g_exit_status: %d\n\n", g_exit_status); //
@@ -58,7 +59,7 @@ int	main(int argc, char *argv[], char *envp[])
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
 		executor(exec_done);
-		
+		i++; //
 	/* 	char *buf = malloc(1);
 		while (true)
 		{
@@ -67,13 +68,15 @@ int	main(int argc, char *argv[], char *envp[])
 		} 
 		free(buf);*/
 	//	system("leaks minishell"); //
-	//	free_env();//at the end
+	//	free_env(); //at the end
 	//	break ; //
 	}
 	return (0);
 }
 
 /*
+(bash init_docker.sh)
+(docker build -t memory-test .)
 docker run -ti -v $(PWD):/test memory-test bash -c "cd /test/; make re && valgrind --leak-check=full --show-leak-kinds=all ./minishell"
 lsof -c minishell
 valgrind --leak-check=full --show-leak-kinds=all ./minishell 
