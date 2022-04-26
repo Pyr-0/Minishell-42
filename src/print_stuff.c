@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_stuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 21:08:25 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:56:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,17 @@ void	print_env(void)
 		env = env->next;
 	}
 	printf("\e[45mprint env end\e[0m\n\n");
+}
+
+void	print_split(char **split)
+{
+	int i = 0;
+
+	printf("\n\e[46mprint split start\e[0m\n");
+	while (split[i] != NULL)
+	{
+		printf("%s\n", split[i]);
+		i++;
+	}
+	printf("\e[46mprint split end\e[0m\n\n");
 }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/19 20:05:21 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/26 21:06:51 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef enum e_expand{
 }				t_expand;
 
 //===============ENVIRONMENT=================//
+
 typedef struct s_env{
 	char					*varname;
 	char					*varvalue;

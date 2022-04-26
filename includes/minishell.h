@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/25 21:20:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/26 22:13:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <signal.h>
 # include <stdbool.h>
 # include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -36,6 +38,7 @@
 
 # define EXIT_STD_ERROR			1
 # define EXIT_CMD_NOT_FOUND		127
+# define EXIT_INVALID_EXIT		255
 # define EXIT_PIPE_REDIR_ERROR	258
 # define PIPE_READ				0
 # define PIPE_WRITE				1
@@ -58,6 +61,7 @@ void	print_lexer_blocks(t_lexer_block *lexer_done);
 void	print_parser_blocks(t_parser_block *parser_blocks);
 void	print_exec_blocks(t_exec_block *exec_blocks);
 void	print_env(void);
+void	print_split(char **split);
 
 /*============BUILTINS===============*/
 
@@ -70,7 +74,7 @@ bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
 void	unset_variable(t_arg *varname);
 bool	cmd_unset(t_exec_block *cmd_unset);
-int		cmd_exit(t_exec_block *cmd_exit);
+int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks);
 
 
 

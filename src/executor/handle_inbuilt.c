@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:51:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/25 22:53:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/26 19:10:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	handle_inbuilt(t_exec_block *i_exec, t_exec_block *exec_blocks)
 	else if (ft_strcmp(i_exec->cmd, "unset") == 0)
 		cmd_unset(i_exec);
 	else if (ft_strcmp(i_exec->cmd, "exit") == 0)
-		cmd_exit(i_exec);
+		cmd_exit(i_exec, exec_blocks);
 }

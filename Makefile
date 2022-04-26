@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/23 17:17:49 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/26 20:23:47 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC			=		./src/print_stuff.c \
 					./src/redir_creator/handle_redir_files.c \
 					./src/executor/executor.c \
 					./src/executor/handle_inbuilt.c \
+					./src/executor/find_cmd_path.c \
 					./src/builtins/cmd_pwd.c \
 					./src/builtins/cmd_echo.c \
 					./src/builtins/cmd_cd.c \
@@ -93,7 +94,7 @@ clean:
 fclean:			clean
 				@rm -rf $(NAME)
 				@rm -rf $(LIBFT)
-				@tput setaf 117 && printf "*--------Full clean completed!---------*\n"
+				@tput setaf 1 && printf "*--------Full clean completed!---------*\n"
 
 re:				fclean all
 
