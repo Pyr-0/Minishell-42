@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/27 21:08:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:17:16 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,10 +176,24 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks
 	free_split(envp);
 }
 
+bool	last_cmd_is_inbuilt(t_exec_block *exec_blocks)
+{
+	t_exec_block	*i_exec;
+
+	i_exec = exec_blocks;
+	while (i_exec->next != NULL)
+		i_exec = i_exec->next;
+	if (is_inbuilt(i_exec) == true)
+		return (true);
+	else
+		return (false);
+}
+
 void	executor(t_exec_block *exec_blocks)
 {
 	t_exec_block	*i_exec;
 	char			*cmd_path;
+	int				exit_status;
 
 	i_exec = exec_blocks;
 	cmd_path = NULL;
@@ -196,6 +210,8 @@ void	executor(t_exec_block *exec_blocks)
 		}
 		i_exec = i_exec->next;
 	}
-	while (wait(NULL) != -1) ;
+	while (wait(&exit_status) != -1) ;
+	if (last_cmd_is_inbuilt(exec_blocks) == false)
+		g_exit_status = exit_status;
 	free_close_exec_blocks(exec_blocks);
 }

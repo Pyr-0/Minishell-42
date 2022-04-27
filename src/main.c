@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 21:06:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:09:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	//print_env();
 	while (true)
 	{
-		printf("g_exit_status: %d\n\n", g_exit_status); //
+		printf("\ng_exit_status: %d\n\n", g_exit_status); //
 		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m_>\e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
