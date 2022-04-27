@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/26 21:30:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:02:52 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ int	main(int argc, char *argv[], char *envp[])
 	signal(SIGPIPE, fuck_sigpipe);
 	get_env(envp);
 	//print_env();
-	int i = 0;//
 	while (true)
 	{
-		printf("g_exit_status: %d\n\n", g_exit_status); //
+		printf("\ng_exit_status: %d\n\n", g_exit_status); //
 		lexer_struct.contents = readline("mi[SHELL]in$ "); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
@@ -59,7 +58,6 @@ int	main(int argc, char *argv[], char *envp[])
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
 		executor(exec_done);
-		i++; //
 	/* 	char *buf = malloc(1);
 		while (true)
 		{

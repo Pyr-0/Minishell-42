@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/26 22:22:22 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 20:58:35 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,62 @@ char	**envp_creator(t_exec_block *exec_blocks)
 	return (envp);
 }
 
+// int	*duplicate_fds(i_exec, exec_blocks)
+// {
+// 	int	std_fds[2];
+
+// 	std_fds[PIPE_READ] = dup(STDIN_FILENO);
+// 	if (std_fds[PIPE_READ] == -1)
+// 		executor_fail_exit(exec_blocks);
+// 	std_fds[PIPE_WRITE] = dup(STDOUT_FILENO);
+// 	if (std_fds[PIPE_WRITE] == -1)
+// 	{
+// 		close(std_fds[PIPE_READ]);
+// 		executor_fail_exit(exec_blocks);
+// 	}
+// 	dup2(i_exec->in_fd, STDIN_FILENO);
+// 	if (std_fds[PIPE_WRITE] == -1)
+// 	{
+// 		close(std_fds[PIPE_READ]);
+// 		executor_fail_exit(exec_blocks);
+// 	}
+// 	dup2(i_exec->out_fd, STDOUT_FILENO);
+// }
+
+void	close_fds(t_exec_block *i_exec)
+{
+	if (i_exec->pp_in > STDERR_FILENO)
+	{
+		close(i_exec->pp_in);
+		i_exec->pp_in = -1;
+	}
+	if (i_exec->in_fd > STDERR_FILENO)
+	{
+		close(i_exec->in_fd);
+		i_exec->in_fd = -1;
+	}
+	if (i_exec->pp_out > STDERR_FILENO)
+	{
+		close(i_exec->pp_out);
+		i_exec->pp_out = -1;
+	}
+	if (i_exec->out_fd > STDERR_FILENO)
+	{
+		close(i_exec->out_fd);
+		i_exec->out_fd = -1;
+	}
+	if (i_exec->heredoc_pp_in > STDERR_FILENO)
+	{
+		close(i_exec->heredoc_pp_in);
+		i_exec->heredoc_pp_in = -1;
+	}
+}
+
 void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks)
 {
 	char	**argv;
 	char	**envp;
 	pid_t	pid;
-	int		status;
 
 	argv = argv_creator(i_exec, exec_blocks);
 	envp = envp_creator(exec_blocks);
@@ -122,9 +172,7 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks
 		execve(cmd_path, argv, envp);
 		exit(EXIT_FAILURE);
 	}
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		g_exit_status = WEXITSTATUS(status);
+	close_fds(i_exec);
 	free(argv);
 	free_split(envp);
 }
@@ -149,5 +197,6 @@ void	executor(t_exec_block *exec_blocks)
 		}
 		i_exec = i_exec->next;
 	}
+	while (wait(NULL) != -1) ;
 	free_close_exec_blocks(exec_blocks);
 }
