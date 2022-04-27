@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/26 22:22:22 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 14:17:48 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ char	**argv_creator(t_exec_block *i_exec, t_exec_block *exec_blocks)
 	if (argv == NULL)
 		executor_fail_exit(exec_blocks);
 	argv[0] = i_exec->cmd;
-	i = 1;
+	i = 0;
 	i_arg = i_exec->arg;
-	while (i < argc)
+	while (++i < argc)
 	{
 		argv[i] = i_arg->value;
-		i++;
 		i_arg = i_arg->next;
 	}
 	argv[i] = NULL;
@@ -103,7 +102,8 @@ char	**envp_creator(t_exec_block *exec_blocks)
 	return (envp);
 }
 
-void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks)
+void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
+			t_exec_block *exec_blocks)
 {
 	char	**argv;
 	char	**envp;

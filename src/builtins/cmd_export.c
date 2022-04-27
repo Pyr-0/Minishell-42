@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:02:58 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/25 20:46:30 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 13:55:02 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	cmd_export(t_exec_block *cmd_export)
 	{
 		if (iter->value[0] == '=')
 		{
-			handle_error("\e[31mMi[shell]in: export: Watcha' tryna' \
+			handle_error("\e[46m\e[1;91mMi[shell]in: export: Watcha' tryna' \
 export here darlin' 👀!\e[0m\n", 0);
 			exit_status = EXIT_STD_ERROR;
 		}

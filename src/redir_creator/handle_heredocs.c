@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 19:14:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 14:55:04 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	init_i_exec_with_heredoc(int *heredoc_pp,
 
 void	read_heredoc(int *heredoc_pp,
 			t_redir *i_redir, t_exec_block *exec_blocks,
-				t_parser_block *parser_blocks)
+			t_parser_block *parser_blocks)
 {
 	char	*line_read;
 	char	*line_with_newline;
@@ -75,7 +75,7 @@ void	read_heredoc(int *heredoc_pp,
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	while (true)
 	{
-		line_read = readline("heredoc> "); // ft_strdup("hello echo me"); // readline("mi[SHELL]in$ ");
+		line_read = readline("\e[46m\e[1;91mheredoc_>\e[46m\e[0m");
 		if (line_read == NULL)
 			read_heredoc_fail_exit(heredoc_pp, parser_blocks, exec_blocks);
 		if (ft_strcmp(line_read, i_redir->id) == 0)
