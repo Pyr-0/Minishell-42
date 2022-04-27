@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/27 21:17:16 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:49:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,27 +176,15 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks
 	free_split(envp);
 }
 
-bool	last_cmd_is_inbuilt(t_exec_block *exec_blocks)
-{
-	t_exec_block	*i_exec;
-
-	i_exec = exec_blocks;
-	while (i_exec->next != NULL)
-		i_exec = i_exec->next;
-	if (is_inbuilt(i_exec) == true)
-		return (true);
-	else
-		return (false);
-}
-
-void	executor(t_exec_block *exec_blocks)
+bool	executor_loop(t_exec_block *exec_blocks)
 {
 	t_exec_block	*i_exec;
 	char			*cmd_path;
-	int				exit_status;
+	bool			last_cmd_is_executable;
 
-	i_exec = exec_blocks;
 	cmd_path = NULL;
+	i_exec = exec_blocks;
+	last_cmd_is_executable = false;
 	while (i_exec != NULL)
 	{
 		if (is_inbuilt(i_exec) == true)
@@ -205,13 +193,26 @@ void	executor(t_exec_block *exec_blocks)
 		{
 			cmd_path = find_cmd_path(i_exec->cmd, exec_blocks);
 			if (cmd_path != NULL)
+			{
+				if (i_exec->next == NULL)
+					last_cmd_is_executable = true;
 				execute_cmd(cmd_path, i_exec, exec_blocks);
+			}
 			free(cmd_path);
 		}
 		i_exec = i_exec->next;
 	}
+	return (last_cmd_is_executable);
+}
+
+void	executor(t_exec_block *exec_blocks)
+{
+	bool			last_cmd_is_executable;
+	int				exit_status;
+
+	last_cmd_is_executable = executor_loop(exec_blocks);
 	while (wait(&exit_status) != -1) ;
-	if (last_cmd_is_inbuilt(exec_blocks) == false)
+	if (last_cmd_is_executable == true)
 		g_exit_status = exit_status;
 	free_close_exec_blocks(exec_blocks);
 }
