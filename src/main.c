@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 14:38:40 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:28:15 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	}
 	(void)argv;
 	g_exit_status = EXIT_SUCCESS;
+	sig_setter();
 	signal(SIGPIPE, fuck_sigpipe);
 	get_env(envp);
 	//print_env();
@@ -40,7 +41,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	while (true)
 	{
 		printf("g_exit_status: %d\n\n", g_exit_status); //
-		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m$\n_>\e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
+		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m_>\e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
 		add_history(lexer_struct.contents);

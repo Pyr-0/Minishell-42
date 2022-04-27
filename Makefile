@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/26 20:23:47 by shaas            ###   ########.fr        #
+#    Updated: 2022/04/27 18:02:35 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC_FLAGS	=		-Wall -Wextra -Werror -g
 # check if mac or linux, different readline flags #
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
-	CPPFLAGS	=	-I/Users/$(USER)/.brew/opt/readline/include
-	LDFLAGS		=	-L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+	CPPFLAGS	=	-I$(HOME)/.brew/opt/readline/include
+	LDFLAGS		=	-L$(HOME)/.brew/opt/readline/lib -lreadline
 	LREADLINE	=
 endif
 ifeq ($(OS), Linux)
@@ -75,7 +75,7 @@ all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@$(CC) $(CC_FLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
+				@$(CC) $(CC_FLAGS) $(CPPFLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 
 $(LIBFT):		libft/*.c

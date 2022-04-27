@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 14:28:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:56:01 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <locale.h>
 
 # include "../libft/libft.h"
 # include "structs.h"
@@ -76,4 +78,7 @@ void	unset_variable(t_arg *varname);
 bool	cmd_unset(t_exec_block *cmd_unset);
 int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks);
 
+/*============SIGNALS===============*/
+
+void	sig_setter(void);
 #endif
