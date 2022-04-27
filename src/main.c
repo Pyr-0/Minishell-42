@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 21:02:52 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:06:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,25 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc != 1)
 	{
-		printf("\e[31mwhat is your problem? i don't take any arguments from you 🙄\e[0m\n");
+		printf("\e[31mwhat is your problem?\
+I don't take any arguments from you 🙄\e[0m\n");
 		return (1);
 	}
 	(void)argv;
 	g_exit_status = EXIT_SUCCESS;
+	sig_setter();
 	signal(SIGPIPE, fuck_sigpipe);
 	get_env(envp);
 	//print_env();
 	while (true)
 	{
-		printf("\ng_exit_status: %d\n\n", g_exit_status); //
-		lexer_struct.contents = readline("mi[SHELL]in$ "); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
+		printf("g_exit_status: %d\n\n", g_exit_status); //
+		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m_>\e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
 		add_history(lexer_struct.contents);
-		printf("Readline input is: %s\n", lexer_struct.contents); //
-		printf("System command exec:\n"); //
+		//printf("Readline input is: %s\n", lexer_struct.contents); //
+		//printf("System command exec:\n"); //
 		//system(lexer_struct.contents); //
 		lexer_done = lexer(&lexer_struct);
 		print_lexer_blocks(lexer_done); //

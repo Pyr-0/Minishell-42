@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 16:40:29 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/26 19:17:30 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 14:21:16 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	true_exit(int exit_status, t_exec_block *exec_blocks)
 	exit(exit_status);
 }
 
-int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks)
+int	cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks)
 {
 	int	res;
 
@@ -45,19 +45,20 @@ int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks)
 	if (cmd_exit->arg == NULL)
 		true_exit(g_exit_status, exec_blocks);
 	if (cmd_exit->arg->next != NULL)
-		return (handle_error("\e[31mMi[shell]in: \
+		return (handle_error("\e[46m\e[1;91mMi[shell]in: \
 exit: toooo much too handle 😥\e[0m\n", EXIT_STD_ERROR));
 	if (cmd_exit->arg != NULL && ft_strcmp(cmd_exit->arg->value, "") == 0)
 	{
 		if (is_it_number(cmd_exit->arg->value) == false)
 		{
-			handle_error("\e[31mMi[shell]in: \
+			handle_error("\e[46m\e[1;91mMi[shell]in: \
 exit: give me numbers not words!\e[0m\n", EXIT_STD_ERROR);
 			true_exit(EXIT_INVALID_EXIT, exec_blocks);
 		}
 		ft_atoi(cmd_exit->arg->value, &res);
-		if (ft_atoi(cmd_exit->arg->value, &res) == false || res < 0 || res > 255)
-			return (handle_error("\e[31mMi[shell]in: \
+		if (ft_atoi(cmd_exit->arg->value, &res) == false
+			|| res < 0 || res > 255)
+			return (handle_error("\e[46m\e[1;91mMi[shell]in: \
 exit: i think you have the wrong number 📞\e[0m\n", EXIT_STD_ERROR));
 		true_exit(res, exec_blocks);
 	}

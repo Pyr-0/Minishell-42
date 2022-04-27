@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 16:52:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/22 17:18:29 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:20:19 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	unset_variable(t_arg *varname)
 		iter = iter->next;
 	}
 }
+
 bool	cmd_unset(t_exec_block *cmd_unset)
 {
 	t_arg	*iter;
@@ -45,9 +46,9 @@ bool	cmd_unset(t_exec_block *cmd_unset)
 	iter = cmd_unset->arg;
 	while (iter != NULL)
 	{
-		if (ft_strchr(iter->value , '=') != NULL)
+		if (ft_strchr(iter->value, '=') != NULL)
 		{
-			handle_error("\e[31mMi[shell]in: unset: your unsetting \
+			handle_error("\e[46m\e[1;91mMi[shell]in: unset: your unsetting \
 is unsettling 👹\e[0m\n", 0);
 			exit_status = EXIT_STD_ERROR;
 		}

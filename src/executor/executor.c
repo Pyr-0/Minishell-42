@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/27 20:58:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 21:08:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ char	**argv_creator(t_exec_block *i_exec, t_exec_block *exec_blocks)
 	if (argv == NULL)
 		executor_fail_exit(exec_blocks);
 	argv[0] = i_exec->cmd;
-	i = 1;
+	i = 0;
 	i_arg = i_exec->arg;
-	while (i < argc)
+	while (++i < argc)
 	{
 		argv[i] = i_arg->value;
-		i++;
 		i_arg = i_arg->next;
 	}
 	argv[i] = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 22:53:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/25 22:56:41 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/27 14:08:21 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 char	*error_cmd_not_found(char *cmd)
 {
-	ft_putstr_fd("mi[SHELL]in: ", STDERR_FILENO);
+	ft_putstr_fd("\e[46m\e[1;91mmi[SHELL]in: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putendl_fd(": i know many commands, but this ain't one of 'em, babe", STDERR_FILENO);
+	ft_putendl_fd(": i know many commands,\
+but this ain't one of 'em, babe 😌\e[0m", STDERR_FILENO);
 	g_exit_status = EXIT_CMD_NOT_FOUND;
 	return (NULL);
 }
@@ -50,7 +51,8 @@ char	**prepare_paths(t_exec_block *exec_blocks)
 	return (paths_split);
 }
 
-char	**combine_paths_and_cmd(char *cmd, char **paths, t_exec_block *exec_blocks)
+char	**combine_paths_and_cmd(char *cmd, char **paths,
+				t_exec_block *exec_blocks)
 {
 	int		i;
 	char	*combined;
@@ -71,7 +73,7 @@ char	**combine_paths_and_cmd(char *cmd, char **paths, t_exec_block *exec_blocks)
 char	*check_paths(char **paths, t_exec_block *exec_blocks)
 {
 	char	*working_path;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (paths[i] != NULL)

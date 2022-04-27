@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 13:51:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/22 16:33:03 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/27 13:54:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	cmd_pwd(t_exec_block *cmd_pwd)
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 		return (handle_error(
-				"\e[31mMi[shell]in: pwd: no, this ain't right 🤥\e[0m\n",
+				"\e[46m\e[1;91mMi[shell]in: pwd: no, this ain't right 🤥\e[0m\n",
 				EXIT_STD_ERROR));
 	else
 	{
