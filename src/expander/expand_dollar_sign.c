@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar_sign.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:14:43 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/02 14:49:45 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:58:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ char	*collect_varname(char **iter, t_lexer_block *first)
 {
 	char	*varname;
 
+	(*iter)++;
 	varname = ft_strdup("");
 	if (varname == NULL)
-		return (NULL);
-	(*iter)++;
+		lexer_blocks_fail_exit(first);
 	while (**iter != ' ' && **iter != '\0' && **iter
-		!= '$' && **iter != '\'' && **iter != '"')
+		!= '$' && **iter != '\'' && **iter != '"' && *(*iter - 1) != '?')
 		expander_advance_with_char(iter, &varname, first);
 	return (varname);
 }
@@ -31,7 +31,9 @@ char	*collect_varvalue(char *varname)
 	t_env	*env;
 
 	if (varname[0] == '\0')
-		return (ft_strdup("$"));
+		return (ft_strdup("?"));
+	if (varname[0] == '?')
+		return (ft_itoa(g_exit_status));
 	env = *get_env(NULL);
 	while (env != NULL && varname != NULL)
 	{
