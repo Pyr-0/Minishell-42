@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:37:30 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 19:17:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 19:30:36 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	signalhandler_heredoc(int sig)
 		close(STDIN_FILENO);
 }
 
-static void	signalhandler_ctrlc(int sig)
+/* static void	signalhandler_ctrlc(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -53,5 +53,5 @@ void	sig_setter(void)
 	tcgetattr(0,&terminal);
 	terminal.c_lflag &= ~ECHOCTL;
 	tcsetattr(0,0,&terminal);
-	signal(SIGINT, set_signal_heredoc);
-}
+	signal(SIGINT,set_signal_heredoc);
+} */

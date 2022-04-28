@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 18:46:12 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 19:25:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	}
 	(void)argv;
 	g_exit_status = EXIT_SUCCESS;
-	sig_setter();
+	//sig_setter();
 	get_env(envp);
 }
 
