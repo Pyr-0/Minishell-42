@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sighandlers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:37:30 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:56:40 by satori           ###   ########.fr       */
+/*   Updated: 2022/04/28 19:27:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fuck_sigpipe(int sig)
 		close(STDIN_FILENO);
 } */
 
-static void	signalhandler_ctrlc(int sig)
+/* static void	signalhandler_ctrlc(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -54,4 +54,4 @@ void	sig_setter(void)
 	terminal.c_lflag &= ~ECHOCTL;
 	tcsetattr(0,0,&terminal);
 	signal(SIGINT,set_signal_heredoc);
-}
+} */

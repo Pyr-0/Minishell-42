@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 19:10:56 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 19:11:51 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 19:15:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@
 # include "parser.h"
 # include "redir_creator.h"
 # include "executor.h"
+# include "builtins.h"
 
 #endif
