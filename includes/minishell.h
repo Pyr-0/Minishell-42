@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 19:17:29 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:00:39 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void	print_split(char **split);
 void	sig_setter(void);
 void	set_signal_heredoc(void);
 void	fuck_sigpipe(int sig);
+void	clear_signals(void);
+void	signalhandler_heredoc(int sig);
 
 #endif

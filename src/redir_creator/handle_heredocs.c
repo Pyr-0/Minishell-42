@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:44:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:10:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	read_heredoc(int *heredoc_pp,
 	char	*line_read;
 	char	*line_with_newline;
 
+	set_signal_heredoc();
 	if (pipe(heredoc_pp) == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	while (true)
