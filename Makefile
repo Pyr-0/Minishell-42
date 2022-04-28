@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/27 18:02:35 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/28 18:31:16 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC			=		./src/print_stuff.c \
 					./src/executor/executor.c \
 					./src/executor/handle_inbuilt.c \
 					./src/executor/find_cmd_path.c \
+					./src/executor/envp_argv_creator.c \
 					./src/builtins/cmd_pwd.c \
 					./src/builtins/cmd_echo.c \
 					./src/builtins/cmd_cd.c \
