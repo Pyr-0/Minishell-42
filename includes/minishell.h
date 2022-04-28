@@ -6,37 +6,14 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 19:08:23 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 19:12:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdlib.h>
-# include <string.h>
-# include <ctype.h>
-# include <stdio.h>
-# include <limits.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <termios.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <locale.h>
-
-# include "../libft/libft.h"
-# include "structs.h"
-# include "env.h"
-# include "lexer.h"
-# include "expander.h"
-# include "parser.h"
-# include "redir_creator.h"
-# include "executor.h"
+# include "includes.h"
 
 # define EXIT_STD_ERROR			1
 # define EXIT_CMD_NOT_FOUND		127
