@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:59:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 14:22:15 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:43:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ bool	cmd_env(t_exec_block *cmd_env)
 		return (handle_error("\e[46m\e[1;91mMi[shell]in:\
 env: toooo much too handle 😥\e[0m\n", EXIT_STD_ERROR));
 	env = *(get_env(NULL));
-	printf("\n\e[45mprint env start\e[0m\n");//
 	while (env != NULL)
 	{
 		if (env->varvalue != NULL)
@@ -31,7 +30,6 @@ env: toooo much too handle 😥\e[0m\n", EXIT_STD_ERROR));
 		}
 		env = env->next;
 	}
-	printf("\e[45mprint env end\e[0m\n\n");//
 	g_exit_status = 0;
 	return (false);
 }

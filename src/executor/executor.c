@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:25:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 18:49:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	close_fds(t_exec_block *i_exec)
 	}
 }
 
-void	execute_cmd(char *cmd_path, t_exec_block *i_exec, t_exec_block *exec_blocks)
+void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
+						t_exec_block *exec_blocks)
 {
 	char	**argv;
 	char	**envp;
@@ -106,7 +107,8 @@ void	executor(t_exec_block *exec_blocks)
 	int				exit_status;
 
 	last_cmd_is_executable = executor_loop(exec_blocks);
-	while (wait(&exit_status) != -1) ;
+	while (wait(&exit_status) != -1)
+		;
 	if (last_cmd_is_executable == true)
 		g_exit_status = exit_status;
 	free_close_exec_blocks(exec_blocks);

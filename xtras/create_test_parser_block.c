@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_test_parser_block.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 20:13:46 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/22 13:28:43 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:36:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //to do: all pointer
 
+/*
 t_parser_block	*parser(t_lexer_block *lexer_blocks)
 {
 	(void)lexer_blocks;
@@ -52,3 +53,4 @@ t_parser_block	*parser(t_lexer_block *lexer_blocks)
 	parsi->next->next = NULL;
 	return (parsi);
 }
+*/

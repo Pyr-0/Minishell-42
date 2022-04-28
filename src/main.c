@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 18:21:57 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 18:46:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	main(int argc, char *argv[], char *envp[])
 		add_history(lexer_struct.contents);
 		lexer_done = lexer(&lexer_struct);
 		if (pipe_redir_error(lexer_done) == true)
-			continue;
+			continue ;
 		expander(lexer_done);
 		parser_done = parser(lexer_done);
 		if (parser_done == NULL)
-			continue;
+			continue ;
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
 		executor(exec_done);
