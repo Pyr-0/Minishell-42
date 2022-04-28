@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: satori <satori@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 17:56:01 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:56:06 by satori           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks);
 /*============SIGNALS===============*/
 
 void	sig_setter(void);
+void	set_signal_heredoc(void);
+
 #endif
