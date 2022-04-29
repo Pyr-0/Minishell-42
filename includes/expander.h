@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:07:18 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/01 23:29:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:52:10 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANDER_H
 # define EXPANDER_H
 
-/*============EXPANDER===============*/
+/* >============EXPANDER===============< */
 
 void	expander(t_lexer_block *lexer);
 void	expander_init_new_value(t_token *token, char *new_value);

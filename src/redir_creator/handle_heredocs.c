@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/27 18:35:41 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 20:10:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,15 @@ void	read_heredoc(int *heredoc_pp,
 	char	*line_read;
 	char	*line_with_newline;
 
+	set_signal_heredoc();
 	if (pipe(heredoc_pp) == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	while (true)
 	{
-		line_read = readline("\e[1;91mheredoc_>\e[46m\e[0m");
+		line_read = readline("\e[1;91m_> \e[46m\e[0m");
 		if (line_read == NULL)
 			read_heredoc_fail_exit(heredoc_pp, parser_blocks, exec_blocks);
-		if (ft_strcmp(line_read, i_redir->id) == 0)// we need to check the logic of the strcmp because it works with any part of the delimiter!
+		if (ft_strcmp(line_read, i_redir->id) == 0)
 		{
 			free (line_read);
 			return ;

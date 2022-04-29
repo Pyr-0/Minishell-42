@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 15:29:39 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:51:49 by shaas            ###   ########.fr       */
+/*   Created: 2022/04/28 19:14:35 by shaas             #+#    #+#             */
+/*   Updated: 2022/04/28 19:16:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-/* >============ENV===============< */
+/* >============BUILTINS===============< */
 
-t_env	**get_env(char *envp[]);
-t_env	*init_env(char *envp[]);
-t_env	*add_env_node(char *env_str, t_env *prev, t_env *first);
-t_env	*init_env_node(char *env_str, t_env *first);
-char	*env_get_current_char_as_string(char c, t_env *first);
-char	*get_varvalue(char *env_str, t_env *first);
-char	*get_varname(char *env_str, t_env *first);
-void	env_fail_exit(t_env *env);
-void	free_env(void);
+bool	cmd_echo(t_exec_block *echo);
+bool	cmd_pwd(t_exec_block *cmd_pwd);
+bool	cmd_cd(t_exec_block *cd);
+bool	cmd_env(t_exec_block *cmd_env);
+bool	cmd_export(t_exec_block *cmd_export);
+bool	handle_error(char *msg, int exit_status);
 char	*fetch_env_var_value(char *varname);
+void	unset_variable(t_arg *varname);
+bool	cmd_unset(t_exec_block *cmd_unset);
+int		cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks);
 
 #endif

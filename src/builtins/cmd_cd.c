@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 13:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 18:38:11 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:10:54 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	cmd_cd(t_exec_block *cd)
 	else
 		res = chdir(cd->arg->value);
 	if (res == -1)
-		return (handle_error("	\e[1;91mMi[shell]in:\
+		return (handle_error("\e[1;91mMi[shell]in: \
 cd: whatcha' lookin' for here Darlin' 🤨\e[0m\n", EXIT_STD_ERROR));
 	printf("%s\n", getcwd(s, 100));
 	g_exit_status = EXIT_SUCCESS;

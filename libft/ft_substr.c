@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 13:29:19 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/01 23:38:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:38:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	else
 	{
-		ft_strlcpy(str, s + start, len +1);
+		ft_strlcpy(str, s + start, len + 1);
 		return (str);
 	}
 }

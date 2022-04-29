@@ -6,14 +6,14 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/26 21:06:51 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 19:31:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-//===============LEXER=================//
+/* >============LEXER===============< */
 
 typedef struct s_lexer{
 	unsigned int	i;
@@ -44,7 +44,7 @@ typedef struct s_lexer_block{
 	char					*block_contents;
 }							t_lexer_block;
 
-//>===============PARSER=================<//
+/* >============PARSER===============< */
 
 typedef struct s_arg{
 	char					*value;
@@ -70,7 +70,15 @@ typedef struct s_parser_block{
 	struct s_parser_block	*next;
 }	t_parser_block;
 
-//===============EXECUTOR=================//
+/* >============EXPANDER===============< */
+
+typedef enum e_expand{
+	EXPAND_DOUBLE_QUOTE =	'"',
+	EXPAND_SINGLE_QUOTE =	'\'',
+	EXPAND_DOLLAR_SIGN =	'$'
+}				t_expand;
+
+/* >============EXECUTOR===============< */
 
 typedef struct s_exec_block{
 	char					*cmd;
@@ -83,23 +91,7 @@ typedef struct s_exec_block{
 	struct s_exec_block		*next;
 }	t_exec_block;
 
-//===============COMMANDS=================//
-
-typedef struct s_command{
-	char					**args;
-	int						fd;
-	struct s_parser_block	*next;
-}	t_command;
-
-//===============EXPANDER=================//
-
-typedef enum e_expand{
-	EXPAND_DOUBLE_QUOTE =	'"',
-	EXPAND_SINGLE_QUOTE =	'\'',
-	EXPAND_DOLLAR_SIGN =	'$'
-}				t_expand;
-
-//===============ENVIRONMENT=================//
+/* >============ENVIRONMENT===============< */
 
 typedef struct s_env{
 	char					*varname;

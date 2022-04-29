@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:30:47 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/20 18:44:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 18:44:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	cmd_echo(t_exec_block *echo)
 		i_arg = i_arg->next;
 		flag = 1;
 	}
-	printf("\n\e[45mecho command\e[0m\n"); //
 	while (i_arg)
 	{
 		ft_putstr_fd(i_arg->value, echo->out_fd);

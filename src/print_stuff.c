@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/26 20:56:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/28 18:48:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	print_exec_blocks(t_exec_block *exec_blocks)
 void	print_env(void)
 {
 	t_env	*env;
+
 	env = *(get_env(NULL));
 	printf("\n\e[45mprint env start\e[0m\n");
 	while (env != NULL)
