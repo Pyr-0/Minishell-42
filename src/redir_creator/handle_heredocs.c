@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 20:10:17 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 17:49:40 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	read_heredoc_fail_exit(int *heredoc_pp, t_parser_block *parser_blocks,
-			t_exec_block *exec_blocks)
+void	read_heredoc_fail_exit(int *heredoc_pp)
 {
 	close(heredoc_pp[PIPE_READ]);
 	close(heredoc_pp[PIPE_WRITE]);
-	free(heredoc_pp);
-	redir_creator_fail_exit2(parser_blocks, exec_blocks);
+	//free(heredoc_pp);
+	//redir_creator_fail_exit2(parser_blocks, exec_blocks); no longer needed
 }
 
 bool	check_if_last_input_is_heredoc(t_parser_block *i_parser)
@@ -70,15 +69,20 @@ void	read_heredoc(int *heredoc_pp,
 {
 	char	*line_read;
 	char	*line_with_newline;
-
-	set_signal_heredoc();
+	int		temp_fd;
+	
+	temp_fd = dup(STDIN_FILENO);
+	signal(SIGINT,signal_handler_heredoc);
 	if (pipe(heredoc_pp) == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	while (true)
 	{
 		line_read = readline("\e[1;91m_> \e[46m\e[0m");
 		if (line_read == NULL)
-			read_heredoc_fail_exit(heredoc_pp, parser_blocks, exec_blocks);
+		{
+			read_heredoc_fail_exit(heredoc_pp);
+			break;
+		}
 		if (ft_strcmp(line_read, i_redir->id) == 0)
 		{
 			free (line_read);
@@ -86,12 +90,13 @@ void	read_heredoc(int *heredoc_pp,
 		}
 		line_with_newline = ft_strjoin(line_read, "\n");
 		if (line_with_newline == NULL)
-			read_heredoc_fail_exit(heredoc_pp, parser_blocks, exec_blocks);
+			read_heredoc_fail_exit(heredoc_pp);
 		write(heredoc_pp[PIPE_WRITE], line_with_newline,
 			ft_strlen(line_with_newline));
 		free(line_read);
 		free(line_with_newline);
 	}
+	dup2(temp_fd, STDIN_FILENO);
 }
 
 int	handle_heredocs(t_exec_block *i_exec,

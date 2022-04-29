@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 19:55:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 17:45:01 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	exit_readline_fail(void)
 {
 	free_env();
+	write(1,"exit\n", 5);
 	exit(EXIT_FAILURE);
 }
 
@@ -28,11 +29,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	}
 	(void)argv;
 	g_exit_status = EXIT_SUCCESS;
-	clear_signals();
-	sig_setter();
 	get_env(envp);
-/* 	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN); */
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -45,6 +42,7 @@ int	main(int argc, char *argv[], char *envp[])
 	minishell_setup(argc, argv, envp);
 	while (true)
 	{
+		set_signals();
 		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
@@ -58,6 +56,9 @@ int	main(int argc, char *argv[], char *envp[])
 			continue ;
 		exec_done = redir_creator(parser_done);
 		print_exec_blocks(exec_done); //
+		clear_signals();
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		executor(exec_done);
 	//	free_env(); //at the end
 	//	break ; //

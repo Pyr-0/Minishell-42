@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:49:21 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/29 17:36:11 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 
 	argv = argv_creator(i_exec, exec_blocks);
 	envp = envp_creator(exec_blocks);
+	signal(SIGINT, signalhandler_ctrl_child);
 	pid = fork();
 	if (pid == -1)
 		executor_fail_exit(exec_blocks);
@@ -64,6 +65,8 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 	{
 		dup2(i_exec->in_fd, STDIN_FILENO);
 		dup2(i_exec->out_fd, STDOUT_FILENO);
+		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
 		execve(cmd_path, argv, envp);
 		exit(EXIT_FAILURE);
 	}
@@ -108,7 +111,7 @@ void	executor(t_exec_block *exec_blocks)
 
 	last_cmd_is_executable = executor_loop(exec_blocks);
 	while (wait(&exit_status) != -1)
-		;
+		; // we must use waitpid in order to get exit status of last exec process.
 	if (last_cmd_is_executable == true)
 		g_exit_status = exit_status;
 	free_close_exec_blocks(exec_blocks);

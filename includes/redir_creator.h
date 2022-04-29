@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:38:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/19 21:31:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/04/29 16:11:45 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void			read_heredoc(int *heredoc_pp,
 int				init_i_exec_with_heredoc(int *heredoc_pp,
 					t_exec_block *i_exec, t_parser_block *i_parser);
 bool			check_if_last_input_is_heredoc(t_parser_block *i_parser);
-void			read_heredoc_fail_exit(int *heredoc_pp,
-					t_parser_block *parser_blocks, t_exec_block *exec_blocks);
+void			read_heredoc_fail_exit(int *heredoc_pp);
 
 #endif
