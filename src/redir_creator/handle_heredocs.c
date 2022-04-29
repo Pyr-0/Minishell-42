@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 17:49:40 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 17:59:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	read_heredoc(int *heredoc_pp,
 	char	*line_read;
 	char	*line_with_newline;
 	int		temp_fd;
-	
+
 	temp_fd = dup(STDIN_FILENO);
-	signal(SIGINT,signal_handler_heredoc);
+	signal(SIGINT, signal_handler_heredoc);
 	if (pipe(heredoc_pp) == -1)
 		redir_creator_fail_exit2(parser_blocks, exec_blocks);
 	while (true)
@@ -81,7 +81,7 @@ void	read_heredoc(int *heredoc_pp,
 		if (line_read == NULL)
 		{
 			read_heredoc_fail_exit(heredoc_pp);
-			break;
+			break ;
 		}
 		if (ft_strcmp(line_read, i_redir->id) == 0)
 		{

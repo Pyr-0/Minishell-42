@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/29 16:35:38 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 17:58:18 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	set_signals(void);
 void	set_signal_heredoc(void);
 void	fuck_sigpipe(int sig);
 void	clear_signals(void);
+void	signalhandler_ctrlc(int sig);
 void	signal_handler_heredoc(int sig);
-void	exit_signal(void);
 void	signalhandler_ctrl_child(int sig);
+void	exit_signal(void);
 
 #endif

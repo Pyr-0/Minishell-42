@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/29 17:45:01 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/29 18:02:53 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_readline_fail(void)
 {
 	free_env();
-	write(1,"exit\n", 5);
+	write(1, "exit\n", 5);
 	exit(EXIT_FAILURE);
 }
 
