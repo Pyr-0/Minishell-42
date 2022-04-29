@@ -23,12 +23,12 @@ bool	cmd_cd(t_exec_block *cd)
 		res = chdir(fetch_env_var_value("HOME"));
 	else if (cd->arg->next != NULL)
 		return (handle_error(
-				"\e[1;91mMi[shell]in: cd: toooo much too handle 😥 \e[0m\n",
+				"	\e[1;91mMi[shell]in: cd: toooo much too handle 😥 \e[0m\n",
 				EXIT_STD_ERROR));
 	else
 		res = chdir(cd->arg->value);
 	if (res == -1)
-		return (handle_error("\e[1;91mMi[shell]in:\
+		return (handle_error("	\e[1;91mMi[shell]in:\
 cd: whatcha' lookin' for here Darlin' 🤨\e[0m\n", EXIT_STD_ERROR));
 	printf("%s\n", getcwd(s, 100));
 	g_exit_status = EXIT_SUCCESS;
