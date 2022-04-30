@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/30 03:09:23 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/30 21:41:26 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	signalhandler_ctrlc(int sig);
 void	signal_handler_heredoc(int sig);
 void	signalhandler_ctrl_child(int sig);
 void	exit_signal(void);
-void progress();
+void progress_bar();
 
 #endif

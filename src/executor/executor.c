@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 18:00:13 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/30 21:50:30 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 		execve(cmd_path, argv, envp);
 		exit(EXIT_FAILURE);
 	}
+	if_pids();
 	close_fds(i_exec);
 	free(argv);
 	free_split(envp);
