@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/29 17:58:47 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/04/30 03:10:08 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC			=		./src/print_stuff.c \
 					./src/pipe_redir_error.c \
 					./src/sighandlers.c \
 					./src/signals.c \
+					./src/bar.c \
 					./src/env/get_env.c \
 					./src/env/init_env.c \
 					./src/env/env_utils.c \

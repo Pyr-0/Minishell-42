@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/29 23:36:57 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/04/30 03:11:08 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_parser_block	*parser_done;
 	t_exec_block	*exec_done;
 
+	progress();
 	minishell_setup(argc, argv, envp);
 	while (true)
 	{
