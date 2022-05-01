@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:10:36 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:30:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/01 20:44:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* >============EXECUTOR===============< */
 
 void	executor(t_exec_block *exec_blocks);
-bool	executor_loop(t_exec_block *exec_blocks);
+bool	executor_loop(t_exec_block *exec_blocks, int *child_process_num);
 void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 			t_exec_block *exec_blocks);
 void	close_fds(t_exec_block *i_exec);
