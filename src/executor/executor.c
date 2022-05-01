@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/01 19:24:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 20:43:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 	free_split(envp);
 }
 
-bool	executor_loop(t_exec_block *exec_blocks)
+bool	executor_loop(t_exec_block *exec_blocks, int *child_process_num)
 {
 	t_exec_block	*i_exec;
 	char			*cmd_path;
@@ -96,6 +96,7 @@ bool	executor_loop(t_exec_block *exec_blocks)
 			{
 				if (i_exec->next == NULL)
 					last_cmd_is_executable = true;
+				(*child_process_num)++;
 				execute_cmd(cmd_path, i_exec, exec_blocks);
 			}
 			free(cmd_path);
@@ -107,12 +108,17 @@ bool	executor_loop(t_exec_block *exec_blocks)
 
 void	executor(t_exec_block *exec_blocks)
 {
-	bool			last_cmd_is_executable;
-	int				exit_status;
+	bool	last_cmd_is_executable;
+	int		exit_status;
+	int		child_process_num;
 
-	last_cmd_is_executable = executor_loop(exec_blocks);
-	while (wait(&exit_status) != -1)
-		; // we must use waitpid in order to get exit status of last exec process
+	child_process_num = 0;
+	last_cmd_is_executable = executor_loop(exec_blocks, &child_process_num);
+	while (child_process_num > 0)
+	{
+		waitpid(0, &exit_status, 0); // we must use waitpid in order to get exit status of last exec process
+		child_process_num--;
+	}
 	if (last_cmd_is_executable == true)
 		g_exit_status = exit_status;
 	free_close_exec_blocks(exec_blocks);

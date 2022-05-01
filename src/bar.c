@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bar.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/05/01 22:25:55 by mrojas-e         ###   ########.fr       */
+=======
+/*   Updated: 2022/05/01 19:29:04 by shaas            ###   ########.fr       */
+>>>>>>> 39b244d52a78a9e850904f9475e4db15e516d6d5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +32,7 @@ void	progress_bar(void)
 		bar[i] = '#';
 		printf("\r\e[4;35m\e[40m\e[1;98m[%-2s]\e[0m\e[36m [%d%%] [%c]", bar,
 			i, lable[i % 4]);
-		usleep(30000);
+		usleep(3000);
 		fflush(stdout);
 		i++;
 	}
