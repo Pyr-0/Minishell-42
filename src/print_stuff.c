@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_stuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 18:48:41 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/01 23:25:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,6 @@ void	print_exec_blocks(t_exec_block *exec_blocks)
 		}
 		printf("input_fd: %d\n", i_block->in_fd);
 		printf("output_fd: %d\n", i_block->out_fd);
-		printf("pp_in: %d\n", i_block->pp_in);
-		printf("pp_out: %d\n", i_block->pp_out);
-		printf("heredoc_pp_in: %d\n", i_block->heredoc_pp_in);
 		printf("\n");
 		i_block = i_block->next;
 	}

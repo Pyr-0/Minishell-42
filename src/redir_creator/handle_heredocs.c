@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 17:59:52 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 23:13:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	read_heredoc_fail_exit(int *heredoc_pp)
 {
 	close(heredoc_pp[PIPE_READ]);
 	close(heredoc_pp[PIPE_WRITE]);
-	//free(heredoc_pp);
-	//redir_creator_fail_exit2(parser_blocks, exec_blocks); no longer needed
 }
 
 bool	check_if_last_input_is_heredoc(t_parser_block *i_parser)
@@ -47,7 +45,7 @@ int	init_i_exec_with_heredoc(int *heredoc_pp,
 	last_input_is_heredoc = check_if_last_input_is_heredoc(i_parser);
 	if (last_input_is_heredoc == true)
 	{
-		i_exec->heredoc_pp_in = heredoc_pp[PIPE_WRITE];
+		close(heredoc_pp[PIPE_WRITE]);
 		heredoc_pp_out = heredoc_pp[PIPE_READ];
 		free(heredoc_pp);
 		return (heredoc_pp_out);

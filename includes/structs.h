@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 19:31:54 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/01 23:24:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ typedef struct s_exec_block{
 	t_arg					*arg;
 	int						in_fd;
 	int						out_fd;
-	int						pp_in;
-	int						pp_out;
-	int						heredoc_pp_in;
 	struct s_exec_block		*next;
 }	t_exec_block;
 
