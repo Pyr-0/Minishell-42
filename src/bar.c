@@ -6,7 +6,11 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2022/05/01 22:25:55 by mrojas-e         ###   ########.fr       */
+=======
 /*   Updated: 2022/05/01 19:29:04 by shaas            ###   ########.fr       */
+>>>>>>> 39b244d52a78a9e850904f9475e4db15e516d6d5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +38,4 @@ void	progress_bar(void)
 	}
 	printf("\n");
 }
-//printf("\r\e[36m [%d%%] [%c]\n",i,lable[i%4]); line by line %
+	//printf("\r\e[36m [%d%%] [%c]\n",i,lable[i%4]); line by line %
