@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/01 19:13:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 20:58:21 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	progress_bar(void)
 		bar[i] = '#';
 		printf("\r\e[4;35m\e[40m\e[1;98m[%-2s]\e[0m\e[36m [%d%%] [%c]", bar,
 			i, lable[i % 4]);
-		usleep(30000);
+		usleep(4000);
 		fflush(stdout);
 		i++;
 	}
