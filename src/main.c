@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/30 03:11:08 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 19:25:44 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void	exit_readline_fail(void)
 {
 	free_env();
-	write(1, "\nexit\n", 6);
+	write(1, "exit\n", 6);
 	exit(EXIT_FAILURE);
 }
 
 void	minishell_setup(int argc, char *argv[], char *envp[])
 {
+	progress_bar();
 	if (argc != 1)
 	{
 		printf("\e[31mwhat is your problem?\
@@ -39,7 +40,6 @@ int	main(int argc, char *argv[], char *envp[])
 	t_parser_block	*parser_done;
 	t_exec_block	*exec_done;
 
-	progress();
 	minishell_setup(argc, argv, envp);
 	while (true)
 	{

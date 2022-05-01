@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:37:30 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 18:01:46 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 19:22:55 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	signalhandler_ctrl_child(int sig)
 	{
 		printf("\n");
 	}
-	else if (sig == SIGQUIT)
-		printf("Quit: 3\n");
+	if (sig == SIGQUIT)
+		write(1,"Quit: 3\n", 8);
 }
