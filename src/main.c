@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 20:47:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 22:20:36 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	exit_readline_fail(void)
 {
 	free_env();
-	write(1, "exit\n", 5);
+	write(1, "exit\n", 6);
+	if ()
 	exit(EXIT_FAILURE);
 }
 
