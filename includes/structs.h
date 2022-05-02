@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:09:22 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/01 23:24:56 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:59:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ typedef struct s_exec_block{
 	int						out_fd;
 	struct s_exec_block		*next;
 }	t_exec_block;
+
+typedef struct s_temp_fds{
+	int	fds_to_use[2];
+	int	pp[2];
+	int	tmp_in;
+}	t_temp_fds;
 
 /* >============ENVIRONMENT===============< */
 

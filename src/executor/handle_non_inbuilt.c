@@ -6,14 +6,35 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:35:18 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 21:52:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 22:21:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	execute_cmd(int fds_to_use[2], char *cmd_path, t_exec_block *i_exec,
-						t_exec_block *exec_blocks, int tmp_in, int pp[2])
+void	child(t_temp_fds *temp, char **argv, char **envp, char *cmd_path)
+{
+	dup2(temp->fds_to_use[READ], STDIN_FILENO);
+	dup2(temp->fds_to_use[WRITE], STDOUT_FILENO);
+	if (temp->tmp_in > STDERR_FILENO)
+		close(temp->tmp_in);
+	if (temp->pp[0] > STDERR_FILENO)
+		close(temp->pp[0]);
+	if (temp->pp[1] > STDERR_FILENO)
+		close(temp->pp[1]);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+	if (ft_strcmp(cmd_path, "./minishell") == 0)
+	{
+		ignore_all_signals(); // :(
+		printf("%s\n", cmd_path); //
+	}
+	execve(cmd_path, argv, envp);
+	exit(EXIT_FAILURE);
+}
+
+void	execute_cmd(t_temp_fds *temp, char *cmd_path, t_exec_block *i_exec,
+						t_exec_block *exec_blocks)
 {
 	char	**argv;
 	char	**envp;
@@ -28,30 +49,14 @@ void	execute_cmd(int fds_to_use[2], char *cmd_path, t_exec_block *i_exec,
 		executor_fail_exit(exec_blocks);
 	if (pid == 0)
 	{
-		dup2(fds_to_use[READ], STDIN_FILENO);
-		dup2(fds_to_use[WRITE], STDOUT_FILENO);
-		if (tmp_in > STDERR_FILENO)
-			close(tmp_in);
-		if (pp[0] > STDERR_FILENO)
-			close(pp[0]);
-		if (pp[1] > STDERR_FILENO)
-			close(pp[1]);
-		signal(SIGQUIT, SIG_DFL);
-		signal(SIGINT, SIG_DFL);
-		if (ft_strcmp(i_exec->cmd, "./minishell") == 0)
-		{
-			ignore_all_signals(); // :(
-			printf("i ignore\n"); //
-		}
-		execve(cmd_path, argv, envp);
-		exit(EXIT_FAILURE);
+		child(temp, argv, envp, cmd_path);
 	}
 	free(argv);
 	free_split(envp);
 }
 
-bool	handle_non_inbuilt(int fds_to_use[2], t_exec_block *i_exec,
-							t_exec_block *exec_blocks, int *child_process_num, int tmp_in, int pp[2])
+bool	handle_non_inbuilt(t_temp_fds *temp, t_exec_block *i_exec,
+							t_exec_block *exec_blocks, int *child_process_num)
 {
 	bool	last_cmd_is_executable;
 	char	*cmd_path;
@@ -63,7 +68,7 @@ bool	handle_non_inbuilt(int fds_to_use[2], t_exec_block *i_exec,
 		if (i_exec->next == NULL)
 			last_cmd_is_executable = true;
 		(*child_process_num)++;
-		execute_cmd(fds_to_use, cmd_path, i_exec, exec_blocks, tmp_in, pp);
+		execute_cmd(temp, cmd_path, i_exec, exec_blocks);
 	}
 	free(cmd_path);
 	return (last_cmd_is_executable);
