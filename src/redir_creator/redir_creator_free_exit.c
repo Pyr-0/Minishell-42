@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator_free_exit.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:18:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 16:08:41 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/01 23:10:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ void	free_close_exec_blocks(t_exec_block *exec_blocks)
 			close(exec_blocks->in_fd);
 		if (exec_blocks->out_fd > STDERR_FILENO)
 			close(exec_blocks->out_fd);
-		if (exec_blocks->pp_in > STDERR_FILENO)
-			close(exec_blocks->pp_in);
-		if (exec_blocks->pp_out > STDERR_FILENO)
-			close(exec_blocks->pp_out);
-		if (exec_blocks->heredoc_pp_in > STDERR_FILENO)
-			close(exec_blocks->heredoc_pp_in);
 		exec_blocks = exec_blocks->next;
 		free(free_blocks);
 		free_blocks = exec_blocks;

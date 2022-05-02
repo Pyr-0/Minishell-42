@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 16:04:18 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:48:20 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	close_fds(t_exec_block *i_exec)
 		close(i_exec->out_fd);
 		i_exec->out_fd = -1;
 	}
-	if (i_exec->heredoc_pp_in > STDERR_FILENO)
-	{
-		close(i_exec->heredoc_pp_in);
-		i_exec->heredoc_pp_in = -1;
-	}
 }
 
 void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
@@ -66,6 +61,7 @@ void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
 	{
 		dup2(i_exec->in_fd, STDIN_FILENO);
 		dup2(i_exec->out_fd, STDOUT_FILENO);
+		close_fds(i_exec);
 		signal(SIGQUIT, SIG_DFL);
 		signal(SIGINT, SIG_DFL);
 		execve(cmd_path, argv, envp);
@@ -81,12 +77,20 @@ bool	executor_loop(t_exec_block *exec_blocks, int *child_process_num)
 	t_exec_block	*i_exec;
 	char			*cmd_path;
 	bool			last_cmd_is_executable;
+	int				pp[2];
 
 	cmd_path = NULL;
 	i_exec = exec_blocks;
 	last_cmd_is_executable = false;
 	while (i_exec != NULL)
 	{
+		if (i_exec->next != NULL)
+		{
+			if (pipe(pp) == -1)
+				executor_fail_exit(exec_blocks);
+			if (i_exec->out_fd == -1)
+				// make 1 pipe for whole process. then, also one fd for the remainning read ed of the pipe. divide functions before though!!! very important!
+		}
 		if (is_inbuilt(i_exec) == true)
 			handle_inbuilt(i_exec, exec_blocks);
 		else if (i_exec->cmd != NULL)

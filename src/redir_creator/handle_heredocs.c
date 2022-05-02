@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 16:03:55 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:48:03 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	init_i_exec_with_heredoc(int *heredoc_pp,
 	last_input_is_heredoc = check_if_last_input_is_heredoc(i_parser);
 	if (last_input_is_heredoc == true)
 	{
-		i_exec->heredoc_pp_in = heredoc_pp[PIPE_WRITE];
+		close(heredoc_pp[PIPE_WRITE]);
 		heredoc_pp_out = heredoc_pp[PIPE_READ];
 		free(heredoc_pp);
 		return (heredoc_pp_out);
