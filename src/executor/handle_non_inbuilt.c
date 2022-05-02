@@ -6,14 +6,14 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:35:18 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 20:42:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:52:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 void	execute_cmd(int fds_to_use[2], char *cmd_path, t_exec_block *i_exec,
-						t_exec_block *exec_blocks)
+						t_exec_block *exec_blocks, int tmp_in, int pp[2])
 {
 	char	**argv;
 	char	**envp;
@@ -30,8 +30,19 @@ void	execute_cmd(int fds_to_use[2], char *cmd_path, t_exec_block *i_exec,
 	{
 		dup2(fds_to_use[READ], STDIN_FILENO);
 		dup2(fds_to_use[WRITE], STDOUT_FILENO);
+		if (tmp_in > STDERR_FILENO)
+			close(tmp_in);
+		if (pp[0] > STDERR_FILENO)
+			close(pp[0]);
+		if (pp[1] > STDERR_FILENO)
+			close(pp[1]);
 		signal(SIGQUIT, SIG_DFL);
 		signal(SIGINT, SIG_DFL);
+		if (ft_strcmp(i_exec->cmd, "./minishell") == 0)
+		{
+			ignore_all_signals(); // :(
+			printf("i ignore\n"); //
+		}
 		execve(cmd_path, argv, envp);
 		exit(EXIT_FAILURE);
 	}
@@ -40,7 +51,7 @@ void	execute_cmd(int fds_to_use[2], char *cmd_path, t_exec_block *i_exec,
 }
 
 bool	handle_non_inbuilt(int fds_to_use[2], t_exec_block *i_exec,
-							t_exec_block *exec_blocks, int *child_process_num)
+							t_exec_block *exec_blocks, int *child_process_num, int tmp_in, int pp[2])
 {
 	bool	last_cmd_is_executable;
 	char	*cmd_path;
@@ -52,7 +63,7 @@ bool	handle_non_inbuilt(int fds_to_use[2], t_exec_block *i_exec,
 		if (i_exec->next == NULL)
 			last_cmd_is_executable = true;
 		(*child_process_num)++;
-		execute_cmd(fds_to_use, cmd_path, i_exec, exec_blocks);
+		execute_cmd(fds_to_use, cmd_path, i_exec, exec_blocks, tmp_in, pp);
 	}
 	free(cmd_path);
 	return (last_cmd_is_executable);

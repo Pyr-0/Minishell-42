@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 20:43:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:48:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,20 @@ void	congfigure_fds(int pp[2], int fds_to_use[2],
 		fds_to_use[WRITE] = STDOUT_FILENO;
 }
 
-void	prepare_for_next_loop(t_exec_block *i_exec, int *tmp_in, int pp[2])
+void	prepare_for_next_loop(int *tmp_in, int pp[2])
 {
-	if (i_exec->next != NULL)
+	if (*tmp_in != STDIN_FILENO)
+		close(*tmp_in);
+	if (pp[WRITE] != -1)
 	{
-		if (*tmp_in != STDIN_FILENO)
-			close(*tmp_in);
-		if (pp[WRITE] != -1)
-		{
-			close(pp[WRITE]);
-			pp[WRITE] = -1;
-		}
-		*tmp_in = pp[READ];
+		close(pp[WRITE]);
+		pp[WRITE] = -1;
+	}
+	*tmp_in = dup(pp[READ]);
+	if (pp[READ] != -1)
+	{
+		close(pp[READ]);
+		pp[READ] = -1;
 	}
 }
 
@@ -74,8 +76,8 @@ bool	executor_loop(t_exec_block *exec_blocks, int *child_process_num)
 			handle_inbuilt(fds_to_use, i_exec, exec_blocks);
 		else if (i_exec->cmd != NULL)
 			last_cmd_is_executable = handle_non_inbuilt(fds_to_use,
-					i_exec, exec_blocks, child_process_num);
-		prepare_for_next_loop(i_exec, &tmp_in, pp);
+					i_exec, exec_blocks, child_process_num, tmp_in, pp);
+		prepare_for_next_loop(&tmp_in, pp);
 		i_exec = i_exec->next;
 	}
 	close(pp[READ]);

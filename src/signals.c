@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:53:57 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/29 18:01:22 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:13:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,10 @@ void	clear_signals(void)
 	tcgetattr(1, &term);
 	term.c_lflag |= ECHOCTL;
 	tcsetattr(1, 0, &term);
+}
+
+void	ignore_all_signals(void)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
 }

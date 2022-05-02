@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 20:45:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:06:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	clear_signals(void);
 void	signalhandler_ctrlc(int sig);
 void	signal_handler_heredoc(int sig);
 void	signalhandler_ctrl_child(int sig);
+void	ignore_all_signals(void);
 void	exit_signal(void);
 void	progress_bar(void);
 
