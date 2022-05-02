@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/01 21:17:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 16:10:29 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int argc, char *argv[], char *envp[])
 	while (true)
 	{
 		set_signals();
-		lexer_struct.contents = readline("\e[4;35m\e[40m\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
+		lexer_struct.contents = readline("\e[4;35m\e[40m\
+\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //[*1]
 		if (lexer_struct.contents == NULL)
 			exit_readline_fail();
 		add_history(lexer_struct.contents);
@@ -66,6 +67,9 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	return (0);
 }
+
+//[*1] ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
+
 
 /*
 (bash init_docker.sh)

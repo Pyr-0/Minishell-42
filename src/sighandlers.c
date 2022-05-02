@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sighandlers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:37:30 by shaas             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/01 21:11:01 by mrojas-e         ###   ########.fr       */
-=======
-/*   Updated: 2022/05/01 19:32:28 by shaas            ###   ########.fr       */
->>>>>>> 39b244d52a78a9e850904f9475e4db15e516d6d5
+/*   Updated: 2022/05/02 16:06:42 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +37,6 @@ void	signalhandler_ctrl_child(int sig)
 	}
 	if (sig == SIGQUIT)
 	{
-		write(1,"Quit: 3\n", 8);
+		write(1, "Quit: 3\n", 8);
 	}
 }

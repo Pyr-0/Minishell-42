@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/01 20:43:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 16:04:18 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	executor(t_exec_block *exec_blocks)
 	last_cmd_is_executable = executor_loop(exec_blocks, &child_process_num);
 	while (child_process_num > 0)
 	{
-		waitpid(0, &exit_status, 0); // we must use waitpid in order to get exit status of last exec process
+		waitpid(0, &exit_status, 0);
 		child_process_num--;
 	}
 	if (last_cmd_is_executable == true)

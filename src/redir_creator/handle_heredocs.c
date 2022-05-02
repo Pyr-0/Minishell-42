@@ -6,37 +6,11 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 17:59:52 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:03:55 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	read_heredoc_fail_exit(int *heredoc_pp)
-{
-	close(heredoc_pp[PIPE_READ]);
-	close(heredoc_pp[PIPE_WRITE]);
-	//free(heredoc_pp);
-	//redir_creator_fail_exit2(parser_blocks, exec_blocks); no longer needed
-}
-
-bool	check_if_last_input_is_heredoc(t_parser_block *i_parser)
-{
-	t_redir	*i_redir;
-	bool	last_input_is_heredoc;
-
-	i_redir = i_parser->redir;
-	last_input_is_heredoc = false;
-	while (i_redir != NULL)
-	{
-		if (i_redir->e_redir_type == REDIR_INPUT_HEREDOC)
-			last_input_is_heredoc = true;
-		if (i_redir->e_redir_type == REDIR_INPUT_FILE)
-			last_input_is_heredoc = false;
-		i_redir = i_redir->next;
-	}
-	return (last_input_is_heredoc);
-}
 
 int	init_i_exec_with_heredoc(int *heredoc_pp,
 				t_exec_block *i_exec, t_parser_block *i_parser)
@@ -63,12 +37,24 @@ int	init_i_exec_with_heredoc(int *heredoc_pp,
 	}
 }
 
+static void	heredoc_helper(char *line_read, int *heredoc_pp)
+{
+	char	*line_with_newline;
+
+	line_with_newline = ft_strjoin(line_read, "\n");
+	if (line_with_newline == NULL)
+		read_heredoc_fail_exit(heredoc_pp);
+	write(heredoc_pp[PIPE_WRITE], line_with_newline,
+		ft_strlen(line_with_newline));
+	free(line_read);
+	free(line_with_newline);
+}
+
 void	read_heredoc(int *heredoc_pp,
 			t_redir *i_redir, t_exec_block *exec_blocks,
 			t_parser_block *parser_blocks)
 {
 	char	*line_read;
-	char	*line_with_newline;
 	int		temp_fd;
 
 	temp_fd = dup(STDIN_FILENO);
@@ -88,13 +74,7 @@ void	read_heredoc(int *heredoc_pp,
 			free (line_read);
 			return ;
 		}
-		line_with_newline = ft_strjoin(line_read, "\n");
-		if (line_with_newline == NULL)
-			read_heredoc_fail_exit(heredoc_pp);
-		write(heredoc_pp[PIPE_WRITE], line_with_newline,
-			ft_strlen(line_with_newline));
-		free(line_read);
-		free(line_with_newline);
+		heredoc_helper(line_read, heredoc_pp);
 	}
 	dup2(temp_fd, STDIN_FILENO);
 }

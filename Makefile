@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+         #
+#    By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/04/30 03:10:08 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/05/01 22:42:20 by mrojas-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ exec:
 				@tput setaf 05 && printf "                            by shaas & mrojas-e  \n"
 				@tput setaf 005 && printf "    *--------executing program!------------*\n"
 				@printf "\e[0m"
+
 				./$(NAME)
 
 both:			$(NAME) exec
