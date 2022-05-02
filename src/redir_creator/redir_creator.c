@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:10:31 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 17:51:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 22:34:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	handle_redirs_of_one_block(t_exec_block *i_exec,
 
 	is_fail = false;
 	heredoc_fd = handle_heredocs(i_parser, exec_blocks, parser_blocks);
+	if (heredoc_fd == -2)
+		return (true);
 	is_fail = handle_redir_files(i_exec, i_parser);
 	if (heredoc_fd != -1)
 		replace_fd(&i_exec->in_fd, heredoc_fd);

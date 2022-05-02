@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 19:23:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 22:38:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	reinstate_stdin(int temp_fd)
 	close(temp_fd);
 }
 
-void	read_heredoc(int *heredoc_pp,
+bool	read_heredoc(int *heredoc_pp,
 			t_redir *i_redir, t_exec_block *exec_blocks,
 			t_parser_block *parser_blocks)
 {
@@ -73,13 +73,13 @@ void	read_heredoc(int *heredoc_pp,
 		{
 			reinstate_stdin(temp_fd);
 			read_heredoc_fail_exit(heredoc_pp);
-			break ;
+			return (true);
 		}
 		if (ft_strcmp(line_read, i_redir->id) == 0)
 		{
 			reinstate_stdin(temp_fd);
 			free (line_read);
-			return ;
+			return (false);
 		}
 		heredoc_helper(line_read, heredoc_pp);
 	}
@@ -104,7 +104,9 @@ int	handle_heredocs(t_parser_block *i_parser, t_exec_block *exec_blocks,
 				close(heredoc_pp[WRITE]);
 				close(heredoc_pp[READ]);
 			}
-			read_heredoc(heredoc_pp, i_redir, exec_blocks, parser_blocks);
+			if (read_heredoc(heredoc_pp, i_redir,
+					exec_blocks, parser_blocks) == true)
+				return (-2);
 		}
 		i_redir = i_redir->next;
 	}
