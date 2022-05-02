@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_creator.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:38:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/29 16:11:45 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:45:32 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,13 @@ bool			open_input_file(t_redir *input, t_exec_block *curr);
 bool			open_output_file(t_redir *output, t_exec_block *curr);
 
 /* >============REDIR CREATOR HANDLE HEREDOCS===============< */
-int				handle_heredocs(t_exec_block *i_exec,
-					t_parser_block *i_parser, t_exec_block *exec_blocks,
-					t_parser_block *parser_blocks);
+int				handle_heredocs(t_parser_block *i_parser,
+					t_exec_block *exec_blocks, t_parser_block *parser_blocks);
 void			read_heredoc(int *heredoc_pp,
 					t_redir *i_redir, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks);
 int				init_i_exec_with_heredoc(int *heredoc_pp,
-					t_exec_block *i_exec, t_parser_block *i_parser);
+					t_parser_block *i_parser);
 bool			check_if_last_input_is_heredoc(t_parser_block *i_parser);
 void			read_heredoc_fail_exit(int *heredoc_pp);
 

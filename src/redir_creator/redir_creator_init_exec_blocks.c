@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:09:21 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/01 23:33:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 17:43:16 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_exec_block	*init_exec_block(t_parser_block *parser_blocks,
 		redir_creator_fail_exit1(parser_blocks, first);
 	new->cmd = NULL;
 	new->arg = NULL;
-	new->in_fd = -1;
-	new->out_fd = -1;
+	new->in_fd = STDIN_FILENO;
+	new->out_fd = STDOUT_FILENO;
 	new->next = NULL;
 	return (new);
 }

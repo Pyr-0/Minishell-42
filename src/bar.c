@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bar.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 15:37:31 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:54:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	progress_bar(void)
 			ft_strlcpy(&bar[i], someonesmom, 500);
 		printf("\r\e[4;35m\e[40m\e[1;98m%-2s\e[0m\e[36m [%d%%] [%c]", bar,
 			i, lable[i % 4]);
-		usleep(30000);
+		usleep(3000);
 		fflush(stdout);
 		i ++;
 	}

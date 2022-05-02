@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:01:36 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 16:03:28 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 18:32:32 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	read_heredoc_fail_exit(int *heredoc_pp)
 {
-	close(heredoc_pp[PIPE_READ]);
-	close(heredoc_pp[PIPE_WRITE]);
+	close(heredoc_pp[READ]);
+	close(heredoc_pp[WRITE]);
 }
 
 bool	check_if_last_input_is_heredoc(t_parser_block *i_parser)

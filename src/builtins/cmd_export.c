@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:02:58 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 13:55:02 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 18:59:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static bool	print_export(t_exec_block *cmd_export)
+static bool	print_export(int fds_to_use[2])
 {
 	t_env	*export;
 
 	export = *(get_env(NULL));
 	while (export != NULL)
 	{
-		ft_putstr_fd("declare -x ", cmd_export->out_fd);
-		ft_putstr_fd(export->varname, cmd_export->out_fd);
+		ft_putstr_fd("declare -x ", fds_to_use[WRITE]);
+		ft_putstr_fd(export->varname, fds_to_use[WRITE]);
 		if (export->varvalue != NULL)
 		{
-			ft_putstr_fd("=", cmd_export->out_fd);
-			ft_putchar_fd('"', cmd_export->out_fd);
-			ft_putstr_fd(export->varvalue, cmd_export->out_fd);
-			ft_putchar_fd('"', cmd_export->out_fd);
+			ft_putstr_fd("=", fds_to_use[WRITE]);
+			ft_putchar_fd('"', fds_to_use[WRITE]);
+			ft_putstr_fd(export->varvalue, fds_to_use[WRITE]);
+			ft_putchar_fd('"', fds_to_use[WRITE]);
 		}
-		ft_putchar_fd('\n', cmd_export->out_fd);
+		ft_putchar_fd('\n', fds_to_use[WRITE]);
 		export = export->next;
 	}
 	return (false);
@@ -80,14 +80,14 @@ void	export_variable(t_arg *var)
 	iter->next = init_env_node(var->value, *env);
 }
 
-bool	cmd_export(t_exec_block *cmd_export)
+bool	cmd_export(int fds_to_use[2], t_exec_block *cmd_export)
 {
 	t_arg	*iter;
 	int		exit_status;
 
 	exit_status = 0;
 	if (cmd_export->arg == NULL)
-		return (print_export(cmd_export));
+		return (print_export(fds_to_use));
 	iter = cmd_export->arg;
 	while (iter != NULL)
 	{

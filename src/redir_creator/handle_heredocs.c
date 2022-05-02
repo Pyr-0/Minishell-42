@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:21:59 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 16:48:03 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:23:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init_i_exec_with_heredoc(int *heredoc_pp,
-				t_exec_block *i_exec, t_parser_block *i_parser)
+int	init_i_exec_with_heredoc(int *heredoc_pp, t_parser_block *i_parser)
 {
 	int		heredoc_pp_out;
 	bool	last_input_is_heredoc;
@@ -21,17 +20,17 @@ int	init_i_exec_with_heredoc(int *heredoc_pp,
 	last_input_is_heredoc = check_if_last_input_is_heredoc(i_parser);
 	if (last_input_is_heredoc == true)
 	{
-		close(heredoc_pp[PIPE_WRITE]);
-		heredoc_pp_out = heredoc_pp[PIPE_READ];
+		close(heredoc_pp[WRITE]);
+		heredoc_pp_out = heredoc_pp[READ];
 		free(heredoc_pp);
 		return (heredoc_pp_out);
 	}
 	else
 	{
-		if (heredoc_pp[PIPE_READ] != 0)
-			close(heredoc_pp[PIPE_READ]);
-		if (heredoc_pp[PIPE_WRITE] != 0)
-			close(heredoc_pp[PIPE_WRITE]);
+		if (heredoc_pp[READ] != 0)
+			close(heredoc_pp[READ]);
+		if (heredoc_pp[WRITE] != 0)
+			close(heredoc_pp[WRITE]);
 		free(heredoc_pp);
 		return (-1);
 	}
@@ -44,10 +43,16 @@ static void	heredoc_helper(char *line_read, int *heredoc_pp)
 	line_with_newline = ft_strjoin(line_read, "\n");
 	if (line_with_newline == NULL)
 		read_heredoc_fail_exit(heredoc_pp);
-	write(heredoc_pp[PIPE_WRITE], line_with_newline,
+	write(heredoc_pp[WRITE], line_with_newline,
 		ft_strlen(line_with_newline));
 	free(line_read);
 	free(line_with_newline);
+}
+
+static void	reinstate_stdin(int temp_fd)
+{
+	dup2(temp_fd, STDIN_FILENO);
+	close(temp_fd);
 }
 
 void	read_heredoc(int *heredoc_pp,
@@ -66,21 +71,21 @@ void	read_heredoc(int *heredoc_pp,
 		line_read = readline("\e[1;91m_> \e[46m\e[0m");
 		if (line_read == NULL)
 		{
+			reinstate_stdin(temp_fd);
 			read_heredoc_fail_exit(heredoc_pp);
 			break ;
 		}
 		if (ft_strcmp(line_read, i_redir->id) == 0)
 		{
+			reinstate_stdin(temp_fd);
 			free (line_read);
 			return ;
 		}
 		heredoc_helper(line_read, heredoc_pp);
 	}
-	dup2(temp_fd, STDIN_FILENO);
 }
 
-int	handle_heredocs(t_exec_block *i_exec,
-				t_parser_block *i_parser, t_exec_block *exec_blocks,
+int	handle_heredocs(t_parser_block *i_parser, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks)
 {
 	t_redir	*i_redir;
@@ -94,14 +99,14 @@ int	handle_heredocs(t_exec_block *i_exec,
 	{
 		if (i_redir->e_redir_type == REDIR_INPUT_HEREDOC)
 		{
-			if (heredoc_pp[PIPE_READ] != 0)
+			if (heredoc_pp[READ] != 0)
 			{
-				close(heredoc_pp[PIPE_WRITE]);
-				close(heredoc_pp[PIPE_READ]);
+				close(heredoc_pp[WRITE]);
+				close(heredoc_pp[READ]);
 			}
 			read_heredoc(heredoc_pp, i_redir, exec_blocks, parser_blocks);
 		}
 		i_redir = i_redir->next;
 	}
-	return (init_i_exec_with_heredoc(heredoc_pp, i_exec, i_parser));
+	return (init_i_exec_with_heredoc(heredoc_pp, i_parser));
 }

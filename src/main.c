@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 16:10:29 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:47:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_readline_fail(void)
 {
 	free_env();
-	write(1, "exit\n", 6);
+	write(1, "exit\n", 5);
 	exit(EXIT_FAILURE);
 }
 
@@ -57,7 +57,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue ;
 		exec_done = redir_creator(parser_done);
-		print_exec_blocks(exec_done); //
+		//print_exec_blocks(exec_done); //
 		clear_signals();
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
@@ -69,7 +69,6 @@ int	main(int argc, char *argv[], char *envp[])
 }
 
 //[*1] ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
-
 
 /*
 (bash init_docker.sh)

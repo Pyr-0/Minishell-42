@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/05/01 22:42:20 by mrojas-e         ###   ########.fr        #
+#    Updated: 2022/05/02 20:36:08 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,9 +57,11 @@ SRC			=		./src/print_stuff.c \
 					./src/redir_creator/redir_creator_utils.c \
 					./src/redir_creator/redir_creator_init_exec_blocks.c \
 					./src/redir_creator/handle_heredocs.c \
+					./src/redir_creator/handle_heredoc_utils.c \
 					./src/redir_creator/handle_redir_files.c \
 					./src/executor/executor.c \
 					./src/executor/handle_inbuilt.c \
+					./src/executor/handle_non_inbuilt.c \
 					./src/executor/find_cmd_path.c \
 					./src/executor/envp_argv_creator.c \
 					./src/builtins/cmd_pwd.c \

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:59:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/28 18:43:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 18:46:52 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	cmd_env(t_exec_block *cmd_env)
+bool	cmd_env(int fds_to_use[2], t_exec_block *cmd_env)
 {	
 	t_env	*env;
 
@@ -24,9 +24,9 @@ env: toooo much too handle 😥\e[0m\n", EXIT_STD_ERROR));
 	{
 		if (env->varvalue != NULL)
 		{
-			ft_putstr_fd(env->varname, cmd_env->out_fd);
-			ft_putstr_fd("=", cmd_env->out_fd);
-			ft_putendl_fd(env->varvalue, cmd_env->out_fd);
+			ft_putstr_fd(env->varname, fds_to_use[WRITE]);
+			ft_putstr_fd("=", fds_to_use[WRITE]);
+			ft_putendl_fd(env->varvalue, fds_to_use[WRITE]);
 		}
 		env = env->next;
 	}

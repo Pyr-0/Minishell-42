@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 16:40:29 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/04/27 21:54:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 18:51:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	cmd_exit(t_exec_block *cmd_exit, t_exec_block *exec_blocks)
 {
 	int	res;
 
-	ft_putstr_fd("exit\n", 2);
+	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	if (cmd_exit->arg == NULL)
 		true_exit(g_exit_status, exec_blocks);
 	if (cmd_exit->arg->next != NULL)

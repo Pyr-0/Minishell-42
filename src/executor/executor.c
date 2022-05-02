@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 16:48:20 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:43:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,94 +19,66 @@ void	executor_fail_exit(t_exec_block *exec_blocks)
 	exit(EXIT_FAILURE);
 }
 
-void	close_fds(t_exec_block *i_exec)
+void	congfigure_fds(int pp[2], int fds_to_use[2],
+						int tmp_in, t_exec_block *i_exec)
 {
-	if (i_exec->pp_in > STDERR_FILENO)
+	if (i_exec->in_fd == STDIN_FILENO)
+		fds_to_use[READ] = tmp_in;
+	else
+		fds_to_use[READ] = i_exec->in_fd;
+	if (i_exec->next != NULL)
 	{
-		close(i_exec->pp_in);
-		i_exec->pp_in = -1;
+		if (pipe(pp) == -1)
+			executor_fail_exit(i_exec);
+		if (i_exec->out_fd == STDOUT_FILENO)
+			fds_to_use[WRITE] = pp[WRITE];
 	}
-	if (i_exec->in_fd > STDERR_FILENO)
-	{
-		close(i_exec->in_fd);
-		i_exec->in_fd = -1;
-	}
-	if (i_exec->pp_out > STDERR_FILENO)
-	{
-		close(i_exec->pp_out);
-		i_exec->pp_out = -1;
-	}
-	if (i_exec->out_fd > STDERR_FILENO)
-	{
-		close(i_exec->out_fd);
-		i_exec->out_fd = -1;
-	}
+	if (i_exec->out_fd != STDOUT_FILENO)
+		fds_to_use[WRITE] = i_exec->out_fd;
+	else if (i_exec->next == NULL)
+		fds_to_use[WRITE] = STDOUT_FILENO;
 }
 
-void	execute_cmd(char *cmd_path, t_exec_block *i_exec,
-						t_exec_block *exec_blocks)
+void	prepare_for_next_loop(t_exec_block *i_exec, int *tmp_in, int pp[2])
 {
-	char	**argv;
-	char	**envp;
-	pid_t	pid;
-
-	argv = argv_creator(i_exec, exec_blocks);
-	envp = envp_creator(exec_blocks);
-	signal(SIGINT, signalhandler_ctrl_child);
-	signal(SIGQUIT, signalhandler_ctrl_child);
-	pid = fork();
-	if (pid == -1)
-		executor_fail_exit(exec_blocks);
-	if (pid == 0)
+	if (i_exec->next != NULL)
 	{
-		dup2(i_exec->in_fd, STDIN_FILENO);
-		dup2(i_exec->out_fd, STDOUT_FILENO);
-		close_fds(i_exec);
-		signal(SIGQUIT, SIG_DFL);
-		signal(SIGINT, SIG_DFL);
-		execve(cmd_path, argv, envp);
-		exit(EXIT_FAILURE);
+		if (*tmp_in != STDIN_FILENO)
+			close(*tmp_in);
+		if (pp[WRITE] != -1)
+		{
+			close(pp[WRITE]);
+			pp[WRITE] = -1;
+		}
+		*tmp_in = pp[READ];
 	}
-	close_fds(i_exec);
-	free(argv);
-	free_split(envp);
 }
 
 bool	executor_loop(t_exec_block *exec_blocks, int *child_process_num)
 {
 	t_exec_block	*i_exec;
-	char			*cmd_path;
 	bool			last_cmd_is_executable;
 	int				pp[2];
+	int				fds_to_use[2];
+	int				tmp_in;
 
-	cmd_path = NULL;
 	i_exec = exec_blocks;
 	last_cmd_is_executable = false;
+	tmp_in = STDIN_FILENO;
+	pp[0] = -1;
+	pp[1] = -1;
 	while (i_exec != NULL)
 	{
-		if (i_exec->next != NULL)
-		{
-			if (pipe(pp) == -1)
-				executor_fail_exit(exec_blocks);
-			if (i_exec->out_fd == -1)
-				// make 1 pipe for whole process. then, also one fd for the remainning read ed of the pipe. divide functions before though!!! very important!
-		}
+		congfigure_fds(pp, fds_to_use, tmp_in, i_exec);
 		if (is_inbuilt(i_exec) == true)
-			handle_inbuilt(i_exec, exec_blocks);
+			handle_inbuilt(fds_to_use, i_exec, exec_blocks);
 		else if (i_exec->cmd != NULL)
-		{
-			cmd_path = find_cmd_path(i_exec->cmd, exec_blocks);
-			if (cmd_path != NULL)
-			{
-				if (i_exec->next == NULL)
-					last_cmd_is_executable = true;
-				(*child_process_num)++;
-				execute_cmd(cmd_path, i_exec, exec_blocks);
-			}
-			free(cmd_path);
-		}
+			last_cmd_is_executable = handle_non_inbuilt(fds_to_use,
+					i_exec, exec_blocks, child_process_num);
+		prepare_for_next_loop(i_exec, &tmp_in, pp);
 		i_exec = i_exec->next;
 	}
+	close(pp[READ]);
 	return (last_cmd_is_executable);
 }
 
