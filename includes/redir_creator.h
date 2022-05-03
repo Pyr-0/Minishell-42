@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:38:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 20:45:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/02 22:32:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool			open_output_file(t_redir *output, t_exec_block *curr);
 /* >============REDIR CREATOR HANDLE HEREDOCS===============< */
 int				handle_heredocs(t_parser_block *i_parser,
 					t_exec_block *exec_blocks, t_parser_block *parser_blocks);
-void			read_heredoc(int *heredoc_pp,
+bool			read_heredoc(int *heredoc_pp,
 					t_redir *i_redir, t_exec_block *exec_blocks,
 					t_parser_block *parser_blocks);
 int				init_i_exec_with_heredoc(int *heredoc_pp,

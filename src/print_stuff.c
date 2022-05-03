@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_stuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 16:48:47 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/03 13:47:02 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	print_lexer_blocks(t_lexer_block *lexer)
 	printf("\e[44mprint lexer blocks end\e[0m\n\n");
 }
 
+void	print_redirs(t_parser_block *i_block)
+{
+	t_redir	*i_redir;
+
+	i_redir = i_block->redir;
+	printf("redirections:\n");
+	while (i_redir != NULL)
+	{
+		printf("	redir_type: %u, redir_id: %s\n",
+			i_redir->e_redir_type, i_redir->id);
+		i_redir = i_redir->next;
+	}
+}
+
 void	print_parser_blocks(t_parser_block *parser_blocks)
 {
 	t_parser_block	*i_block;
@@ -55,13 +69,7 @@ void	print_parser_blocks(t_parser_block *parser_blocks)
 			i_arg = i_arg->next;
 		}
 		i_redir = i_block->redir;
-		printf("redirections:\n");
-		while (i_redir != NULL)
-		{
-			printf("	redir_type: %u, redir_id: %s\n",
-				i_redir->e_redir_type, i_redir->id);
-			i_redir = i_redir->next;
-		}
+		print_redirs(i_block);
 		printf("\n");
 		i_block = i_block->next;
 	}
@@ -106,19 +114,4 @@ void	print_env(void)
 		env = env->next;
 	}
 	printf("\e[45mprint env end\e[0m\n\n");
-}
-
-void	print_split(char **split)
-{
-	int	i;
-
-	i = 0;
-
-	printf("\n\e[46mprint split start\e[0m\n");
-	while (split[i] != NULL)
-	{
-		printf("%s\n", split[i]);
-		i++;
-	}
-	printf("\e[46mprint split end\e[0m\n\n");
 }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 21:06:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 18:32:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define EXIT_CMD_NOT_FOUND		127
 # define EXIT_INVALID_EXIT		255
 # define EXIT_PIPE_REDIR_ERROR	258
-# define READ				0
-# define WRITE				1
+# define READ					0
+# define WRITE					1
 
 int	g_exit_status;
 
@@ -38,7 +38,6 @@ void	print_lexer_blocks(t_lexer_block *lexer_done);
 void	print_parser_blocks(t_parser_block *parser_blocks);
 void	print_exec_blocks(t_exec_block *exec_blocks);
 void	print_env(void);
-void	print_split(char **split);
 
 /* >============SIGNALS===============< */
 
@@ -51,6 +50,8 @@ void	signal_handler_heredoc(int sig);
 void	signalhandler_ctrl_child(int sig);
 void	ignore_all_signals(void);
 void	exit_signal(void);
-void	progress_bar(void);
+
+/* >============START UP===============< */
+void	logo(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:30:46 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 22:09:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 14:35:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ void	executor(t_exec_block *exec_blocks)
 		child_process_num--;
 	}
 	if (last_cmd_is_executable == true)
-		g_exit_status = exit_status;
+	{
+		if (WIFSIGNALED(exit_status))
+			g_exit_status = 128 + WTERMSIG(exit_status);
+		else if (WIFEXITED(exit_status))
+			g_exit_status = WEXITSTATUS(exit_status);
+	}
 	free_close_exec_blocks(exec_blocks);
 }
