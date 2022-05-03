@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 16:24:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:39:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_readline(void)
 	char	*line;
 
 	line = readline("\e[4;35m\e[40m\
-\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //[*1]
+\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m");
 	if (line == NULL)
 		exit_readline_fail();
 	add_history(line);
@@ -79,14 +79,3 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	return (0);
 }
-
-//[*1] ft_strdup("< yeah << here hello > yup > nope"); // readline("mi[SHELL]in$ ");
-
-/*
-(bash init_docker.sh)
-(docker build -t memory-test .)
-docker run -ti -v $(PWD):/test memory-test bash -c "cd /test/; make re && valgrind --leak-check=full --show-leak-kinds=all ./minishell"
-lsof -c minishell
-valgrind --leak-check=full --show-leak-kinds=all ./minishell 
-printf("\e[43mhere?\e[0m\n");
-*/
