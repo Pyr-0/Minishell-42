@@ -6,13 +6,21 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 16:52:28 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 18:54:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 18:43:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	unset_variable(t_arg *varname)
+static void	unset_first_node(t_env *first, t_env **env)
+{
+	*env = first->next;
+	free(first->varname);
+	free(first->varvalue);
+	free(first);
+}
+
+static void	unset_variable(t_arg *varname)
 {
 	t_env	**env;
 	t_env	*iter;
@@ -22,6 +30,8 @@ void	unset_variable(t_arg *varname)
 	if (fetch_env_var_value(varname->value) == NULL)
 		return ;
 	iter = *env;
+	if (ft_strcmp(iter->varname, varname->value) == 0)
+		return (unset_first_node(iter, env));
 	while (iter->next != NULL)
 	{
 		if (ft_strcmp(iter->next->varname, varname->value) == 0)

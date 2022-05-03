@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 16:24:30 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 18:32:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define EXIT_CMD_NOT_FOUND		127
 # define EXIT_INVALID_EXIT		255
 # define EXIT_PIPE_REDIR_ERROR	258
-# define READ				0
-# define WRITE				1
+# define READ					0
+# define WRITE					1
 
 int	g_exit_status;
 
