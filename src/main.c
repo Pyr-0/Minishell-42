@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 13:23:21 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 13:34:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	exit_readline_fail(void)
 static void	minishell_setup(int argc, char *argv[], char *envp[])
 {
 	progress_bar();
+	logo();
 	if (argc != 1)
 	{
 		printf("\e[31mwhat is your problem?\

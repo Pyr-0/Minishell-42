@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bar.c                                              :+:      :+:    :+:   */
+/*   startup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 17:54:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 14:13:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,33 @@ void	progress_bar(void)
 	i = 0;
 	lable = "|/-\\";
 	ft_memset(bar, 0, 102 * sizeof(char));
-	printf("\e[36m \
-              LOADING PLEASE WAIT ...\e[0m\n");
+	printf("\e[0;90m \
+                  LOADING PLEASE WAIT ...\e[0m\n");
 	while (i <= 100)
 	{
 		if (i % 3 == 0)
 			ft_strlcpy(&bar[i], someonesmom, 500);
-		printf("\r\e[4;35m\e[40m\e[1;98m%-2s\e[0m\e[36m [%d%%] [%c]", bar,
+		printf("\r\e[0;90m%-2s\e[0m\e[0;90m [%d%%] [%c]", bar,
 			i, lable[i % 4]);
 		usleep(3000);
 		fflush(stdout);
 		i ++;
 	}
 	printf("\n");
+}
+
+void	logo(void)
+{
+	printf("\n\n\n");
+	printf("      \e[93m           (        )       (     (              \n");
+	printf("                 )\\ )  ( /(       )\\ )  )\\ )           \n");
+	printf("             (  (()/(  )\\()) (   (()/( (()/( (         \n");
+	printf("             )\\  /(_))((_)\\  )\\   /(_)) /(_)))\\        \n");
+	printf("           '((_)(_))   _((_)((_) (_))  (_))  (_)       \n");
+	printf("      \e[35m _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n");
+	printf("      | '  \\ | |\\__ \\ | __ || _| | |__ | |__ | || ' \\  \n");
+	printf("      |_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n");
+	printf("      \e[0;30m                            by shaas & mrojas-e  \n");
+	printf("\e[0m");
+	printf("\n\n\n");
 }

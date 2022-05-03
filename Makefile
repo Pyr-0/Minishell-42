@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/05/02 20:36:08 by shaas            ###   ########.fr        #
+#    Updated: 2022/05/03 13:47:54 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC			=		./src/print_stuff.c \
 					./src/pipe_redir_error.c \
 					./src/sighandlers.c \
 					./src/signals.c \
-					./src/bar.c \
+					./src/startup.c \
 					./src/env/get_env.c \
 					./src/env/init_env.c \
 					./src/env/env_utils.c \
@@ -82,6 +82,7 @@ $(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
 				@$(CC) $(CC_FLAGS) $(CPPFLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
 				@tput setaf 013 && printf "$(NAME) created.\n"
+				@printf "\e[0m"
 
 $(LIBFT):		libft/*.c
 				@tput setaf 117 && printf "*--------checking libft...-------------*\n"
@@ -104,18 +105,6 @@ fclean:			clean
 re:				fclean all
 
 exec:
-				@tput setaf 1 && printf   "           (        )       (     (              \n"
-				@tput setaf 1 && printf   "           )\ )  ( /(       )\ )  )\ )           \n"
-				@tput setaf 1 && printf   "       (  (()/(  )\()) (   (()/( (()/( (         \n"
-				@tput setaf 1 && printf   "       )\  /(_))((_)\  )\   /(_)) /(_)))\        \n"
-				@tput setaf 1 && printf   "     '((_)(_))   _((_)((_) (_))  (_))  (_)       \n"
-				@tput setaf 05 && printf " _ _   (_)/ __| | || || __|| |   | |   (_) _ _   \n"
-				@tput setaf 05 && printf "| '  \ | |\__ \ | __ || _| | |__ | |__ | || ' \  \n"
-				@tput setaf 05 && printf "|_|_|_||_||___/ |_||_||___||____||____||_||_||_| \n"
-				@tput setaf 05 && printf "                            by shaas & mrojas-e  \n"
-				@tput setaf 005 && printf "    *--------executing program!------------*\n"
-				@printf "\e[0m"
-
 				./$(NAME)
 
 both:			$(NAME) exec
