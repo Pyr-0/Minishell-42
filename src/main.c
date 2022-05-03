@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 13:34:45 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:24:10 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	exit_readline_fail(void)
 
 static void	minishell_setup(int argc, char *argv[], char *envp[])
 {
-	progress_bar();
 	logo();
 	if (argc != 1)
 	{
@@ -34,7 +33,7 @@ I don't take any arguments from you 🙄\e[0m\n");
 	get_env(envp);
 }
 
-char	*ft_readline(void)
+static char	*ft_readline(void)
 {
 	char	*line;
 
@@ -44,6 +43,13 @@ char	*ft_readline(void)
 		exit_readline_fail();
 	add_history(line);
 	return (line);
+}
+
+static void	reset_signals(void)
+{
+	clear_signals();
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -66,9 +72,9 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue ;
 		exec_done = redir_creator(parser_done);
-		clear_signals();
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
+		if (exec_done == NULL)
+			continue ;
+		reset_signals();
 		executor(exec_done);
 	}
 	return (0);

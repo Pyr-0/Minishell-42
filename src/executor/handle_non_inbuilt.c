@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:35:18 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 22:21:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:23:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	child(t_temp_fds *temp, char **argv, char **envp, char *cmd_path)
 		close(temp->pp[1]);
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
-	if (ft_strcmp(cmd_path, "./minishell") == 0)
-	{
-		ignore_all_signals(); // :(
-		printf("%s\n", cmd_path); //
-	}
 	execve(cmd_path, argv, envp);
+	free_split(argv);
+	free_split(envp);
+	free(cmd_path);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 	exit(EXIT_FAILURE);
 }
 

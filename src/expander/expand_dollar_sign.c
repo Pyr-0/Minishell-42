@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar_sign.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaas <shaas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:14:43 by shaas             #+#    #+#             */
-/*   Updated: 2022/04/28 17:58:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:00:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,18 @@ char	*collect_varvalue(char *varname)
 	t_env	*env;
 
 	if (varname[0] == '\0')
-		return (ft_strdup("?"));
+		return (ft_strdup("$"));
 	if (varname[0] == '?')
 		return (ft_itoa(g_exit_status));
 	env = *get_env(NULL);
 	while (env != NULL && varname != NULL)
 	{
 		if (ft_strncmp(env->varname, varname, INT_MAX) == 0)
+		{
+			if (env->varvalue == NULL)
+				return (ft_strdup(""));
 			return (ft_strdup(env->varvalue));
+		}
 		env = env->next;
 	}
 	return (ft_strdup(""));

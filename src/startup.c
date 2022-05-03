@@ -6,14 +6,13 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 03:08:55 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 14:13:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:24:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-	//printf("\r\e[36m [%d%%] [%c]\n",i,lable[i%4]); line by line %
-void	progress_bar(void)
+/* void	progress_bar(void)
 {
 	int			i;
 	static char	bar[500];
@@ -32,12 +31,12 @@ void	progress_bar(void)
 			ft_strlcpy(&bar[i], someonesmom, 500);
 		printf("\r\e[0;90m%-2s\e[0m\e[0;90m [%d%%] [%c]", bar,
 			i, lable[i % 4]);
-		usleep(3000);
+		usleep(5000);
 		fflush(stdout);
 		i ++;
 	}
 	printf("\n");
-}
+} */
 
 void	logo(void)
 {

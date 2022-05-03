@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:44:12 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/03 13:47:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 16:24:30 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ignore_all_signals(void);
 void	exit_signal(void);
 
 /* >============START UP===============< */
-void	progress_bar(void);
 void	logo(void);
 
 #endif
