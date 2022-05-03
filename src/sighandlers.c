@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sighandlers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:37:30 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/02 22:03:47 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/05/03 19:50:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	signalhandler_ctrl_child(int sig)
 	if (sig == SIGINT)
 	{
 		printf("\n");
-	} 
+	}
 	if (sig == SIGQUIT)
 	{
 		write(1, "Quit: 3\n", 8);
