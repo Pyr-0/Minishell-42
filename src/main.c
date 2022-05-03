@@ -6,20 +6,20 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:35:14 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/05/02 20:47:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/03 13:23:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	exit_readline_fail(void)
+static void	exit_readline_fail(void)
 {
 	free_env();
 	write(1, "exit\n", 5);
 	exit(EXIT_FAILURE);
 }
 
-void	minishell_setup(int argc, char *argv[], char *envp[])
+static void	minishell_setup(int argc, char *argv[], char *envp[])
 {
 	progress_bar();
 	if (argc != 1)
@@ -33,6 +33,18 @@ I don't take any arguments from you 🙄\e[0m\n");
 	get_env(envp);
 }
 
+char	*ft_readline(void)
+{
+	char	*line;
+
+	line = readline("\e[4;35m\e[40m\
+\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //[*1]
+	if (line == NULL)
+		exit_readline_fail();
+	add_history(line);
+	return (line);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_lexer			lexer_struct;
@@ -44,11 +56,7 @@ int	main(int argc, char *argv[], char *envp[])
 	while (true)
 	{
 		set_signals();
-		lexer_struct.contents = readline("\e[4;35m\e[40m\
-\e[1;93mmi[SHELL]in\e[0;95m_> \e[0m"); //[*1]
-		if (lexer_struct.contents == NULL)
-			exit_readline_fail();
-		add_history(lexer_struct.contents);
+		lexer_struct.contents = ft_readline();
 		lexer_done = lexer(&lexer_struct);
 		if (pipe_redir_error(lexer_done) == true)
 			continue ;
@@ -57,13 +65,10 @@ int	main(int argc, char *argv[], char *envp[])
 		if (parser_done == NULL)
 			continue ;
 		exec_done = redir_creator(parser_done);
-		//print_exec_blocks(exec_done); //
 		clear_signals();
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
 		executor(exec_done);
-	//	free_env(); //at the end
-	//	break ; //
 	}
 	return (0);
 }
