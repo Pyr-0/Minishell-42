@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 17:31:08 by mrojas-e          #+#    #+#              #
-#    Updated: 2022/05/03 13:47:54 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/05 21:23:31 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJ)
 				@tput setaf 05 && printf "Sources Succesfully Compiled!\n"
-				@$(CC) $(CC_FLAGS) $(CPPFLAGS) $(LDFLAGS) $(SRC) $(LIBFT) -o $(NAME) $(LREADLINE)
+				@$(CC) $(CC_FLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LREADLINE)
 				@tput setaf 013 && printf "$(NAME) created.\n"
 				@printf "\e[0m"
 
