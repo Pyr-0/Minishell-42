@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/03 13:47:02 by shaas            ###   ########.fr       */
+/*   Updated: 2023/12/05 17:25:08 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	print_parser_blocks(t_parser_block *parser_blocks)
 {
 	t_parser_block	*i_block;
 	t_arg			*i_arg;
-	t_redir			*i_redir;
 
 	i_block = parser_blocks;
 	printf("\n\e[102mprint parser blocks start\e[0m\n");
@@ -68,7 +67,6 @@ void	print_parser_blocks(t_parser_block *parser_blocks)
 			printf("	arg_value: %s\n", i_arg->value);
 			i_arg = i_arg->next;
 		}
-		i_redir = i_block->redir;
 		print_redirs(i_block);
 		printf("\n");
 		i_block = i_block->next;
